@@ -24,3 +24,5 @@ scripts/.hero-record
 *.njsproj
 *.sln
 *.sw?
+
+.vercel
