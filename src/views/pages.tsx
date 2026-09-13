@@ -758,6 +758,7 @@ export function SettingsPage() {
           <li>회사명: DEMO LINE</li>
           <li>부서: 운항팀</li>
           <li>대외 발송: 승인 후 발송</li>
+          <li>추출: 규칙 기반 · PoC에서 LLM 교체</li>
         </ul>
         <button className="btn-ghost mt-3" onClick={() => reset()}>
           워크스페이스 초기화

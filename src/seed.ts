@@ -398,9 +398,9 @@ ETD 16 Sep 1800LT`,
 ]
 
 export const DATA_SOURCES: DataSource[] = [
-  { id: 'ds-email', name: '스케줄 메일함', kind: '이메일', status: 'connected', note: 'IMAP 연결', prototype: true },
-  { id: 'ds-pdf', name: '기항 PDF', kind: 'PDF', status: 'connected', note: '첨부 수신', prototype: true },
-  { id: 'ds-xls', name: '파트너 엑셀', kind: '엑셀', status: 'connected', note: '업로드', prototype: true },
+  { id: 'ds-email', name: '스케줄 메일함', kind: '이메일', status: 'connected', note: '원문 텍스트 수신', prototype: true },
+  { id: 'ds-pdf', name: '기항 PDF', kind: 'PDF', status: 'connected', note: '원문 붙여넣기 시뮬', prototype: true },
+  { id: 'ds-xls', name: '파트너 엑셀', kind: '엑셀', status: 'connected', note: 'CSV/텍스트 시뮬', prototype: true },
   { id: 'ds-api', name: '항차 API', kind: 'API', status: 'available', note: '미연결', prototype: true },
   { id: 'ds-dcsa', name: 'DCSA OVS', kind: '표준', status: 'extension', note: '예정', prototype: true },
 ]

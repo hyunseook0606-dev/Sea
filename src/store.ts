@@ -133,6 +133,7 @@ interface SeaState {
   favorites: Favorite[]
   pinnedExceptionIds: string[]
   runs: ProcessRun[]
+  sendDenied: number
   llmConfig: LlmConfig
   lastExtractError?: string
   policy: PolicyParams
@@ -190,6 +191,7 @@ export const useSeaStore = create<SeaState>((set, get) => ({
   favorites: readFavorites(),
   pinnedExceptionIds: readPins(),
   runs: [],
+  sendDenied: 0,
   llmConfig: readLlmConfig(),
   policy: readPolicy(),
   setIntroDone: () => set({ introDone: true }),
@@ -276,14 +278,18 @@ export const useSeaStore = create<SeaState>((set, get) => ({
   },
   sendException: (exceptionId) => {
     const { drafts, exceptions, operator } = get()
+    const deny = (reason: string, count = true) => {
+      if (count) set((s) => ({ sendDenied: s.sendDenied + 1 }))
+      return { ok: false as const, reason }
+    }
     const ex = exceptions.find((e) => e.id === exceptionId)
-    if (!ex) return { ok: false, reason: '예외 없음' }
-    if (!ex.voyageId) return { ok: false, reason: '항차 미매칭 · 발송 불가' }
-    if (ex.status === 'blocked') return { ok: false, reason: '검증 실패 · 발송 차단' }
+    if (!ex) return deny('예외 없음', false)
+    if (!ex.voyageId) return deny('항차 미매칭 · 발송 불가')
+    if (ex.status === 'blocked') return deny('검증 실패 · 발송 차단')
     const related = drafts.filter((d) => d.exceptionId === exceptionId)
     const need = related.filter((d) => d.channel === 'shipper' || d.channel === 'inland')
     if (need.some((d) => d.status !== 'approved')) {
-      return { ok: false, reason: '화주·내륙 채널 승인 전에는 발송할 수 없습니다' }
+      return deny('화주·내륙 채널 승인 전에는 발송할 수 없습니다')
     }
     set((s) => ({
       drafts: s.drafts.map((d) => (d.exceptionId === exceptionId && d.status === 'approved' ? { ...d, status: 'sent' } : d)),
@@ -352,6 +358,7 @@ export const useSeaStore = create<SeaState>((set, get) => ({
       voyages: VOYAGES.map((v) => ({ ...v })),
       confirmedHistory: initialConfirmedHistory(),
       runs: [],
+      sendDenied: 0,
       lastExtractError: undefined,
     }),
   setEtaReviewHours: (hours) => {

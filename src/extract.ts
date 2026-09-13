@@ -249,6 +249,13 @@ export function filledCount(fields: ExtractedField[]): number {
   return fields.filter((f) => f.value).length
 }
 
+export function goldFieldMatch(got: string, expect: string) {
+  const a = normVal(got)
+  const b = normVal(expect)
+  if (!b) return false
+  return a === b || a.includes(b) || b.includes(a)
+}
+
 export function scoreGold(fields: ExtractedField[], gold?: Partial<ScheduleFields>): { hit: number; total: number } {
   if (!gold) return { hit: 0, total: 0 }
   const keys = Object.keys(gold) as FieldKey[]
@@ -259,7 +266,7 @@ export function scoreGold(fields: ExtractedField[], gold?: Partial<ScheduleField
     if (!expect) continue
     total += 1
     const got = (fields.find((f) => f.key === key)?.value || '').trim()
-    if (normVal(got) === normVal(expect) || normVal(got).includes(normVal(expect)) || normVal(expect).includes(normVal(got))) hit += 1
+    if (goldFieldMatch(got, expect)) hit += 1
   }
   return { hit, total }
 }

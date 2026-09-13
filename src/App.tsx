@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { BrandLanding } from './BrandLanding'
 import { Shell } from './Shell'
 import { CommandCenter } from './views/CommandCenter'
+import { VerifyPage } from './views/VerifyPage'
 import { ExceptionWorkspace } from './views/ExceptionWorkspace'
 import { ScheduleInbox } from './views/ScheduleInbox'
 import {
@@ -30,7 +31,8 @@ export default function App() {
         <Route path="/" element={<BrandLanding />} />
         <Route path="/app" element={<Shell />}>
           <Route index element={<CommandCenter />} />
-          <Route path="effects" element={<Navigate to="/app" replace />} />
+          <Route path="verify" element={<VerifyPage />} />
+          <Route path="effects" element={<Navigate to="/app/verify" replace />} />
           <Route path="favorites" element={<FavoritesPage />} />
           <Route path="voyages" element={<VoyagesPage />} />
           <Route path="voyages/:id" element={<VoyageDetailPage />} />

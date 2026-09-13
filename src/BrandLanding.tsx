@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { AX_CAPABILITIES, AX_CASES } from './ax'
+import { ExceptionFlow } from './components/ExceptionFlow'
 import { Reveal } from './components/Reveal'
 import { SeaBrandLogo } from './components/SeaLogo'
 
@@ -14,7 +15,7 @@ const NAV = [
 
 const FACTS = [
   ['대상', '국적 컨테이너·피더 운항팀'],
-  ['입력', '메일 · PDF · 엑셀'],
+  ['하는 일', '변경 이후 예외 확인·통보'],
   ['Cut-off', '원문에 있을 때만 유지'],
   ['발송', '승인 후 발송'],
 ]
@@ -22,7 +23,7 @@ const FACTS = [
 const PILLARS = [
   {
     title: '원문에서 항차 필드를 읽습니다',
-    desc: '선박·항차·ETA·선석을 메일·엑셀·PDF에서 올려 전표에 붙입니다.',
+    desc: '선박·항차·ETA·선석을 메일·엑셀·PDF 원문에서 전표 필드로 올립니다.',
     img: '/landing/berth.jpg',
     pos: 'object-center',
   },
@@ -85,8 +86,16 @@ function HeroStage({ onWorkspace }: { onWorkspace: () => void }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.42, ease: EASE }}
           >
-            기항 변경 메일·엑셀을 직전 확정본과 비교하고, 확인 항목과 화주·내륙 통보를 한 전표에서 처리합니다.
+            스케줄 관리가 아니라, 기항이 바뀐 뒤의 예외 처리를 한 흐름으로 닫습니다.
           </motion.p>
+          <motion.div
+            className="mt-8"
+            initial={reduce ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.48, ease: EASE }}
+          >
+            <ExceptionFlow variant="hero" />
+          </motion.div>
           <motion.div
             className="mt-10 flex flex-wrap gap-3"
             initial={reduce ? false : { opacity: 0, y: 20 }}
@@ -176,7 +185,7 @@ export function BrandLanding() {
   return (
     <div className="landing-root min-h-screen bg-white text-[#111]">
       <div className="easy-notification-bar">
-        <p>기항 변경 수신 · 예외 확인 · 통보 승인</p>
+        <p>변경 감지 · 영향 확인 · 예외 · 통보 초안 · 승인 · 이력</p>
         <button type="button" onClick={goApp}>
           워크스페이스
         </button>
@@ -272,10 +281,10 @@ export function BrandLanding() {
             <h2 className="text-[36px] font-semibold leading-tight tracking-tight sm:text-[46px]">
               기항이 바뀐 뒤의
               <br />
-              운항 업무를 닫습니다
+              예외 처리를 닫습니다
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-[#555]">
-              수신한 스케줄을 확정본과 비교하고, 확인할 일과 통보 초안을 같은 전표에서 처리합니다.
+              변경 감지, 영향 확인, 예외 전표, 통보 초안, 승인, 이력을 같은 워크스페이스에서 처리합니다.
             </p>
           </Reveal>
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -312,8 +321,11 @@ export function BrandLanding() {
           <Reveal className="mx-auto max-w-3xl text-center">
             <h2 className="text-[36px] font-semibold tracking-tight sm:text-[46px]">수신부터 승인까지</h2>
             <p className="mt-6 text-[17px] leading-relaxed text-[#555]">
-              수신 · 추출 · 비교 · 확인 · 승인을 한 흐름으로 처리합니다.
+              스케줄 변경 감지 → 영향 확인 → 예외 생성 → 통보 초안 → 승인 → 이력
             </p>
+          </Reveal>
+          <Reveal className="mt-12" delay={0.08} y={24}>
+            <ExceptionFlow variant="landing" />
           </Reveal>
           <Reveal className="mt-16" delay={0.12} y={40}>
             <FlowVideo onWorkspace={goApp} />

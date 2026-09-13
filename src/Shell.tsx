@@ -26,6 +26,7 @@ const MODULES: Module[] = [
     to: '/app',
     tabs: [
       { to: '/app', label: '현황' },
+      { to: '/app/verify', label: '검증' },
       { to: '/app/history', label: '처리 이력' },
     ],
     groups: [
@@ -34,6 +35,7 @@ const MODULES: Module[] = [
         label: '조회',
         items: [
           { to: '/app', label: '현황', end: true },
+          { to: '/app/verify', label: '검증' },
           { to: '/app/history', label: '처리 이력' },
         ],
       },
@@ -144,6 +146,7 @@ function pageFilters(pathname: string): { title: string; key: string; items: { i
   if (pathname.startsWith('/app/approvals')) return { title: '통보현황', key: 'view', items: [] }
   if (pathname.startsWith('/app/favorites')) return { title: '즐겨찾기', key: 'view', items: [] }
   if (pathname === '/app' || pathname === '/app/' || pathname.startsWith('/app/effects')) return { title: '현황', key: 'view', items: [] }
+  if (pathname.startsWith('/app/verify')) return { title: '검증', key: 'view', items: [] }
   if (pathname.startsWith('/app/voyages')) return { title: '항차', key: 'view', items: [] }
   if (pathname.startsWith('/app/board')) return { title: '기항현황', key: 'view', items: [] }
   if (pathname.startsWith('/app/vessels')) return { title: '선박', key: 'view', items: [] }

@@ -1,20 +1,22 @@
+export const SEA_FLOW = [
+  { id: 'detect', label: '변경 감지', hint: '원문과 확정본을 비교', to: '/app/inbox' },
+  { id: 'impact', label: '영향 확인', hint: '접안·연결·내륙', to: '/app/exceptions' },
+  { id: 'exception', label: '예외 생성', hint: '확인할 전표', to: '/app/exceptions' },
+  { id: 'draft', label: '통보 초안', hint: '화주·내륙·내부', to: '/app/approvals' },
+  { id: 'approve', label: '승인', hint: '담당자 확인 후 발송', to: '/app/approvals' },
+  { id: 'audit', label: '이력', hint: '확정본·감사 로그', to: '/app/history' },
+] as const
+
 export const AX_CAPABILITIES = [
   {
     id: 'ingest',
     en: 'Schedule Ingestion',
     label: '스케줄 수신',
-    desc: '이메일, PDF, 엑셀로 들어오는 기항 자료를 한 수신함에서 처리합니다.',
+    desc: '이메일·PDF·엑셀 원문을 한 수신함에서 받아 처리합니다.',
     to: '/app/inbox',
   },
   {
     id: 'extract',
-    en: 'Intelligent Extraction',
-    label: '문서 추출',
-    desc: '이메일·엑셀·PDF에서 선박·항차·ETA·선석을 전표 필드로 올립니다.',
-    to: '/app/exceptions',
-  },
-  {
-    id: 'diff',
     en: 'Change Detection',
     label: '변경 감지',
     desc: '직전 확정본과 비교해 달라진 값만 올립니다. 같은 변경이 다시 오면 새 전표를 만들지 않습니다.',
@@ -22,9 +24,16 @@ export const AX_CAPABILITIES = [
   },
   {
     id: 'impact',
-    en: 'Impact Analysis',
+    en: 'Impact Check',
     label: '영향 확인',
     desc: '접안·연결 항차·내륙에서 확인할 일을 체크리스트로 올립니다. Cut-off는 원문에 있을 때만 유지합니다.',
+    to: '/app/exceptions',
+  },
+  {
+    id: 'exception',
+    en: 'Exception Voucher',
+    label: '예외 전표',
+    desc: '변경과 확인 항목, 통보 초안을 한 전표에서 닫습니다.',
     to: '/app/exceptions',
   },
   {
@@ -41,18 +50,6 @@ export const AX_CAPABILITIES = [
     desc: '추출, 비교, 수정, 승인, 발송이 시간순으로 남습니다.',
     to: '/app/audit',
   },
-] as const
-
-export const AX_PIPELINE = [
-  { id: 'ingest', label: '수신', engine: '수신', to: '/app/inbox' },
-  { id: 'extract', label: '추출', engine: '추출', to: '/app/exceptions' },
-  { id: 'context', label: '맥락', engine: '맥락', to: '/app/exceptions' },
-  { id: 'diff', label: '비교', engine: '비교', to: '/app/exceptions' },
-  { id: 'exception', label: '예외', engine: '예외', to: '/app/exceptions' },
-  { id: 'impact', label: '영향', engine: '영향', to: '/app/exceptions' },
-  { id: 'action', label: '초안', engine: '초안', to: '/app/approvals' },
-  { id: 'approval', label: '승인', engine: '승인', to: '/app/approvals' },
-  { id: 'audit', label: '이력', engine: '발송', to: '/app/audit' },
 ] as const
 
 export const AX_CASES = [
