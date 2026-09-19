@@ -9,13 +9,12 @@ export const DEFAULT_POLICY: PolicyParams = {
 }
 
 export const CITE = {
-  kim2021:
-    'Kim 등(2021) 부산 컨테이너 터미널. 도착정보 갱신 후 선석·QC 재계획 주기 6h. 본 제품은 선석 최적화를 하지 않는다.',
-  dcsaJit: 'DCSA Just-in-Time Port Call. ETA와 ETB는 별도 시각이다.',
-  tsDwell:
-    '부산 T/S 체류 하한 1일(Triangular 1–4–7일, arXiv:2608.07889). 월평균 6.1일(Cogoport Busan, 2026-02)은 임계로 쓰지 않는다.',
-  econdbPnc: 'PNC 평균 체류 1.3일(Econdb, Busan terminal). 참고 통계이며 이 항차 확정본과 비교한다.',
-  dcsaCut: 'DCSA: Cut-off는 Commercial/Booking. 기항 OVS 변경과 별도.',
+  etaWindow:
+    'ETA 검토 창은 회사 기준이다. DCSA 2026 Blueprint는 feeder에서 최근 스케줄 대비 6h 초과 deviation 시 갱신 절차를 둔다. 강제 표준이 아니다.',
+  dcsaJit: 'ETA와 ETB는 별도 시각이다. 비교 기준은 직전 확정본 ETB이다.',
+  demoConn: '연결 여유 하한은 회사 업무 기준이다. 프로토타입 Demo Rule이며 산업 문헌값이 아니다.',
+  econdbPnc: '체류 시간은 이 항차 확정본·원문으로 계산한다. 터미널 평균 체류 통계를 임계로 쓰지 않는다.',
+  dcsaCut: 'Cut-off는 선박 스케줄과 연결될 수 있으나, SEA는 ETA만으로 추론하지 않는다. 원문에 있을 때만 추출·비교한다.',
   inland: '부두·터미널 변경은 내륙 게이트 확인. 가점 점수가 아니다.',
 }
 
@@ -26,6 +25,15 @@ export function parseStamp(raw?: string): number | null {
   const iso = s.includes('T') ? s : s.replace(' ', 'T')
   const t = Date.parse(iso)
   return Number.isNaN(t) ? null : t
+}
+
+export function shiftHours(raw: string, hours: number): string {
+  const t = parseStamp(raw)
+  if (t == null) return raw
+  const d = new Date(t + hours * 36e5)
+  const p = (n: number) => String(n).padStart(2, '0')
+  const core = `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`
+  return /LT/i.test(raw) ? `${core} LT` : core
 }
 
 export function hoursBetween(from?: string, to?: string): number | null {
@@ -98,9 +106,9 @@ export function buildReviewPlan(args: {
     thresholdHours: policy.etaReviewHours,
     state: etaState,
     formula: '|신규 ETA − 확정 ETA|',
-    cite: CITE.kim2021,
+    cite: CITE.etaWindow,
     detail: etaChanged
-      ? `${formatHours(slip, true)} · 검토 창 ${policy.etaReviewHours}h (부산 터미널 재계획 주기 문헌)`
+      ? `${formatHours(slip, true)} · 검토 창 ${policy.etaReviewHours}h (회사 기준)`
       : 'ETA 변경 없음',
   })
 
@@ -118,10 +126,10 @@ export function buildReviewPlan(args: {
     hours: etbStale ? newEtaVsOldEtb : hoursBetween(incoming.eta, incoming.etb),
     thresholdHours: null,
     state: etbStale ? 'review' : incoming.etb ? 'ok' : 'na',
-    formula: '신규 ETA − 확정 ETB (ETB 미갱신일 때)',
+    formula: '신규 ETA − 직전 확정본 ETB (ETB 미갱신일 때)',
     cite: CITE.dcsaJit,
     detail: etbStale
-      ? `신규 ETA가 확정 ETB보다 ${formatHours(newEtaVsOldEtb)} 뒤. 접안 시각을 다시 받는다.`
+      ? `신규 ETA가 직전 확정본 ETB(${previous.etb})보다 ${formatHours(newEtaVsOldEtb)} 뒤. 접안 시각을 다시 확인한다.`
       : incoming.etb
         ? `ETA→ETB ${formatHours(hoursBetween(incoming.eta, incoming.etb))}`
         : 'ETB 없음',
@@ -159,11 +167,11 @@ export function buildReviewPlan(args: {
     thresholdHours: policy.minConnectionHours,
     state: connState,
     formula: '연결 항차 ETD − 본선 ETD',
-    cite: CITE.tsDwell,
+    cite: CITE.demoConn,
     detail:
       slack == null
         ? '연결 항차 시각 없음'
-        : `${formatHours(slack)} · 하한 ${policy.minConnectionHours}h (T/S 체류 문헌 하한 1일. 평균 6.1일은 쓰지 않음)`,
+        : `${formatHours(slack)} · Demo Rule ${policy.minConnectionHours}h (회사 기준)`,
   })
 
   clocks.push({
@@ -189,7 +197,7 @@ export function buildReviewPlan(args: {
     detail: cutoffChanged
       ? `원문에 Cut-off 변경. 리드 ${formatHours(cutoffLead)}`
       : incoming.cutoff
-        ? `원문 유지 · 리드 ${formatHours(cutoffLead)}. ETA로 파생하지 않음`
+        ? `원문 유지 · 리드 ${formatHours(cutoffLead)}. ETA만으로 추론하지 않음`
         : '원문에 Cut-off 없음',
   })
 
@@ -206,11 +214,11 @@ export function buildReviewPlan(args: {
     clocks.find((c) => c.state === 'review')
   const headline = headlineClock
     ? headlineClock.code === 'CONNECTION'
-      ? `연결 ${formatHours(headlineClock.hours)} / 하한 ${headlineClock.thresholdHours}h`
+      ? `연결 ${formatHours(headlineClock.hours)} / Demo Rule ${headlineClock.thresholdHours}h`
       : headlineClock.code === 'ETA_SLIP'
         ? `ETA ${formatHours(headlineClock.hours, true)} / 창 ${headlineClock.thresholdHours}h`
         : headlineClock.code === 'ETB_STALE'
-          ? `ETB 미갱신 ${formatHours(headlineClock.hours)}`
+          ? `직전 확정본 ETB 미갱신 ${formatHours(headlineClock.hours)}`
           : headlineClock.code === 'PORT_STAY'
             ? `체류 ${formatHours(headlineClock.previousHours)}→${formatHours(headlineClock.hours)}`
             : headlineClock.code === 'BERTH'

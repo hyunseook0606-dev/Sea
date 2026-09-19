@@ -146,7 +146,7 @@ export interface ProcessRun {
   at: string
   kind: ProcessKind
   elapsedMs: number
-  extractor: 'rules' | 'llm'
+  extractor: 'rules' | 'llm' | 'sea' | 'hybrid'
   filledFields: number
   changeCount: number
   goldHit?: number
@@ -180,6 +180,7 @@ export interface RuleHit {
 export interface ImpactItem {
   area: string
   status: ImpactStatus
+  trigger: string
   reason: string
   dataConsidered: string
   nextAction: string

@@ -1,4 +1,4 @@
-import type { ExtractedField, FieldKey, InboxItem, ScheduleFields } from './types'
+import type { ExtractedField, FieldKey, ScheduleFields } from './types'
 
 const LABELS: Record<FieldKey, string> = {
   vessel: '선박',
@@ -131,7 +131,7 @@ export function normalizeCutoff(raw: string | undefined, body: string, receivedA
   return raw.trim()
 }
 
-function field(key: FieldKey, value: string, body: string, snippet: string): ExtractedField {
+export function makeField(key: FieldKey, value: string, body: string, snippet: string): ExtractedField {
   return {
     key,
     label: LABELS[key],
@@ -226,23 +226,23 @@ export function extractFromSource(body: string, receivedAt?: string): ExtractedF
 
   const etaNorm = normalizeTime(etaRaw, body, receivedAt)
   return [
-    field('vessel', vessel.replace(/\s+/g, ' ').trim(), body, vessel),
-    field('voyage', voyage, body, voyage),
-    field('imo', imo, body, imo),
-    field('port', port, body, csv.port || portHit?.[1] || ''),
-    field('unlocode', unlocode, body, unlocode),
-    field('terminal', terminal, body, terminal),
-    field('berth', berth, body, berth),
-    field('eta', etaNorm, body, etaRaw || ''),
-    field('etb', normalizeTime(etb, body, receivedAt), body, etb || ''),
-    field('etd', normalizeTime(etd, body, receivedAt), body, etd || ''),
-    field('cutoff', normalizeCutoff(cutoffRaw, body, receivedAt), body, cutoffRaw || ''),
+    makeField('vessel', vessel.replace(/\s+/g, ' ').trim(), body, vessel),
+    makeField('voyage', voyage, body, voyage),
+    makeField('imo', imo, body, imo),
+    makeField('port', port, body, csv.port || portHit?.[1] || ''),
+    makeField('unlocode', unlocode, body, unlocode),
+    makeField('terminal', terminal, body, terminal),
+    makeField('berth', berth, body, berth),
+    makeField('eta', etaNorm, body, etaRaw || ''),
+    makeField('etb', normalizeTime(etb, body, receivedAt), body, etb || ''),
+    makeField('etd', normalizeTime(etd, body, receivedAt), body, etd || ''),
+    makeField('cutoff', normalizeCutoff(cutoffRaw, body, receivedAt), body, cutoffRaw || ''),
   ]
 }
 
 export function fieldsFromLlmJson(raw: Record<string, string>, body: string): ExtractedField[] {
   const g = (k: FieldKey) => (raw[k] || '').trim()
-  return (Object.keys(LABELS) as FieldKey[]).map((key) => field(key, g(key), body, g(key)))
+  return (Object.keys(LABELS) as FieldKey[]).map((key) => makeField(key, g(key), body, g(key)))
 }
 
 export function filledCount(fields: ExtractedField[]): number {
@@ -252,7 +252,7 @@ export function filledCount(fields: ExtractedField[]): number {
 export function goldFieldMatch(got: string, expect: string) {
   const a = normVal(got)
   const b = normVal(expect)
-  if (!b) return false
+  if (!a || !b) return false
   return a === b || a.includes(b) || b.includes(a)
 }
 
@@ -275,8 +275,11 @@ function normVal(s: string) {
   return s.toUpperCase().replace(/\s+/g, ' ').replace(' LT', '').trim()
 }
 
-export function goldOf(item: InboxItem) {
-  return item.gold
+export function fieldsFromPartial(body: string, gold?: Partial<ScheduleFields>): ExtractedField[] {
+  return (Object.keys(LABELS) as FieldKey[]).map((key) => {
+    const value = (gold?.[key] || '').trim()
+    return makeField(key, value, body, value)
+  })
 }
 
 export { LABELS }

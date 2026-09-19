@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { ChevronDown, ChevronRight, Star } from 'lucide-react'
-import { DemoMenu } from './components/DemoMenu'
 import { CircleScrollbar } from './components/CircleScrollbar'
 import { SeaBrandLogo } from './components/SeaLogo'
 import { cn } from './components/ui'
@@ -27,7 +26,6 @@ const MODULES: Module[] = [
     tabs: [
       { to: '/app', label: '현황' },
       { to: '/app/verify', label: '검증' },
-      { to: '/app/history', label: '처리 이력' },
     ],
     groups: [
       {
@@ -36,90 +34,72 @@ const MODULES: Module[] = [
         items: [
           { to: '/app', label: '현황', end: true },
           { to: '/app/verify', label: '검증' },
-          { to: '/app/history', label: '처리 이력' },
         ],
       },
     ],
   },
   {
-    id: 'schedule',
-    label: '스케줄',
-    to: '/app/inbox',
-    tabs: [
-      { to: '/app/inbox', label: '수신현황' },
-      { to: '/app/board', label: '기항현황' },
-      { to: '/app/voyages', label: '항차' },
-    ],
+    id: 'documents',
+    label: '문서',
+    to: '/app/documents',
+    tabs: [{ to: '/app/documents', label: '문서 수신' }],
     groups: [
       {
-        id: 'sch',
-        label: '스케줄',
-        items: [
-          { to: '/app/inbox', label: '수신현황', badge: 'queued' },
-          { to: '/app/board', label: '기항현황' },
-          { to: '/app/voyages', label: '항차' },
-        ],
+        id: 'doc',
+        label: '문서',
+        items: [{ to: '/app/documents', label: '문서 수신' }],
       },
     ],
   },
   {
-    id: 'exception',
-    label: '예외',
-    to: '/app/exceptions',
-    tabs: [{ to: '/app/exceptions', label: '예외현황' }],
+    id: 'agent',
+    label: 'AI 분석',
+    to: '/app/agent',
+    tabs: [{ to: '/app/agent', label: 'AI Cost Review Agent' }],
     groups: [
       {
-        id: 'ex',
-        label: '예외',
-        items: [{ to: '/app/exceptions', label: '예외현황', badge: 'open' }],
+        id: 'agent-work',
+        label: 'AI',
+        items: [{ to: '/app/agent', label: '비용·근거 분석' }],
       },
     ],
   },
   {
-    id: 'notice',
-    label: '통보',
-    to: '/app/approvals',
-    tabs: [{ to: '/app/approvals', label: '통보현황' }],
+    id: 'review',
+    label: '검토',
+    to: '/app/review',
+    tabs: [{ to: '/app/review', label: '비용 검토' }],
     groups: [
       {
-        id: 'nt',
-        label: '통보',
-        items: [{ to: '/app/approvals', label: '통보현황', badge: 'pending' }],
+        id: 'review-work',
+        label: '비용',
+        items: [{ to: '/app/review', label: 'PDA–FDA 검토' }],
       },
     ],
   },
   {
-    id: 'master',
-    label: '기준정보',
-    to: '/app/rules',
-    tabs: [
-      { to: '/app/rules', label: '규칙' },
-      { to: '/app/vessels', label: '선박' },
-      { to: '/app/parties', label: '거래처' },
-      { to: '/app/terminals', label: '터미널' },
-      { to: '/app/sources', label: '연계' },
-      { to: '/app/audit', label: '이력조회' },
-      { to: '/app/settings', label: '설정' },
-    ],
+    id: 'twin',
+    label: '비용 영향',
+    to: '/app/twin',
+    tabs: [{ to: '/app/twin', label: '수정 예상액' }],
     groups: [
       {
-        id: 'md',
-        label: '기준',
-        items: [
-          { to: '/app/rules', label: '규칙' },
-          { to: '/app/vessels', label: '선박' },
-          { to: '/app/parties', label: '거래처' },
-          { to: '/app/terminals', label: '터미널' },
-          { to: '/app/sources', label: '연계' },
-        ],
+        id: 'twin-work',
+        label: '비용',
+        items: [{ to: '/app/twin', label: '일정 변경 비용 영향' }],
       },
+    ],
+  },
+  {
+    id: 'evidence',
+    label: '근거 연결',
+    to: '/app/evidence',
+    tabs: [{ to: '/app/evidence', label: '비용 근거 연결' }],
+    groups: [
       {
-        id: 'sys',
-        label: '시스템',
-        items: [
-          { to: '/app/audit', label: '이력조회' },
-          { to: '/app/settings', label: '설정' },
-        ],
+        id: 'evidence-work',
+        label: '근거',
+        items: [{ to: '/app/evidence', label: '근거 연결' }],
       },
     ],
   },
@@ -127,7 +107,6 @@ const MODULES: Module[] = [
 
 function isLeafActive(pathname: string, it: Leaf) {
   if (it.exact || it.end) return pathname === it.to || pathname === `${it.to}/` || (it.to === '/app' && (pathname === '/app' || pathname === '/app/'))
-  if (it.to === '/app/exceptions') return pathname.startsWith('/app/exceptions')
   if (it.to === '/app') return pathname === '/app' || pathname === '/app/'
   return pathname === it.to || pathname.startsWith(`${it.to}/`)
 }
@@ -138,26 +117,15 @@ function formatStamp(d: Date) {
 }
 
 function pageFilters(pathname: string): { title: string; key: string; items: { id: string; label: string }[] } {
-  if (pathname.startsWith('/app/exceptions/') && pathname !== '/app/exceptions') {
-    return { title: '예외 전표', key: 'view', items: [] }
-  }
-  if (pathname.startsWith('/app/exceptions')) return { title: '예외현황', key: 'view', items: [] }
-  if (pathname.startsWith('/app/inbox')) return { title: '수신현황', key: 'view', items: [] }
-  if (pathname.startsWith('/app/approvals')) return { title: '통보현황', key: 'view', items: [] }
+  if (pathname.startsWith('/app/documents')) return { title: '문서 수신', key: 'view', items: [] }
+  if (pathname.startsWith('/app/agent')) return { title: 'AI Cost Review Agent', key: 'view', items: [] }
+  if (pathname.startsWith('/app/review')) return { title: '선사 공동 검토', key: 'view', items: [] }
+  if (pathname.startsWith('/app/twin')) return { title: '일정 변경 비용 영향', key: 'view', items: [] }
+  if (pathname.startsWith('/app/evidence')) return { title: '비용 근거 연결', key: 'view', items: [] }
   if (pathname.startsWith('/app/favorites')) return { title: '즐겨찾기', key: 'view', items: [] }
-  if (pathname === '/app' || pathname === '/app/' || pathname.startsWith('/app/effects')) return { title: '현황', key: 'view', items: [] }
-  if (pathname.startsWith('/app/verify')) return { title: '검증', key: 'view', items: [] }
-  if (pathname.startsWith('/app/voyages')) return { title: '항차', key: 'view', items: [] }
-  if (pathname.startsWith('/app/board')) return { title: '기항현황', key: 'view', items: [] }
-  if (pathname.startsWith('/app/vessels')) return { title: '선박', key: 'view', items: [] }
-  if (pathname.startsWith('/app/parties')) return { title: '거래처', key: 'view', items: [] }
-  if (pathname.startsWith('/app/terminals')) return { title: '터미널', key: 'view', items: [] }
-  if (pathname.startsWith('/app/rules')) return { title: '규칙', key: 'view', items: [] }
-  if (pathname.startsWith('/app/sources')) return { title: '연계', key: 'view', items: [] }
-  if (pathname.startsWith('/app/audit')) return { title: '이력조회', key: 'view', items: [] }
-  if (pathname.startsWith('/app/history')) return { title: '처리 이력', key: 'view', items: [] }
-  if (pathname.startsWith('/app/settings')) return { title: '설정', key: 'view', items: [] }
-  return { title: 'SEA', key: 'view', items: [] }
+  if (pathname === '/app' || pathname === '/app/') return { title: '기항 비용판', key: 'view', items: [] }
+  if (pathname.startsWith('/app/verify')) return { title: '규칙 및 품질관리', key: 'view', items: [] }
+  return { title: 'PACE', key: 'view', items: [] }
 }
 
 export function Shell() {
@@ -236,7 +204,7 @@ export function Shell() {
     <div className="flex h-screen flex-col overflow-hidden bg-paper text-ink">
       <header className="z-20 shrink-0 bg-white">
         <div className="flex h-11 items-center px-2">
-          <button onClick={() => nav('/')} className="flex h-11 w-[168px] shrink-0 items-center px-2" aria-label="SEA 홈">
+          <button onClick={() => nav('/')} className="flex h-11 w-[168px] shrink-0 items-center px-2" aria-label="PACE 홈">
             <SeaBrandLogo className="h-9" />
           </button>
           <nav className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto">
@@ -291,8 +259,10 @@ export function Shell() {
             ) : null}
           </div>
           <div className="ml-3 flex shrink-0 items-center gap-3 pr-2 text-[12px] text-mute">
-            <span className="hidden text-ink lg:inline">DEMO LINE</span>
-            <DemoMenu />
+            <span className="hidden text-ink lg:inline">PORT AGENCY → PRINCIPAL</span>
+            <button type="button" className="h-7 text-[12px] font-medium text-[#2f62c0]" onClick={() => nav('/app/twin')}>
+              비용 영향 보기
+            </button>
             <span className={processing ? 'text-warn' : 'text-ok'}>{processing ? '처리 중' : '정상'}</span>
             <span className="hidden font-mono tabular-nums xl:inline">{formatStamp(now)}</span>
             <span className="font-mono text-ink">{operator.id}</span>
@@ -437,9 +407,13 @@ export function Shell() {
           </div>
           {processing ? (
             <div className="border-b border-amber-200 bg-amber-50 px-3 py-1.5 text-[12px] text-amber-800">
-              수신 문서를 처리하고 있습니다.
+              수신 문서를 처리하고 있습니다. 비용항목을 읽고, 기항·요율·증빙과 연결해 검토 대상을 만듭니다.
             </div>
-          ) : null}
+          ) : (
+            <div className="border-b border-line bg-[#f7fafc] px-3 py-1.5 text-[12px] text-mute">
+              PC-2609 업무 환경 · 비용과 근거의 최종 판단은 담당자 승인으로 완료됩니다. <span className="ml-2 text-[10px] text-[#8a94a3]">SYNTHETIC DEMO</span>
+            </div>
+          )}
           <main className="min-w-0 flex-1 overflow-auto p-3">
             <Outlet />
           </main>

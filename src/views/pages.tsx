@@ -15,6 +15,7 @@ import {
   TableHead,
   labelOf,
 } from '../components/ui'
+import { readExtractorMode, writeExtractorMode, type ExtractorId } from '../extractor'
 import { useSeaStore } from '../store'
 import { BASIS_LABEL, RULE_MASTER } from '../engine'
 
@@ -379,6 +380,9 @@ export function DataSourcesPage() {
   return (
     <div>
       <Panel title="연계" padded={false}>
+        <p className="border-b border-line px-3 py-2 text-[12px] text-mute">
+          공모본은 원문 텍스트 업로드만 연결됩니다. 메일함·PDF/엑셀 파서·DCSA OVS는 현장 PoC 설계이며 이 화면에서 실제 연동하지 않습니다.
+        </p>
         <table className="w-full text-left text-[13px]">
           <TableHead>
             <tr className="border-b border-line">
@@ -636,7 +640,7 @@ export function RulesPage() {
   const setPolicyFlag = useSeaStore((s) => s.setPolicyFlag)
   return (
     <div className="space-y-3">
-      <Panel title="회사 기준 · 문헌 창" padded={false} right={<CountHint n={5} />}>
+      <Panel title="회사 기준 (프로토타입 가상값)" padded={false} right={<CountHint n={5} />}>
         <table className="erp-table">
           <TableHead>
             <tr>
@@ -659,10 +663,10 @@ export function RulesPage() {
                 />
                 <span className="ml-1 text-mute">시간</span>
               </td>
-              <td className="text-mute">Kim 등(2021) 부산 터미널 재계획 주기 6h. 선석 최적화 아님</td>
+              <td className="text-mute">회사 기준. DCSA 2026 Blueprint feeder 6h deviation 참고. 산업 표준 아님</td>
             </tr>
             <tr>
-              <td>연결 여유 하한</td>
+              <td>연결 여유 Demo Rule</td>
               <td>
                 <input
                   type="number"
@@ -674,7 +678,7 @@ export function RulesPage() {
                 />
                 <span className="ml-1 text-mute">시간</span>
               </td>
-              <td className="text-mute">T/S 체류 하한 1일(arXiv:2608.07889). 평균 6.1일 미사용</td>
+              <td className="text-mute">회사 업무 기준. 프로토타입 가상값 24h. 산업 문헌값 아님</td>
             </tr>
             <tr>
               <td>연결 항차 비교</td>
@@ -692,7 +696,7 @@ export function RulesPage() {
                   {policy.checkEtbStale ? '사용' : '미사용'}
                 </button>
               </td>
-              <td className="text-mute">DCSA JIT: ETA ≠ ETB</td>
+              <td className="text-mute">직전 확정본 ETB와 신규 ETA 비교. ETA ≠ ETB</td>
             </tr>
             <tr>
               <td>부두·터미널 변경</td>
@@ -711,7 +715,7 @@ export function RulesPage() {
           </tbody>
         </table>
         <p className="px-3 py-2 text-[12px] text-mute">
-          여유시간은 확정본·원문 시각으로 계산합니다. 가점 합산이 아니며 운영 위험 확률·비용이 아닙니다. 파일럿에서 회사 값으로 바꿉니다.
+          여유시간은 확정본·원문 시각으로 계산합니다. 운영 위험 확률·비용이 아닙니다. 6h/24h는 Demo Rule이며 현장 PoC에서 회사 값으로 바꿉니다.
         </p>
       </Panel>
       <Panel title="검증·금지" padded={false} right={<CountHint n={RULE_MASTER.length} />}>
@@ -751,18 +755,45 @@ export function RulesPage() {
 export function SettingsPage() {
   const reset = useSeaStore((s) => s.resetWorkspace)
   const operators = useSeaStore((s) => s.operators)
+  const [mode, setMode] = useState<ExtractorId>(() => readExtractorMode())
+  const setExtractor = (next: ExtractorId) => {
+    writeExtractorMode(next)
+    setMode(next)
+  }
   return (
     <div className="space-y-3">
-      <Panel title="회사">
+      <Panel title="시연 회사">
         <ul className="space-y-1 text-[13px]">
-          <li>회사명: DEMO LINE</li>
+          <li>회사명: DEMO LINE (프로토타입 가상)</li>
           <li>부서: 운항팀</li>
-          <li>대외 발송: 승인 후 발송</li>
-          <li>추출: 규칙 기반 · PoC에서 LLM 교체</li>
+          <li>대외 발송: 승인 후 모의 발송</li>
         </ul>
         <button className="btn-ghost mt-3" onClick={() => reset()}>
           워크스페이스 초기화
         </button>
+      </Panel>
+      <Panel title="추출기">
+        <p className="mb-2 text-[12px] text-mute">
+          SEA Extractor는 가상 기항문서 span을 학습한 구조화 모델입니다. 생성형 LLM을 학습한 것이 아닙니다. 변경 검증·발송 잠금은 규칙
+          엔진이 담당합니다.
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {(
+            [
+              ['hybrid', '하이브리드 (권장)'],
+              ['sea', 'SEA Extractor'],
+              ['rules', '규칙만'],
+            ] as const
+          ).map(([id, label]) => (
+            <button key={id} type="button" className={mode === id ? 'btn-primary py-1' : 'btn-ghost py-1'} onClick={() => setExtractor(id)}>
+              {label}
+            </button>
+          ))}
+        </div>
+        <p className="mt-2 text-[12px] text-mute">
+          현재:{' '}
+          {mode === 'hybrid' ? 'SEA 우선 · 빈 칸 규칙' : mode === 'sea' ? 'SEA만' : mode === 'llm' ? '외부 LLM (키 없으면 하이브리드)' : '규칙만'}
+        </p>
       </Panel>
       <Panel title="구성원">
         {operators.map((o) => (

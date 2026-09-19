@@ -63,7 +63,7 @@ export function ScheduleInbox() {
       {uploadOpen ? (
         <Panel title="스케줄 원문 입력" className="mb-3">
           <p className="mb-2 text-[12px] text-mute">
-            Email / PDF / Excel / Text. 현재 화면은 원문 텍스트를 받아 처리합니다. PDF·엑셀 파일 자체를 파싱하지 않습니다.
+            공모본은 원문 텍스트를 받아 처리합니다. PDF·엑셀 파일 자체를 파싱하지 않습니다. 아래 수신 목록은 가상 시드입니다.
           </p>
           <div className="grid gap-2 sm:grid-cols-2">
             <InquiryField label="발신">
@@ -78,7 +78,7 @@ export function ScheduleInbox() {
               className="erp-input mt-1 h-28 w-full font-mono text-[12px]"
               value={upload.body}
               onChange={(e) => setUpload((u) => ({ ...u, body: e.target.value }))}
-              placeholder="메일·PDF·엑셀에서 복사한 원문을 붙여 넣습니다."
+              placeholder="메일·PDF·엑셀에서 복사한 원문을 붙여 넣습니다. 공모본은 텍스트만 처리합니다."
             />
           </InquiryField>
           <div className="mt-2 flex flex-wrap items-center gap-2">

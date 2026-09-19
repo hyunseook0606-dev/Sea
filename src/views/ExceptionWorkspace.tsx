@@ -1,19 +1,12 @@
 import { Pin } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { Mono, Panel, PriorityPill, StatusPill } from '../components/ui'
 import { CLOCK_STATE_LABEL, formatHours, similarExceptions } from '../engine'
+import { isWorkspaceTab, WORKSPACE_TABS, type WorkspaceTabId } from '../guide'
 import { clockOf } from '../clocks'
 import { useSeaStore } from '../store'
 import type { AgentTask, ExceptionRecord, ExtractedField } from '../types'
-
-const STAGES = [
-  { id: 'CHANGE', label: '변경' },
-  { id: 'SOURCE', label: '필드' },
-  { id: 'ACTION', label: '확인' },
-  { id: 'CONTROL', label: '통보' },
-  { id: 'AUDIT', label: '이력' },
-] as const
 
 const SOURCE: Record<string, string> = {
   email: '이메일',
@@ -21,11 +14,21 @@ const SOURCE: Record<string, string> = {
   pdf: 'PDF',
 }
 
-function defaultStage(ex?: ExceptionRecord) {
-  if (!ex) return 'CHANGE' as const
-  if (ex.status === 'blocked' || (ex.status === 'review_required' && !ex.voyageId)) return 'ACTION' as const
-  if (ex.status === 'awaiting_approval' || ex.status === 'partially_approved') return 'CONTROL' as const
-  return 'CHANGE' as const
+function TabHint({ tab }: { tab: WorkspaceTabId }) {
+  const meta = WORKSPACE_TABS.find((t) => t.id === tab)
+  if (!meta) return null
+  return (
+    <div className="mb-3 border border-line bg-[#f7fafc] px-3 py-2 text-[12px] leading-relaxed text-[#3d4654]">
+      <b className="font-semibold text-ink">{meta.label}.</b> {meta.help} {meta.look}
+    </div>
+  )
+}
+
+function defaultStage(ex?: ExceptionRecord): WorkspaceTabId {
+  if (!ex) return 'CHANGE'
+  if (ex.status === 'blocked' || (ex.status === 'review_required' && !ex.voyageId)) return 'ACTION'
+  if (ex.status === 'awaiting_approval' || ex.status === 'partially_approved') return 'CONTROL'
+  return 'CHANGE'
 }
 
 function SourceView({ body, span }: { body: string; span?: [number, number] }) {
@@ -76,7 +79,7 @@ export function ExceptionWorkspace() {
   const toggleTask = useSeaStore((s) => s.toggleTask)
   const pinnedExceptionIds = useSeaStore((s) => s.pinnedExceptionIds)
   const togglePinException = useSeaStore((s) => s.togglePinException)
-  const [stage, setStage] = useState<(typeof STAGES)[number]['id']>('CHANGE')
+  const [params, setParams] = useSearchParams()
   const [focus, setFocus] = useState<ExtractedField | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
 
@@ -89,11 +92,18 @@ export function ExceptionWorkspace() {
   const similar = ex ? similarExceptions(ex, exceptions) : []
   const versions = ex ? confirmedHistory.filter((v) => v.voyageId === ex.voyageId) : []
   const fired = ex?.rules.filter((r) => r.fired) || []
+  const tabParam = params.get('tab')
+  const stage: WorkspaceTabId = isWorkspaceTab(tabParam) ? tabParam : defaultStage(ex)
+  const setStage = (id: WorkspaceTabId) => {
+    const next = new URLSearchParams(params)
+    next.set('tab', id)
+    setParams(next, { replace: true })
+  }
 
   useEffect(() => {
-    setStage(defaultStage(ex))
     setFocus(null)
     setNotice(null)
+    if (!isWorkspaceTab(params.get('tab'))) setStage(defaultStage(ex))
   }, [ex?.id])
 
   if (!ex) {
@@ -164,7 +174,7 @@ export function ExceptionWorkspace() {
               </div>
             ) : null}
             <div className="flex gap-4 overflow-x-auto px-3 text-[13px]">
-              {STAGES.map((s) => (
+              {WORKSPACE_TABS.map((s) => (
                 <button
                   key={s.id}
                   type="button"
@@ -193,7 +203,8 @@ export function ExceptionWorkspace() {
               <SourceView body={item?.body || ''} span={focus?.span} />
             </Panel>
 
-            <Panel title={STAGES.find((s) => s.id === stage)?.label || '처리'} className="xl:col-span-7">
+            <Panel title={WORKSPACE_TABS.find((s) => s.id === stage)?.label || '처리'} className="xl:col-span-7">
+              <TabHint tab={stage} />
               {stage === 'SOURCE' && (
                 <table className="erp-table">
                   <tbody>
@@ -249,8 +260,16 @@ export function ExceptionWorkspace() {
                   <table className="erp-table mt-4">
                     <tbody>
                       <tr>
+                        <td className="text-mute">직전 확정본 ETB</td>
+                        <td>
+                          {confirmed[ex.voyageId]?.etb || '없음'} · 이번 원문 {ex.incoming.etb || '미기재'}
+                        </td>
+                      </tr>
+                      <tr>
                         <td className="text-mute">Cut-off</td>
-                        <td>원문 {ex.incoming.cutoff || '없음'} · 확정본 {confirmed[ex.voyageId]?.cutoff || '없음'}</td>
+                        <td>
+                          원문 {ex.incoming.cutoff || '없음'} · 확정본 {confirmed[ex.voyageId]?.cutoff || '없음'} · ETA만으로 추론하지 않음
+                        </td>
                       </tr>
                       <tr>
                         <td className="text-mute">연결 항차</td>
@@ -306,21 +325,21 @@ export function ExceptionWorkspace() {
                   <table className="erp-table">
                     <thead>
                       <tr>
-                        <th>영역</th>
-                        <th>판정</th>
+                        <th>확인 항목</th>
+                        <th>Trigger</th>
                         <th>이유</th>
-                        <th>다음</th>
+                        <th>상태</th>
                       </tr>
                     </thead>
                     <tbody>
                       {ex.impact.map((im) => (
                         <tr key={im.area}>
                           <td>{im.area}</td>
+                          <td className="font-mono text-[12px]">{im.trigger}</td>
+                          <td className="text-[12px] text-mute">{im.reason}</td>
                           <td>
                             <StatusPill value={im.status} />
                           </td>
-                          <td className="text-[12px] text-mute">{im.reason}</td>
-                          <td className="text-[12px]">{im.nextAction}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -435,7 +454,7 @@ export function ExceptionWorkspace() {
         </div>
 
         <aside className="w-full shrink-0 xl:w-[280px]">
-          <Panel title="확인 항목" padded={false}>
+          <Panel title="확인 항목 요약" padded={false}>
             {ex.tasks.length === 0 ? (
               <p className="p-3 text-[13px] text-mute">확인할 항목이 없습니다.</p>
             ) : (
@@ -458,7 +477,7 @@ export function ExceptionWorkspace() {
               </p>
               {clockOf(ex.clocks, 'CONNECTION') ? (
                 <p className="mt-2 font-mono text-[12px]">
-                  여유 {formatHours(clockOf(ex.clocks, 'CONNECTION')?.hours)} / 하한 {clockOf(ex.clocks, 'CONNECTION')?.thresholdHours}h
+                  여유 {formatHours(clockOf(ex.clocks, 'CONNECTION')?.hours)} / Demo Rule {clockOf(ex.clocks, 'CONNECTION')?.thresholdHours}h
                 </p>
               ) : null}
             </Panel>
@@ -545,16 +564,26 @@ export function ExceptionWorkspace() {
         <button type="button" className="btn-ghost" onClick={() => setStage('CONTROL')}>
           통보 작성
         </button>
+        {stage === 'CHANGE' ? (
+          <button type="button" className="btn-ghost" onClick={() => setStage('ACTION')}>
+            다음: 확인 항목
+          </button>
+        ) : null}
+        {stage === 'ACTION' ? (
+          <button type="button" className="btn-ghost" onClick={() => setStage('CONTROL')}>
+            다음: 통보·승인
+          </button>
+        ) : null}
         <button
           type="button"
           className="btn-primary ml-auto"
           disabled={ex.status === 'blocked' || ex.status === 'sent' || !ex.voyageId}
           onClick={() => {
             const r = sendException(ex.id)
-            setNotice(r.ok ? '발송 완료' : r.reason || '발송 불가')
+            setNotice(r.ok ? '모의 발송 완료' : r.reason || '발송 불가')
           }}
         >
-          발송
+          모의 발송
         </button>
       </div>
     </div>

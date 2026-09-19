@@ -108,10 +108,10 @@ export function HitlQueue({ exception }: { exception?: ExceptionRecord }) {
               if (d.channel !== 'internal' && d.status !== 'approved' && d.status !== 'sent' && d.status !== 'rejected') approveDraft(d.id)
             })
             const r = sendException(exception.id)
-            setNotice(r.ok ? '발송 완료' : r.reason || '발송 불가')
+            setNotice(r.ok ? '모의 발송 완료' : r.reason || '발송 불가')
           }}
         >
-          승인 후 발송
+          승인 후 모의 발송
         </button>
       </div>
     </section>

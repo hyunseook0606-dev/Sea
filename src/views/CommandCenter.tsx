@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { HitlQueue } from '../components/HitlQueue'
 import {
@@ -16,7 +16,6 @@ import {
   cn,
 } from '../components/ui'
 import { ExceptionFlow } from '../components/ExceptionFlow'
-import { evaluateGold, evaluateLive, evaluateScenarios, formatPct } from '../eval'
 import { useSeaStore } from '../store'
 
 export function CommandCenter() {
@@ -28,11 +27,6 @@ export function CommandCenter() {
   const processQueued = useSeaStore((s) => s.processQueued)
   const processInbox = useSeaStore((s) => s.processInbox)
   const processing = useSeaStore((s) => s.processingInboxId)
-  const sendDenied = useSeaStore((s) => s.sendDenied)
-  const runs = useSeaStore((s) => s.runs)
-  const gold = useMemo(() => evaluateGold(), [])
-  const scenarios = useMemo(() => evaluateScenarios(), [])
-  const live = evaluateLive({ drafts, exceptions, inbox, runs, sendDenied })
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const blank = { q: '', status: 'all' }
   const [draft, setDraft] = useState(blank)
@@ -62,36 +56,29 @@ export function CommandCenter() {
 
   return (
     <div className="space-y-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border border-line bg-white px-3 py-2 text-[13px]">
+        <span className="text-[#3d4654]">
+          항차·원문은 공모용 가상 시드입니다. 원문에서 승인까지 한 흐름은 프로세스 보기에서 확인할 수 있습니다.
+        </span>
+        <button type="button" className="font-semibold text-[#2f62c0]" onClick={() => nav('/flow')}>
+          프로세스 보기
+        </button>
+      </div>
+
       <Panel
-        title="예외 대응"
+        title="예외 대응 한 줄"
         right={
           <button type="button" className="text-[12px] font-medium text-[#2f62c0]" onClick={() => nav('/app/verify')}>
-            검증
+            검증 화면
           </button>
         }
       >
-        <p className="mb-3 text-[12px] text-mute">스케줄 마스터가 아니라, 기항이 바뀐 뒤의 확인·통보를 한 흐름으로 닫습니다.</p>
+        <p className="mb-3 text-[12px] text-mute">
+          SEA는 스케줄 시스템이 아니라, 변경 이후의 확인·통보 준비를 잇습니다. 확인 항목은 회사 규칙이며 위험 예측이 아닙니다.
+          이 화면의 숫자는 시드 전표 건수입니다.
+        </p>
         <ExceptionFlow />
       </Panel>
-
-      <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
-        <Kpi
-          label="골드셋 일치"
-          value={formatPct(gold.hit, gold.total)}
-          hint={`${gold.hit}/${gold.total} 필드 · 가상 시드`}
-          tone="ok"
-          onOpen={() => nav('/app/verify')}
-        />
-        <Kpi
-          label="시나리오"
-          value={`${scenarios.pass}/${scenarios.total}`}
-          hint="B 차단 · C 중복 포함"
-          tone={scenarios.pass === scenarios.total ? 'ok' : 'bad'}
-          onOpen={() => nav('/app/verify')}
-        />
-        <Kpi label="미승인 발송" value={live.unapprovedSent} hint="성공 0건이 목표" tone={live.unapprovedSent ? 'bad' : 'ok'} onOpen={() => nav('/app/verify')} />
-        <Kpi label="발송 차단" value={live.sendDenied} hint="승인 전 시도" tone={live.sendDenied ? 'info' : 'default'} onOpen={() => nav('/app/verify')} />
-      </div>
 
       <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
         <Kpi label="수신 대기" value={queued.length} hint="원문 텍스트" tone={queued.length ? 'warn' : 'ok'} onOpen={() => nav('/app/inbox?view=queued')} />

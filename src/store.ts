@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import { clock, DEFAULT_POLICY, duplicateKey, normalizePolicy, nowStamp, processInboxItem } from './engine'
 import { filledCount, scoreGold } from './extract'
-import { readLlmConfig, resolveExtraction, type LlmConfig } from './llm'
+import { readExtractorMode, resolveExtraction } from './extractor'
+import { readLlmConfig, type LlmConfig } from './llm'
 import {
   CONFIRMED,
   DATA_SOURCES,
@@ -136,6 +137,8 @@ interface SeaState {
   sendDenied: number
   llmConfig: LlmConfig
   lastExtractError?: string
+  lastDemo: 'A' | 'B' | 'C' | null
+  coachOpen: boolean
   policy: PolicyParams
   toggleFavorite: (item: Favorite) => void
   togglePinException: (id: string) => void
@@ -156,6 +159,7 @@ interface SeaState {
   processInbox: (inboxId: string, opts?: { silent?: boolean }) => Promise<{ exceptionId?: string; kind: string }>
   processQueued: () => Promise<{ n: number }>
   runDemo: (key: 'A' | 'B' | 'C') => Promise<{ exceptionId?: string; kind: string }>
+  dismissCoach: () => void
   pushAgent: (partial: Omit<AgentEvent, 'id' | 'at'>) => void
 }
 
@@ -193,8 +197,11 @@ export const useSeaStore = create<SeaState>((set, get) => ({
   runs: [],
   sendDenied: 0,
   llmConfig: readLlmConfig(),
+  lastDemo: null,
+  coachOpen: false,
   policy: readPolicy(),
   setIntroDone: () => set({ introDone: true }),
+  dismissCoach: () => set({ coachOpen: false }),
   togglePinException: (id) => {
     const cur = get().pinnedExceptionIds
     const next = cur.includes(id) ? cur.filter((x) => x !== id) : [id, ...cur]
@@ -306,13 +313,13 @@ export const useSeaStore = create<SeaState>((set, get) => ({
           actor: operator.id,
           exceptionId: ex.id,
           fields: { ...ex.incoming },
-          note: '통보 발송 · 확정본 갱신',
+          note: '모의 통보 발송 · 확정본 갱신',
         },
         ...s.confirmedHistory,
       ],
       audit: [audit(operator.id, '통보 발송', exceptionId, 'send'), ...s.audit],
       agentEvents: [
-        { id: eid(), at: clock(), engine: '발송', title: '발송 완료', detail: exceptionId, tone: 'ok' },
+        { id: eid(), at: clock(), engine: '발송', title: '모의 발송 완료', detail: exceptionId, tone: 'ok' },
         ...s.agentEvents,
       ],
     }))
@@ -360,6 +367,8 @@ export const useSeaStore = create<SeaState>((set, get) => ({
       runs: [],
       sendDenied: 0,
       lastExtractError: undefined,
+      lastDemo: null,
+      coachOpen: false,
     }),
   setEtaReviewHours: (hours) => {
     const policy = normalizePolicy({ ...get().policy, etaReviewHours: hours })
@@ -468,7 +477,9 @@ export const useSeaStore = create<SeaState>((set, get) => ({
     }
     const item = get().inbox.find((i) => i.demoKey === key)
     if (!item) return { kind: 'failed' }
-    return get().processInbox(item.id)
+    const result = await get().processInbox(item.id)
+    set({ lastDemo: key, coachOpen: true })
+    return result
   },
 }))
 
@@ -489,7 +500,7 @@ async function runInbox(
     inbox: get().inbox.map((i) => (i.id === inboxId ? { ...i, status: 'processing' } : i)),
     agentEvents: silent ? get().agentEvents : [],
   })
-  const extracted = await resolveExtraction(item.body, item.receivedAt, 'rules', get().llmConfig)
+  const extracted = await resolveExtraction(item.body, item.receivedAt, readExtractorMode(), get().llmConfig)
   if (extracted.error) set({ lastExtractError: extracted.error })
   if (!silent) {
     const steps: Array<Omit<AgentEvent, 'id' | 'at'>> = [
@@ -498,7 +509,7 @@ async function runInbox(
       { engine: '맥락', title: '운항 맥락 연결', detail: '직전 확정본 · 연결 항차', tone: 'ok' },
       { engine: '비교', title: '변경 비교', detail: '직전 확정본 대비', tone: 'ok' },
       { engine: '예외', title: '예외 판정', detail: '규칙', tone: 'ok' },
-      { engine: '영향', title: '확인 항목 생성', detail: '확인 필요', tone: 'warn' },
+      { engine: '확인', title: '확인 항목 생성', detail: '운영 규칙', tone: 'warn' },
       { engine: '초안', title: '초안 준비', detail: '미발송', tone: 'ok' },
     ]
     for (const step of steps) {

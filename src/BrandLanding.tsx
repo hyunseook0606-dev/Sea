@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { AX_CAPABILITIES, AX_CASES } from './ax'
@@ -10,32 +10,59 @@ const NAV = [
   { id: 'product', label: '제품', menu: true },
   { id: 'how', label: '기능' },
   { id: 'scenes', label: '작동 방식' },
-  { id: 'about', label: '회사' },
+  { id: 'about', label: '소개' },
 ] as const
 
-const FACTS = [
-  ['대상', '국적 컨테이너·피더 운항팀'],
-  ['하는 일', '변경 이후 예외 확인·통보'],
-  ['Cut-off', '원문에 있을 때만 유지'],
-  ['발송', '승인 후 발송'],
+const FIELD_PLACE = [
+  {
+    n: '01',
+    role: '입력',
+    title: '기항 변화와 비용 문서',
+    desc: '일정·작업·서비스 변경과 PDA·인보이스·SOF·FDA를 같은 기항 ID로 연결합니다.',
+    sea: false,
+  },
+  {
+    n: '02',
+    role: '영향분석',
+    title: '비용 영향과 규칙',
+    desc: '변화의 영향을 받을 비용항목을 찾고 실제 작업·서비스와 적용 요율조건을 확인합니다.',
+    sea: false,
+  },
+  {
+    n: '03',
+    role: 'PACE',
+    title: 'AI Cost Review Agent',
+    desc: 'Observe · Reason · Check · Recommend · Verify 순서로 Revised PDA 후보와 다음 행동을 제안합니다.',
+    sea: true,
+  },
+  {
+    n: '04',
+    role: '검산',
+    title: '실제비용과 근거',
+    desc: 'FDA 실제비용을 예상액·기항 사건·문서 근거와 비교하고 담당자가 예외와 책임을 판단합니다.',
+    sea: false,
+  },
 ]
 
 const PILLARS = [
   {
-    title: '원문에서 항차 필드를 읽습니다',
-    desc: '선박·항차·ETA·선석을 메일·엑셀·PDF 원문에서 전표 필드로 올립니다.',
+    n: '01',
+    title: '변화를 읽습니다',
+    desc: '기항 일정과 작업·서비스 변경을 문서 및 기항 사건과 함께 읽어 비용 검토의 시작점을 만듭니다.',
     img: '/landing/berth.jpg',
     pos: 'object-center',
   },
   {
-    title: '확정본과 다른 값만 올립니다',
-    desc: '직전 확정본과 비교합니다. 시각이 모순이면 발송을 막고, 같은 변경이 다시 오면 새 전표를 만들지 않습니다.',
+    n: '02',
+    title: '비용 영향과 규칙을 확인합니다',
+    desc: '영향받을 비용을 선별하고 실제 작업·서비스, 인보이스, 작업기록과 요율조건을 연결합니다.',
     img: '/landing/yard.jpg',
     pos: 'object-center',
   },
   {
-    title: '확인 항목과 통보를 한 전표에서',
-    desc: '접안·연결 항차·내륙을 체크하고, 화주·내륙 초안을 고친 뒤 승인·발송합니다.',
+    n: '03',
+    title: '다음 행동과 실제 결과를 연결합니다',
+    desc: 'Revised PDA 후보와 보완 행동을 제시하고 출항 후 FDA 실제비용과 Evidence를 검산합니다.',
     img: '/landing/voyage.jpg',
     pos: 'object-[center_30%]',
   },
@@ -43,7 +70,7 @@ const PILLARS = [
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
-function HeroStage({ onWorkspace }: { onWorkspace: () => void }) {
+function HeroStage({ onFlow, onWorkspace }: { onFlow: () => void; onWorkspace: () => void }) {
   const reduce = useReducedMotion()
   const { scrollY } = useScroll()
   const imgY = useTransform(scrollY, [0, 700], [0, 120])
@@ -62,7 +89,7 @@ function HeroStage({ onWorkspace }: { onWorkspace: () => void }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.12, ease: EASE }}
           >
-            Schedule Exception Agent
+            Port-cost Assurance &amp; Control Engine
           </motion.p>
           <motion.div
             className="mt-5 h-px w-10 bg-white"
@@ -76,9 +103,9 @@ function HeroStage({ onWorkspace }: { onWorkspace: () => void }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.95, delay: 0.28, ease: EASE }}
           >
-            스케줄이 바뀐 다음,
+            기항 변화가 발생하면,
             <br />
-            확인할 일을 한 화면에서
+            비용 영향과 다음 행동까지
           </motion.h1>
           <motion.p
             className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/85"
@@ -86,7 +113,8 @@ function HeroStage({ onWorkspace }: { onWorkspace: () => void }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.42, ease: EASE }}
           >
-            스케줄 관리가 아니라, 기항이 바뀐 뒤의 예외 처리를 한 흐름으로 닫습니다.
+            일정·작업·서비스 변화를 해석해 영향을 받을 비용과 필요한 근거를 찾습니다. 규칙 엔진이 확인된 조건으로 Revised PDA
+            후보를 계산하고, 출항 후 실제비용과 근거까지 검산합니다.
           </motion.p>
           <motion.div
             className="mt-8"
@@ -102,12 +130,12 @@ function HeroStage({ onWorkspace }: { onWorkspace: () => void }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
           >
+            <button type="button" onClick={onFlow} className="btn-nectar btn-nectar-light">
+              업무 흐름 보기
+            </button>
             <button type="button" onClick={onWorkspace} className="btn-nectar btn-nectar-light">
               워크스페이스
             </button>
-            <a href="#how" className="btn-nectar btn-nectar-light">
-              작동 방식 보기
-            </a>
           </motion.div>
         </div>
       </div>
@@ -116,52 +144,15 @@ function HeroStage({ onWorkspace }: { onWorkspace: () => void }) {
 }
 
 function FlowVideo({ onWorkspace }: { onWorkspace: () => void }) {
-  const reduce = useReducedMotion()
-  const ref = useRef<HTMLVideoElement>(null)
-  const [ok, setOk] = useState(true)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el || reduce || !ok) return
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) void el.play().catch(() => setOk(false))
-        else el.pause()
-      },
-      { threshold: 0.35 },
-    )
-    io.observe(el)
-    return () => io.disconnect()
-  }, [ok, reduce])
-
-  if (!ok) {
-    return (
-      <div className="landing-media border border-[#e6e8ec] bg-white px-8 py-16 text-center">
-        <p className="text-[16px] text-[#555]">워크스페이스에서 수신부터 승인까지 보면 됩니다.</p>
-        <button type="button" className="btn-nectar mt-8" onClick={onWorkspace}>
-          워크스페이스
-        </button>
-      </div>
-    )
-  }
-
   return (
     <div>
-      <div className="landing-product-video">
-        <video
-          ref={ref}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          onError={() => setOk(false)}
-          controls={Boolean(reduce)}
-          aria-label="HANARO 2506W 예외 전표. 변경, 필드, 확인, 통보 순으로 처리하는 화면"
-        >
-          <source src="/landing/hero.webm" type="video/webm" />
-        </video>
+      <div className="landing-product-video relative">
+        <iframe src="/app" title="PACE 기항 비용판 미리보기" className="h-full w-full border-0" tabIndex={-1} />
+        <button type="button" className="absolute inset-0 cursor-pointer bg-transparent" onClick={onWorkspace} aria-label="PACE 워크스페이스 열기" />
       </div>
-      <p className="mt-5 text-center text-[14px] text-[#667085]">HANARO 2506W · 변경 · 필드 · 확인 · 통보</p>
+      <p className="mt-5 text-center text-[14px] text-[#667085]">
+        PC-2609 · Port Call Change → Cost Impact → Actual Cost → Evidence Assurance
+      </p>
     </div>
   )
 }
@@ -185,15 +176,15 @@ export function BrandLanding() {
   return (
     <div className="landing-root min-h-screen bg-white text-[#111]">
       <div className="easy-notification-bar">
-        <p>변경 감지 · 영향 확인 · 예외 · 통보 초안 · 승인 · 이력</p>
-        <button type="button" onClick={goApp}>
-          워크스페이스
+        <p>PC-2609의 기항 변화 3건을 감지했습니다. 비용 영향 후보와 다음 행동을 확인하세요.</p>
+        <button type="button" onClick={() => nav('/flow')}>
+          업무 흐름
         </button>
       </div>
 
       <header className={stuck ? 'landing-header landing-header-stuck' : 'landing-header'}>
         <div className="mx-auto flex h-[99px] max-w-[1400px] items-center px-6">
-          <a href="#home" className="flex shrink-0 items-center" aria-label="SEA 홈">
+          <a href="#home" className="flex shrink-0 items-center" aria-label="PACE 홈">
             <SeaBrandLogo className="h-[33px]" />
           </a>
           <nav className="ml-14 hidden items-center gap-10 text-[16px] text-[#222] lg:flex">
@@ -231,6 +222,9 @@ export function BrandLanding() {
             )}
           </nav>
           <div className="ml-auto flex items-center gap-3">
+            <button type="button" onClick={() => nav('/flow')} className="btn-nectar hidden sm:inline-flex">
+              업무 흐름
+            </button>
             <button type="button" onClick={goApp} className="btn-nectar hidden sm:inline-flex">
               워크스페이스
             </button>
@@ -255,6 +249,9 @@ export function BrandLanding() {
                 {n.label}
               </a>
             ))}
+            <button type="button" className="btn-nectar mt-2 w-full" onClick={() => nav('/flow')}>
+              업무 흐름
+            </button>
             <button type="button" className="btn-nectar mt-2 w-full" onClick={goApp}>
               워크스페이스
             </button>
@@ -262,16 +259,33 @@ export function BrandLanding() {
         ) : null}
       </header>
 
-      <HeroStage onWorkspace={goApp} />
+      <HeroStage onFlow={() => nav('/flow')} onWorkspace={goApp} />
 
-      <section className="border-b border-[#eee] bg-white py-16">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-10 px-6 sm:grid-cols-4">
-          {FACTS.map(([k, v], i) => (
-            <Reveal key={k} delay={i * 0.08} y={28}>
-              <div className="text-[13px] font-semibold text-[#1130c6]">{k}</div>
-              <div className="mt-2 text-[17px] font-medium leading-snug">{v}</div>
-            </Reveal>
-          ))}
+      <section className="landing-place">
+        <div className="mx-auto max-w-[1400px] px-6">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <h2 className="text-[32px] font-semibold tracking-tight sm:text-[40px]">기존 시스템 위에서 변화의 비용 영향을 판단합니다</h2>
+            <p className="mt-5 text-[17px] leading-relaxed text-[#555]">
+              국내 선박대리점 업무에는 예상 항비 계산, PDA·FDA 정산, 실제 항비 확인과 인보이스 수집이 포함됩니다.
+              PACE는 기존 기항관리·DA·ERP의 일정·작업·비용 데이터를 연결해 변화 이후의 비용 영향 판단과 근거 검토를 수행합니다.
+            </p>
+          </Reveal>
+          <div className="landing-steps mt-16">
+            {FIELD_PLACE.map((s, i) => (
+              <Reveal key={s.n} delay={i * 0.08} y={24}>
+                <article className={s.sea ? 'landing-step landing-step-sea' : 'landing-step'}>
+                  <span className="landing-step-n">{s.n}</span>
+                  <span className="landing-step-role">{s.role}</span>
+                  <h3>{s.title}</h3>
+                  <p>{s.desc}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+          <p className="landing-place-note">
+            PACE는 기존 기항관리·DA·ERP 시스템에 연결되는 Intelligence Layer입니다. 일정·작업·서비스 변화가 어떤 비용과 근거에
+            영향을 주는지 분석하고, 검증된 항목부터 Revised PDA와 실제비용 검토로 이어 줍니다.
+          </p>
         </div>
       </section>
 
@@ -279,15 +293,15 @@ export function BrandLanding() {
         <div className="mx-auto max-w-[1400px] px-6">
           <Reveal className="mx-auto max-w-3xl text-center">
             <h2 className="text-[36px] font-semibold leading-tight tracking-tight sm:text-[46px]">
-              기항이 바뀐 뒤의
+              기항 변화에서,
               <br />
-              예외 처리를 닫습니다
+              실제비용 검산까지
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-[#555]">
-              변경 감지, 영향 확인, 예외 전표, 통보 초안, 승인, 이력을 같은 워크스페이스에서 처리합니다.
+              Port Call Change에서 Cost Impact와 Rule Check를 거쳐 Revised PDA와 Next Action을 제안하고, FDA 실제비용과 Evidence를 검산합니다.
             </p>
           </Reveal>
-          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12">
             {AX_CAPABILITIES.map((f, i) => (
               <Reveal key={f.id} delay={i * 0.07} y={36}>
                 <div className="text-[13px] font-semibold text-[#1130c6]">{String(i + 1).padStart(2, '0')}</div>
@@ -299,29 +313,33 @@ export function BrandLanding() {
         </div>
       </section>
 
-      <section className="bg-white pb-[160px] pt-0">
-        <div className="mx-auto grid max-w-[1400px] gap-6 px-6 lg:grid-cols-3">
-          {PILLARS.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.12} y={56} className="h-full">
-              <article className="landing-media relative min-h-[420px] overflow-hidden">
-                <img src={p.img} alt="" className={`absolute inset-0 h-full w-full object-cover ${p.pos}`} />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1130c6] via-[#1130c6]/55 to-[#1130c6]/10" />
-                <div className="relative flex h-full min-h-[420px] flex-col justify-end p-8 text-white">
-                  <h3 className="text-[24px] font-semibold leading-snug">{p.title}</h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-white/90">{p.desc}</p>
-                </div>
-              </article>
-            </Reveal>
-          ))}
+      <section className="landing-photos">
+        <div className="mx-auto max-w-[1400px] px-6">
+          <div className="landing-photos-grid">
+            {PILLARS.map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.1} y={40} className="h-full">
+                <article className="landing-photo">
+                  <div className="landing-photo-media">
+                    <img src={p.img} alt="" className={p.pos} />
+                  </div>
+                  <div className="landing-photo-body">
+                    <div className="landing-photo-n">{p.n}</div>
+                    <h3>{p.title}</h3>
+                    <p>{p.desc}</p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
       <section id="how" className="landing-band landing-band-soft">
         <div className="mx-auto max-w-[1400px] px-6">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <h2 className="text-[36px] font-semibold tracking-tight sm:text-[46px]">수신부터 승인까지</h2>
+            <h2 className="text-[36px] font-semibold tracking-tight sm:text-[46px]">Port Call Change에서 Evidence Assurance까지</h2>
             <p className="mt-6 text-[17px] leading-relaxed text-[#555]">
-              스케줄 변경 감지 → 영향 확인 → 예외 생성 → 통보 초안 → 승인 → 이력
+              AI Cost Review Agent가 Observe → Reason → Check → Recommend → Verify 순서로 변화 이후의 비용 검토를 이어 갑니다.
             </p>
           </Reveal>
           <Reveal className="mt-12" delay={0.08} y={24}>
@@ -336,9 +354,9 @@ export function BrandLanding() {
       <section id="scenes" className="landing-band">
         <div className="mx-auto max-w-[1400px] px-6">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <h2 className="text-[36px] font-semibold tracking-tight sm:text-[46px]">자주 보는 기항 변경</h2>
+            <h2 className="text-[36px] font-semibold tracking-tight sm:text-[46px]">비용 검토 시나리오</h2>
             <p className="mt-6 text-[17px] leading-relaxed text-[#555]">
-              같은 수신함에서 처리되는 세 가지 건입니다.
+              한 기항에서 자주 검토해야 하는 비용변화·근거부족·중복 후보를 업무 상태로 구분합니다.
             </p>
           </Reveal>
           <Reveal className="mt-14 flex flex-wrap justify-center gap-8 border-b border-[#e5e7eb]" delay={0.08} y={24}>
@@ -362,9 +380,10 @@ export function BrandLanding() {
             <h3 className="mt-3 text-[28px] font-semibold">{selected.title}</h3>
             <p className="mt-4 text-[16px] leading-relaxed text-[#444]">{selected.meaning}</p>
             <p className="mt-4 text-[15px] text-[#666]">{selected.summary}</p>
+            <p className="mt-3 text-[15px] text-[#2f62c0]">{selected.look}</p>
             <p className="mt-3 text-[16px] font-medium">{selected.result}</p>
-            <button type="button" className="btn-nectar mt-10" onClick={() => nav(`/app/inbox?run=${selected.key}`)}>
-              이 건 열기
+            <button type="button" className="btn-nectar mt-10" onClick={() => nav(`/flow?step=${selected.key === 'B' ? 'block' : selected.key === 'C' ? 'dup' : 'mail'}`)}>
+              PACE 프로세스 보기
             </button>
           </Reveal>
         </div>
@@ -373,17 +392,17 @@ export function BrandLanding() {
       <section id="about" className="bg-white pb-[160px] pt-10">
         <div className="mx-auto max-w-[1400px] px-6">
           <Reveal y={40}>
-            <div className="landing-media grid min-h-[420px] overflow-hidden lg:grid-cols-2">
-              <img src="/landing/berth.jpg" alt="선석에서 하역 중인 컨테이너선" className="h-full min-h-[320px] w-full object-cover" />
-              <div className="flex flex-col justify-center bg-[#1130c6] px-10 py-14 text-white sm:px-14">
-                <h2 className="text-[32px] font-semibold leading-tight sm:text-[40px]">기존 운항관리와 함께 씁니다</h2>
+            <div className="landing-split">
+              <img src="/landing/berth.jpg" alt="선석에서 하역 중인 컨테이너선" />
+              <div className="landing-split-copy">
+                <h2 className="text-[32px] font-semibold leading-tight sm:text-[40px]">기존 시스템에 연결되는 Intelligence Layer</h2>
                 <p className="mt-6 text-[16px] leading-relaxed text-white/90">
-                  SEA는 메일·엑셀로 기항 변경을 받는 국적 컨테이너·피더 운항팀용입니다. 기간계를 교체하지 않고, 변경 이후
-                  확인과 통보만 처리합니다.
+                  선박대리점의 DA·정산 담당자와 선사·선박관리사의 운항·재무 담당자가 함께 사용합니다. 기존 시스템에서 변경정보와
+                  비용문서를 받아 영향분석, Revised PDA 검토, 실제비용과 근거 확인을 하나의 흐름으로 연결합니다.
                 </p>
-                <ul className="mt-8 space-y-4 text-[15px] text-white/85">
-                  <li>범위: 기항 변경 확인 · 화주·내륙 통보 승인</li>
-                  <li>회사: DEMO LINE · 운항 워크스페이스</li>
+                <ul className="mt-8 space-y-3 text-[15px] text-white/85">
+                  <li>범위: Cost Impact · Rule Check · Revised PDA · Evidence Assurance</li>
+                  <li>업무 관계: Port Agency → Principal Operations / Finance</li>
                 </ul>
                 <button type="button" className="btn-nectar btn-nectar-light mt-10 self-start" onClick={goApp}>
                   워크스페이스
@@ -399,7 +418,7 @@ export function BrandLanding() {
           <div>
             <SeaBrandLogo className="h-8" />
             <p className="mt-4 text-[14px] leading-relaxed text-[#666]">
-              기항 스케줄 변경 이후의 예외 확인과 통보를 한 워크스페이스에서 처리합니다.
+              기항 변화 이후의 비용 영향, 다음 행동, 실제비용과 근거 검토를 연결합니다.
             </p>
           </div>
           <div>
@@ -427,18 +446,20 @@ export function BrandLanding() {
             </div>
           </div>
           <div>
-            <div className="text-[14px] font-semibold">회사</div>
+            <div className="text-[14px] font-semibold">소개</div>
             <div className="mt-4 space-y-2 text-[14px] text-[#666]">
               <a href="#about" className="block hover:text-[#1130c6]">
-                소개
+                대상
               </a>
-              <p>DEMO LINE</p>
-              <p>운항팀 워크스페이스</p>
+              <p>Port Agency / Principal</p>
+              <p>DA 검토 워크스페이스</p>
             </div>
           </div>
         </div>
         <div className="border-t border-[#eee] px-6 py-6 text-[12px] text-[#888]">
-          <div className="mx-auto max-w-[1400px]">SEA · Schedule Exception Agent · 옥현서 · 한국항공대학교 물류전공</div>
+          <div className="mx-auto max-w-[1400px]">
+            PACE · Port-cost Assurance &amp; Control Engine · Synthetic Demo
+          </div>
         </div>
       </footer>
     </div>

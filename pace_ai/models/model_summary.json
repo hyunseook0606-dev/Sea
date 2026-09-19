@@ -1,0 +1,14 @@
+{
+  "classes": [
+    "TOWAGE",
+    "MOORING",
+    "STEVEDORING",
+    "PILOTAGE",
+    "BERTH",
+    "AGENCY"
+  ],
+  "documents": 600,
+  "vocabulary_size": 2317,
+  "vectorizer": "character 2-5 gram TF-IDF",
+  "seed": 2609
+}

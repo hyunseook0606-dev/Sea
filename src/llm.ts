@@ -1,8 +1,7 @@
-import { extractFromSource, fieldsFromLlmJson } from './extract'
+import { fieldsFromLlmJson } from './extract'
 import type { ExtractedField, FieldKey, NotificationDraft, ScheduleFields } from './types'
 
-export type ExtractorMode = 'rules' | 'llm'
-
+/** Optional hosted-model adapter. Not the default extractor. */
 export type LlmConfig = {
   baseUrl: string
   apiKey: string
@@ -34,14 +33,6 @@ export function readLlmConfig(): LlmConfig {
 
 export function writeLlmConfig(cfg: LlmConfig) {
   localStorage.setItem(STORAGE, JSON.stringify(cfg))
-}
-
-export function readExtractorMode(): ExtractorMode {
-  return localStorage.getItem('sea-extractor') === 'llm' ? 'llm' : 'rules'
-}
-
-export function writeExtractorMode(mode: ExtractorMode) {
-  localStorage.setItem('sea-extractor', mode)
 }
 
 const EXTRACT_KEYS: FieldKey[] = ['vessel', 'voyage', 'imo', 'port', 'unlocode', 'terminal', 'berth', 'eta', 'etb', 'etd', 'cutoff']
@@ -117,25 +108,4 @@ export async function draftWithLlm(
   } catch {
     return null
   }
-}
-
-export async function resolveExtraction(
-  body: string,
-  receivedAt: string | undefined,
-  mode: ExtractorMode,
-  cfg: LlmConfig,
-): Promise<{ fields: ExtractedField[]; extractor: ExtractorMode; error?: string }> {
-  if (mode === 'llm' && cfg.apiKey) {
-    try {
-      const fields = await extractWithLlm(body, receivedAt, cfg)
-      return { fields, extractor: 'llm' }
-    } catch (err) {
-      return {
-        fields: extractFromSource(body, receivedAt),
-        extractor: 'rules',
-        error: err instanceof Error ? err.message : 'LLM 실패 · 규칙 추출로 처리',
-      }
-    }
-  }
-  return { fields: extractFromSource(body, receivedAt), extractor: 'rules' }
 }

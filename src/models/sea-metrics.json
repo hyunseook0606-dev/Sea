@@ -1,0 +1,1257 @@
+{
+  "protocol": "v2-val-select-ood",
+  "task": "maritime schedule information extraction (synthetic, not operational data)",
+  "model": "linear-chain averaged perceptron (BIO slots)",
+  "train_n": 1600,
+  "legacy_v1": {
+    "protocol": "v1-same-template-test-peek",
+    "hard_sea_field_match": 95.6,
+    "hard_rules_field_match": 53.6,
+    "hard_sea_micro_f1": 95.6,
+    "hard_hybrid_micro_f1": 89.1,
+    "easy_sea_field_match": 83.0,
+    "note": "Frozen. Same template family as train. Test scored every epoch. Not a new run."
+  },
+  "easy": {
+    "n": 150,
+    "rules": {
+      "hit": 726,
+      "total": 861,
+      "pct": 84.3,
+      "micro": {
+        "tp": 726,
+        "fp": 285,
+        "fn": 135,
+        "precision": 71.8,
+        "recall": 84.3,
+        "f1": 77.6
+      },
+      "macro_f1": 73.8,
+      "macro_fields": 8,
+      "by_field": {
+        "vessel": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "voyage": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "imo": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "port": {
+          "tp": 0,
+          "fp": 150,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "terminal": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "berth": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "eta": {
+          "tp": 46,
+          "fp": 104,
+          "fn": 104,
+          "precision": 30.7,
+          "recall": 30.7,
+          "f1": 30.7
+        },
+        "etb": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "etd": {
+          "tp": 46,
+          "fp": 31,
+          "fn": 31,
+          "precision": 59.7,
+          "recall": 59.7,
+          "f1": 59.7
+        },
+        "cutoff": {
+          "tp": 34,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    "sea": {
+      "hit": 724,
+      "total": 861,
+      "pct": 84.1,
+      "micro": {
+        "tp": 724,
+        "fp": 100,
+        "fn": 137,
+        "precision": 87.9,
+        "recall": 84.1,
+        "f1": 85.9
+      },
+      "macro_f1": 86.3,
+      "macro_fields": 7,
+      "by_field": {
+        "vessel": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "voyage": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "imo": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "port": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "terminal": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "berth": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "eta": {
+          "tp": 45,
+          "fp": 100,
+          "fn": 105,
+          "precision": 31.0,
+          "recall": 30.0,
+          "f1": 30.5
+        },
+        "etb": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "etd": {
+          "tp": 45,
+          "fp": 0,
+          "fn": 32,
+          "precision": 100.0,
+          "recall": 58.4,
+          "f1": 73.8
+        },
+        "cutoff": {
+          "tp": 34,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    "hybrid": {
+      "hit": 725,
+      "total": 861,
+      "pct": 84.2,
+      "micro": {
+        "tp": 725,
+        "fp": 286,
+        "fn": 136,
+        "precision": 71.7,
+        "recall": 84.2,
+        "f1": 77.5
+      },
+      "macro_f1": 73.7,
+      "macro_fields": 8,
+      "by_field": {
+        "vessel": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "voyage": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "imo": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "port": {
+          "tp": 0,
+          "fp": 150,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "terminal": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "berth": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "eta": {
+          "tp": 45,
+          "fp": 105,
+          "fn": 105,
+          "precision": 30.0,
+          "recall": 30.0,
+          "f1": 30.0
+        },
+        "etb": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "etd": {
+          "tp": 46,
+          "fp": 31,
+          "fn": 31,
+          "precision": 59.7,
+          "recall": 59.7,
+          "f1": 59.7
+        },
+        "cutoff": {
+          "tp": 34,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    }
+  },
+  "hard": {
+    "n": 250,
+    "rules": {
+      "hit": 641,
+      "total": 1358,
+      "pct": 47.2,
+      "micro": {
+        "tp": 641,
+        "fp": 326,
+        "fn": 717,
+        "precision": 66.3,
+        "recall": 47.2,
+        "f1": 55.1
+      },
+      "macro_f1": 34.4,
+      "macro_fields": 8,
+      "by_field": {
+        "vessel": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 250,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "voyage": {
+          "tp": 220,
+          "fp": 30,
+          "fn": 30,
+          "precision": 88.0,
+          "recall": 88.0,
+          "f1": 88.0
+        },
+        "imo": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "port": {
+          "tp": 67,
+          "fp": 183,
+          "fn": 5,
+          "precision": 26.8,
+          "recall": 93.1,
+          "f1": 41.6
+        },
+        "terminal": {
+          "tp": 205,
+          "fp": 45,
+          "fn": 45,
+          "precision": 82.0,
+          "recall": 82.0,
+          "f1": 82.0
+        },
+        "berth": {
+          "tp": 149,
+          "fp": 68,
+          "fn": 101,
+          "precision": 68.7,
+          "recall": 59.6,
+          "f1": 63.8
+        },
+        "eta": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 214,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "etb": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 36,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "etd": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 36,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "cutoff": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    },
+    "sea": {
+      "hit": 1324,
+      "total": 1358,
+      "pct": 97.5,
+      "micro": {
+        "tp": 1324,
+        "fp": 34,
+        "fn": 34,
+        "precision": 97.5,
+        "recall": 97.5,
+        "f1": 97.5
+      },
+      "macro_f1": 98.0,
+      "macro_fields": 8,
+      "by_field": {
+        "vessel": {
+          "tp": 250,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "voyage": {
+          "tp": 250,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "imo": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "port": {
+          "tp": 72,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "terminal": {
+          "tp": 250,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "berth": {
+          "tp": 250,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "eta": {
+          "tp": 180,
+          "fp": 34,
+          "fn": 34,
+          "precision": 84.1,
+          "recall": 84.1,
+          "f1": 84.1
+        },
+        "etb": {
+          "tp": 36,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "etd": {
+          "tp": 36,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "cutoff": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    },
+    "hybrid": {
+      "hit": 1324,
+      "total": 1358,
+      "pct": 97.5,
+      "micro": {
+        "tp": 1324,
+        "fp": 212,
+        "fn": 34,
+        "precision": 86.2,
+        "recall": 97.5,
+        "f1": 91.5
+      },
+      "macro_f1": 91.1,
+      "macro_fields": 8,
+      "by_field": {
+        "vessel": {
+          "tp": 250,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "voyage": {
+          "tp": 250,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "imo": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "port": {
+          "tp": 72,
+          "fp": 178,
+          "fn": 0,
+          "precision": 28.8,
+          "recall": 100.0,
+          "f1": 44.7
+        },
+        "terminal": {
+          "tp": 250,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "berth": {
+          "tp": 250,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "eta": {
+          "tp": 180,
+          "fp": 34,
+          "fn": 34,
+          "precision": 84.1,
+          "recall": 84.1,
+          "f1": 84.1
+        },
+        "etb": {
+          "tp": 36,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "etd": {
+          "tp": 36,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "cutoff": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    }
+  },
+  "test_ood_easy": {
+    "n": 80,
+    "rules": {
+      "hit": 400,
+      "total": 480,
+      "pct": 83.3,
+      "micro": {
+        "tp": 400,
+        "fp": 126,
+        "fn": 80,
+        "precision": 76.0,
+        "recall": 83.3,
+        "f1": 79.5
+      },
+      "macro_f1": 79.5,
+      "macro_fields": 9,
+      "by_field": {
+        "vessel": {
+          "tp": 46,
+          "fp": 0,
+          "fn": 34,
+          "precision": 100.0,
+          "recall": 57.5,
+          "f1": 73.0
+        },
+        "voyage": {
+          "tp": 80,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "imo": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "port": {
+          "tp": 0,
+          "fp": 80,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "terminal": {
+          "tp": 80,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "berth": {
+          "tp": 46,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "eta": {
+          "tp": 34,
+          "fp": 46,
+          "fn": 46,
+          "precision": 42.5,
+          "recall": 42.5,
+          "f1": 42.5
+        },
+        "etb": {
+          "tp": 34,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "etd": {
+          "tp": 34,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "cutoff": {
+          "tp": 46,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    "sea": {
+      "hit": 374,
+      "total": 480,
+      "pct": 77.9,
+      "micro": {
+        "tp": 374,
+        "fp": 72,
+        "fn": 106,
+        "precision": 83.9,
+        "recall": 77.9,
+        "f1": 80.8
+      },
+      "macro_f1": 76.2,
+      "macro_fields": 8,
+      "by_field": {
+        "vessel": {
+          "tp": 80,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "voyage": {
+          "tp": 80,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "imo": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "port": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "terminal": {
+          "tp": 80,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "berth": {
+          "tp": 46,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "eta": {
+          "tp": 8,
+          "fp": 72,
+          "fn": 72,
+          "precision": 10.0,
+          "recall": 10.0,
+          "f1": 10.0
+        },
+        "etb": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 34,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "etd": {
+          "tp": 34,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "cutoff": {
+          "tp": 46,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    "hybrid": {
+      "hit": 408,
+      "total": 480,
+      "pct": 85.0,
+      "micro": {
+        "tp": 408,
+        "fp": 152,
+        "fn": 72,
+        "precision": 72.9,
+        "recall": 85.0,
+        "f1": 78.5
+      },
+      "macro_f1": 78.9,
+      "macro_fields": 9,
+      "by_field": {
+        "vessel": {
+          "tp": 80,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "voyage": {
+          "tp": 80,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "imo": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "port": {
+          "tp": 0,
+          "fp": 80,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "terminal": {
+          "tp": 80,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "berth": {
+          "tp": 46,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "eta": {
+          "tp": 8,
+          "fp": 72,
+          "fn": 72,
+          "precision": 10.0,
+          "recall": 10.0,
+          "f1": 10.0
+        },
+        "etb": {
+          "tp": 34,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "etd": {
+          "tp": 34,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "cutoff": {
+          "tp": 46,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    }
+  },
+  "test_ood_hard": {
+    "n": 200,
+    "rules": {
+      "hit": 732,
+      "total": 1066,
+      "pct": 68.7,
+      "micro": {
+        "tp": 732,
+        "fp": 200,
+        "fn": 334,
+        "precision": 78.5,
+        "recall": 68.7,
+        "f1": 73.3
+      },
+      "macro_f1": 64.2,
+      "macro_fields": 7,
+      "by_field": {
+        "vessel": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 200,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "voyage": {
+          "tp": 200,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "imo": {
+          "tp": 66,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "port": {
+          "tp": 0,
+          "fp": 200,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "terminal": {
+          "tp": 200,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "berth": {
+          "tp": 200,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "eta": {
+          "tp": 66,
+          "fp": 0,
+          "fn": 134,
+          "precision": 100.0,
+          "recall": 33.0,
+          "f1": 49.6
+        },
+        "etb": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "etd": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "cutoff": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    },
+    "sea": {
+      "hit": 812,
+      "total": 1066,
+      "pct": 76.2,
+      "micro": {
+        "tp": 812,
+        "fp": 139,
+        "fn": 254,
+        "precision": 85.4,
+        "recall": 76.2,
+        "f1": 80.5
+      },
+      "macro_f1": 69.1,
+      "macro_fields": 6,
+      "by_field": {
+        "vessel": {
+          "tp": 177,
+          "fp": 0,
+          "fn": 23,
+          "precision": 100.0,
+          "recall": 88.5,
+          "f1": 93.9
+        },
+        "voyage": {
+          "tp": 200,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "imo": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 66,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "port": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "terminal": {
+          "tp": 200,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "berth": {
+          "tp": 134,
+          "fp": 66,
+          "fn": 66,
+          "precision": 67.0,
+          "recall": 67.0,
+          "f1": 67.0
+        },
+        "eta": {
+          "tp": 101,
+          "fp": 73,
+          "fn": 99,
+          "precision": 58.0,
+          "recall": 50.5,
+          "f1": 54.0
+        },
+        "etb": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "etd": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "cutoff": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    },
+    "hybrid": {
+      "hit": 878,
+      "total": 1066,
+      "pct": 82.4,
+      "micro": {
+        "tp": 878,
+        "fp": 339,
+        "fn": 188,
+        "precision": 72.1,
+        "recall": 82.4,
+        "f1": 76.9
+      },
+      "macro_f1": 73.6,
+      "macro_fields": 7,
+      "by_field": {
+        "vessel": {
+          "tp": 177,
+          "fp": 0,
+          "fn": 23,
+          "precision": 100.0,
+          "recall": 88.5,
+          "f1": 93.9
+        },
+        "voyage": {
+          "tp": 200,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "imo": {
+          "tp": 66,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "port": {
+          "tp": 0,
+          "fp": 200,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "terminal": {
+          "tp": 200,
+          "fp": 0,
+          "fn": 0,
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "berth": {
+          "tp": 134,
+          "fp": 66,
+          "fn": 66,
+          "precision": 67.0,
+          "recall": 67.0,
+          "f1": 67.0
+        },
+        "eta": {
+          "tp": 101,
+          "fp": 73,
+          "fn": 99,
+          "precision": 58.0,
+          "recall": 50.5,
+          "f1": 54.0
+        },
+        "etb": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "etd": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "cutoff": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    }
+  },
+  "safety_ood_hard_sea": {
+    "extractor": "sea",
+    "hallucinated_cutoff": {
+      "n": 0,
+      "d": 200,
+      "pct": 0.0
+    },
+    "wrong_berth": {
+      "n": 66,
+      "d": 200,
+      "pct": 33.0
+    },
+    "wrong_voyage": {
+      "n": 0,
+      "d": 200,
+      "pct": 0.0
+    },
+    "note": "Synthetic benchmark only. Not a production critical-failure rate."
+  },
+  "note": "test_id = unseen instances, seen templates. test_ood = unseen templates. Field match uses gold slots only. micro F1 includes FP. Safety rates are synthetic flags, not production critical-failure.",
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_token_acc": 99.6,
+      "train_seq_updates": 466,
+      "val_micro_f1": 90.9,
+      "val_field_pct": 89.8
+    },
+    {
+      "epoch": 2,
+      "train_token_acc": 99.7,
+      "train_seq_updates": 211,
+      "val_micro_f1": 91.3,
+      "val_field_pct": 90.2
+    },
+    {
+      "epoch": 3,
+      "train_token_acc": 99.7,
+      "train_seq_updates": 167,
+      "val_micro_f1": 91.3,
+      "val_field_pct": 90.2
+    },
+    {
+      "epoch": 4,
+      "train_token_acc": 99.7,
+      "train_seq_updates": 163,
+      "val_micro_f1": 91.2,
+      "val_field_pct": 90.2
+    },
+    {
+      "epoch": 5,
+      "train_token_acc": 99.7,
+      "train_seq_updates": 155,
+      "val_micro_f1": 91.2,
+      "val_field_pct": 90.2
+    },
+    {
+      "epoch": 6,
+      "train_token_acc": 99.7,
+      "train_seq_updates": 157,
+      "val_micro_f1": 91.2,
+      "val_field_pct": 90.2
+    }
+  ],
+  "best_epoch": 2,
+  "best_val_micro_f1": 91.3
+}

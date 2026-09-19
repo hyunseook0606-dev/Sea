@@ -1,0 +1,600 @@
+{"id": "TR-TOWAGE-052", "text": "예선료 vessel call ref 1052", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-089", "text": "예선료 service rendered supplier statement operation completed ref 1089", "label": "TOWAGE"}
+{"id": "TR-MOORING-054", "text": "계선료 inbound ref 1054", "label": "MOORING"}
+{"id": "TR-TOWAGE-043", "text": "예선료 outbound invoice inbound ref 1043", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-090", "text": "예선료 vessel call ref 1090", "label": "TOWAGE"}
+{"id": "TR-STEVEDORING-073", "text": "terminal handling labor vessel call port service outbound ref 1073", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-030", "text": "harbor pilot charge inbound ref 1030", "label": "PILOTAGE"}
+{"id": "TR-MOORING-098", "text": "line handling vessel call ref 1098", "label": "MOORING"}
+{"id": "TR-PILOTAGE-014", "text": "pilotage service inbound operation completed ref 1014", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-001", "text": "harbor pilot charge port service busan port invoice ref 1001", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-001", "text": "harbour tug KRW charge ref 1001", "label": "TOWAGE"}
+{"id": "TR-MOORING-041", "text": "mooring service invoice ref 1041", "label": "MOORING"}
+{"id": "TR-PILOTAGE-070", "text": "harbor pilot charge supplier statement invoice inbound ref 1070", "label": "PILOTAGE"}
+{"id": "TR-BERTH-036", "text": "terminal berth charge outbound service rendered ref 1036", "label": "BERTH"}
+{"id": "TR-BERTH-015", "text": "berth dues vessel call KRW charge operation completed ref 1015", "label": "BERTH"}
+{"id": "TR-TOWAGE-072", "text": "harbour tug supplier statement vessel call busan port ref 1072", "label": "TOWAGE"}
+{"id": "TR-MOORING-029", "text": "mooring service invoice ref 1029", "label": "MOORING"}
+{"id": "TR-STEVEDORING-025", "text": "cargo handling vessel call ref 1025", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-051", "text": "towage service supplier statement ref 1051", "label": "TOWAGE"}
+{"id": "TR-AGENCY-027", "text": "대리점 수수료 KRW charge ref 1027", "label": "AGENCY"}
+{"id": "TR-BERTH-000", "text": "접안료 vessel call operation completed KRW charge ref 1000", "label": "BERTH"}
+{"id": "TR-PILOTAGE-041", "text": "pilotage service outbound busan port service rendered ref 1041", "label": "PILOTAGE"}
+{"id": "TR-BERTH-065", "text": "접안료 operation completed outbound supplier statement ref 1065", "label": "BERTH"}
+{"id": "TR-MOORING-001", "text": "계선료 service rendered vessel call ref 1001", "label": "MOORING"}
+{"id": "TR-AGENCY-052", "text": "port agency attendance port service ref 1052", "label": "AGENCY"}
+{"id": "TR-AGENCY-021", "text": "agency fee inbound operation completed supplier statement ref 1021", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-018", "text": "harbor pilot charge outbound supplier statement port service ref 1018", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-052", "text": "terminal handling labor inbound supplier statement ref 1052", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-072", "text": "pilot boarding charge invoice busan port vessel call ref 1072", "label": "PILOTAGE"}
+{"id": "TR-BERTH-044", "text": "접안료 busan port invoice ref 1044", "label": "BERTH"}
+{"id": "TR-TOWAGE-049", "text": "tug boat assistance operation completed port service ref 1049", "label": "TOWAGE"}
+{"id": "TR-BERTH-031", "text": "접안료 outbound port service operation completed ref 1031", "label": "BERTH"}
+{"id": "TR-BERTH-020", "text": "berth dues busan port service rendered ref 1020", "label": "BERTH"}
+{"id": "TR-TOWAGE-016", "text": "harbour tug vessel call service rendered ref 1016", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-045", "text": "예선료 outbound ref 1045", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-071", "text": "harbour tug service rendered invoice busan port ref 1071", "label": "TOWAGE"}
+{"id": "TR-BERTH-074", "text": "berth dues operation completed supplier statement KRW charge ref 1074", "label": "BERTH"}
+{"id": "TR-STEVEDORING-056", "text": "cargo handling vessel call service rendered KRW charge ref 1056", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-009", "text": "tug boat assistance port service ref 1009", "label": "TOWAGE"}
+{"id": "TR-BERTH-033", "text": "접안료 inbound outbound ref 1033", "label": "BERTH"}
+{"id": "TR-PILOTAGE-098", "text": "pilotage service invoice service rendered ref 1098", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-062", "text": "terminal handling labor outbound operation completed vessel call ref 1062", "label": "STEVEDORING"}
+{"id": "TR-MOORING-093", "text": "mooring service supplier statement operation completed outbound ref 1093", "label": "MOORING"}
+{"id": "TR-TOWAGE-050", "text": "tug boat assistance inbound invoice port service ref 1050", "label": "TOWAGE"}
+{"id": "TR-MOORING-091", "text": "line handling outbound ref 1091", "label": "MOORING"}
+{"id": "TR-PILOTAGE-071", "text": "pilotage service operation completed ref 1071", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-039", "text": "terminal handling labor KRW charge ref 1039", "label": "STEVEDORING"}
+{"id": "TR-MOORING-092", "text": "line handling operation completed busan port ref 1092", "label": "MOORING"}
+{"id": "TR-TOWAGE-048", "text": "towage service supplier statement KRW charge ref 1048", "label": "TOWAGE"}
+{"id": "TR-AGENCY-040", "text": "husbandry fee supplier statement inbound ref 1040", "label": "AGENCY"}
+{"id": "TR-MOORING-024", "text": "unmooring charge inbound ref 1024", "label": "MOORING"}
+{"id": "TR-STEVEDORING-081", "text": "cargo handling supplier statement vessel call busan port ref 1081", "label": "STEVEDORING"}
+{"id": "TR-AGENCY-012", "text": "husbandry fee vessel call KRW charge ref 1012", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-044", "text": "pilot boarding charge inbound invoice ref 1044", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-030", "text": "cargo handling busan port KRW charge service rendered ref 1030", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-075", "text": "towage service supplier statement operation completed ref 1075", "label": "TOWAGE"}
+{"id": "TR-STEVEDORING-065", "text": "stevedoring charge vessel call busan port invoice ref 1065", "label": "STEVEDORING"}
+{"id": "TR-AGENCY-039", "text": "agency fee busan port ref 1039", "label": "AGENCY"}
+{"id": "TR-BERTH-096", "text": "terminal berth charge port service ref 1096", "label": "BERTH"}
+{"id": "TR-AGENCY-058", "text": "husbandry fee KRW charge supplier statement ref 1058", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-069", "text": "harbor pilot charge supplier statement ref 1069", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-027", "text": "tug boat assistance outbound busan port vessel call ref 1027", "label": "TOWAGE"}
+{"id": "TR-STEVEDORING-041", "text": "stevedoring charge port service service rendered ref 1041", "label": "STEVEDORING"}
+{"id": "TR-AGENCY-094", "text": "husbandry fee operation completed busan port vessel call ref 1094", "label": "AGENCY"}
+{"id": "TR-AGENCY-084", "text": "port agency attendance port service supplier statement inbound ref 1084", "label": "AGENCY"}
+{"id": "TR-AGENCY-029", "text": "port agency attendance service rendered supplier statement ref 1029", "label": "AGENCY"}
+{"id": "TR-AGENCY-055", "text": "husbandry fee outbound vessel call invoice ref 1055", "label": "AGENCY"}
+{"id": "TR-AGENCY-009", "text": "대리점 수수료 invoice KRW charge busan port ref 1009", "label": "AGENCY"}
+{"id": "TR-MOORING-084", "text": "line handling busan port ref 1084", "label": "MOORING"}
+{"id": "TR-TOWAGE-059", "text": "towage service operation completed busan port ref 1059", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-004", "text": "도선료 service rendered inbound ref 1004", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-076", "text": "husbandry fee service rendered operation completed ref 1076", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-043", "text": "harbor pilot charge inbound outbound ref 1043", "label": "PILOTAGE"}
+{"id": "TR-BERTH-008", "text": "berth dues port service ref 1008", "label": "BERTH"}
+{"id": "TR-TOWAGE-065", "text": "tug boat assistance supplier statement busan port vessel call ref 1065", "label": "TOWAGE"}
+{"id": "TR-BERTH-075", "text": "berth dues inbound service rendered ref 1075", "label": "BERTH"}
+{"id": "TR-STEVEDORING-026", "text": "terminal handling labor port service ref 1026", "label": "STEVEDORING"}
+{"id": "TR-MOORING-094", "text": "unmooring charge invoice ref 1094", "label": "MOORING"}
+{"id": "TR-BERTH-071", "text": "접안료 busan port outbound ref 1071", "label": "BERTH"}
+{"id": "TR-MOORING-066", "text": "unmooring charge invoice KRW charge busan port ref 1066", "label": "MOORING"}
+{"id": "TR-TOWAGE-000", "text": "towage service vessel call busan port ref 1000", "label": "TOWAGE"}
+{"id": "TR-MOORING-050", "text": "mooring service supplier statement KRW charge ref 1050", "label": "MOORING"}
+{"id": "TR-AGENCY-096", "text": "husbandry fee inbound service rendered outbound ref 1096", "label": "AGENCY"}
+{"id": "TR-STEVEDORING-082", "text": "stevedoring charge supplier statement port service vessel call ref 1082", "label": "STEVEDORING"}
+{"id": "TR-AGENCY-063", "text": "대리점 수수료 supplier statement ref 1063", "label": "AGENCY"}
+{"id": "TR-TOWAGE-069", "text": "tug boat assistance outbound busan port operation completed ref 1069", "label": "TOWAGE"}
+{"id": "TR-AGENCY-054", "text": "husbandry fee invoice ref 1054", "label": "AGENCY"}
+{"id": "TR-BERTH-006", "text": "berth dues supplier statement service rendered ref 1006", "label": "BERTH"}
+{"id": "TR-STEVEDORING-050", "text": "cargo handling invoice port service operation completed ref 1050", "label": "STEVEDORING"}
+{"id": "TR-MOORING-019", "text": "mooring service port service ref 1019", "label": "MOORING"}
+{"id": "TR-AGENCY-018", "text": "대리점 수수료 inbound operation completed port service ref 1018", "label": "AGENCY"}
+{"id": "TR-TOWAGE-096", "text": "towage service port service busan port ref 1096", "label": "TOWAGE"}
+{"id": "TR-BERTH-025", "text": "berth dues vessel call ref 1025", "label": "BERTH"}
+{"id": "TR-BERTH-088", "text": "berth dues invoice vessel call ref 1088", "label": "BERTH"}
+{"id": "TR-BERTH-046", "text": "wharfage invoice ref 1046", "label": "BERTH"}
+{"id": "TR-TOWAGE-041", "text": "harbour tug KRW charge vessel call outbound ref 1041", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-038", "text": "예선료 supplier statement ref 1038", "label": "TOWAGE"}
+{"id": "TR-AGENCY-051", "text": "port agency attendance supplier statement port service ref 1051", "label": "AGENCY"}
+{"id": "TR-AGENCY-092", "text": "husbandry fee vessel call ref 1092", "label": "AGENCY"}
+{"id": "TR-BERTH-011", "text": "접안료 port service operation completed ref 1011", "label": "BERTH"}
+{"id": "TR-MOORING-060", "text": "mooring service supplier statement ref 1060", "label": "MOORING"}
+{"id": "TR-MOORING-059", "text": "line handling supplier statement busan port KRW charge ref 1059", "label": "MOORING"}
+{"id": "TR-AGENCY-060", "text": "port agency attendance vessel call invoice inbound ref 1060", "label": "AGENCY"}
+{"id": "TR-MOORING-057", "text": "line handling KRW charge operation completed ref 1057", "label": "MOORING"}
+{"id": "TR-STEVEDORING-098", "text": "하역 작업비 vessel call ref 1098", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-046", "text": "harbour tug service rendered ref 1046", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-025", "text": "예선료 operation completed ref 1025", "label": "TOWAGE"}
+{"id": "TR-AGENCY-046", "text": "husbandry fee busan port ref 1046", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-000", "text": "pilotage service operation completed supplier statement ref 1000", "label": "PILOTAGE"}
+{"id": "TR-MOORING-000", "text": "계선료 busan port invoice ref 1000", "label": "MOORING"}
+{"id": "TR-AGENCY-089", "text": "port agency attendance outbound operation completed KRW charge ref 1089", "label": "AGENCY"}
+{"id": "TR-STEVEDORING-084", "text": "하역 작업비 KRW charge inbound operation completed ref 1084", "label": "STEVEDORING"}
+{"id": "TR-AGENCY-007", "text": "agency fee port service supplier statement inbound ref 1007", "label": "AGENCY"}
+{"id": "TR-STEVEDORING-018", "text": "stevedoring charge supplier statement ref 1018", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-066", "text": "pilot boarding charge outbound supplier statement ref 1066", "label": "PILOTAGE"}
+{"id": "TR-MOORING-070", "text": "unmooring charge KRW charge service rendered supplier statement ref 1070", "label": "MOORING"}
+{"id": "TR-BERTH-055", "text": "berth dues supplier statement busan port ref 1055", "label": "BERTH"}
+{"id": "TR-PILOTAGE-010", "text": "pilotage service supplier statement inbound ref 1010", "label": "PILOTAGE"}
+{"id": "TR-BERTH-062", "text": "berth dues busan port ref 1062", "label": "BERTH"}
+{"id": "TR-BERTH-059", "text": "berth dues invoice ref 1059", "label": "BERTH"}
+{"id": "TR-PILOTAGE-074", "text": "harbor pilot charge supplier statement ref 1074", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-062", "text": "harbour tug operation completed ref 1062", "label": "TOWAGE"}
+{"id": "TR-STEVEDORING-006", "text": "terminal handling labor inbound invoice KRW charge ref 1006", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-063", "text": "pilot boarding charge busan port ref 1063", "label": "PILOTAGE"}
+{"id": "TR-BERTH-010", "text": "berth dues outbound inbound ref 1010", "label": "BERTH"}
+{"id": "TR-TOWAGE-080", "text": "tug boat assistance port service busan port inbound ref 1080", "label": "TOWAGE"}
+{"id": "TR-AGENCY-066", "text": "agency fee operation completed inbound KRW charge ref 1066", "label": "AGENCY"}
+{"id": "TR-BERTH-049", "text": "terminal berth charge vessel call port service ref 1049", "label": "BERTH"}
+{"id": "TR-TOWAGE-014", "text": "tug boat assistance port service invoice inbound ref 1014", "label": "TOWAGE"}
+{"id": "TR-MOORING-023", "text": "mooring service KRW charge ref 1023", "label": "MOORING"}
+{"id": "TR-PILOTAGE-037", "text": "pilotage service busan port KRW charge operation completed ref 1037", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-002", "text": "husbandry fee vessel call supplier statement inbound ref 1002", "label": "AGENCY"}
+{"id": "TR-AGENCY-044", "text": "husbandry fee operation completed ref 1044", "label": "AGENCY"}
+{"id": "TR-BERTH-041", "text": "접안료 invoice busan port outbound ref 1041", "label": "BERTH"}
+{"id": "TR-STEVEDORING-090", "text": "하역 작업비 operation completed invoice ref 1090", "label": "STEVEDORING"}
+{"id": "TR-MOORING-038", "text": "mooring service operation completed supplier statement ref 1038", "label": "MOORING"}
+{"id": "TR-PILOTAGE-067", "text": "pilot boarding charge supplier statement inbound KRW charge ref 1067", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-043", "text": "cargo handling inbound KRW charge ref 1043", "label": "STEVEDORING"}
+{"id": "TR-MOORING-032", "text": "mooring service inbound vessel call busan port ref 1032", "label": "MOORING"}
+{"id": "TR-TOWAGE-017", "text": "towage service port service KRW charge busan port ref 1017", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-047", "text": "pilotage service KRW charge port service ref 1047", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-013", "text": "husbandry fee inbound invoice vessel call ref 1013", "label": "AGENCY"}
+{"id": "TR-STEVEDORING-071", "text": "stevedoring charge invoice ref 1071", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-007", "text": "pilotage service inbound supplier statement invoice ref 1007", "label": "PILOTAGE"}
+{"id": "TR-BERTH-029", "text": "berth dues port service ref 1029", "label": "BERTH"}
+{"id": "TR-TOWAGE-082", "text": "tug boat assistance supplier statement ref 1082", "label": "TOWAGE"}
+{"id": "TR-AGENCY-099", "text": "agency fee outbound service rendered ref 1099", "label": "AGENCY"}
+{"id": "TR-TOWAGE-020", "text": "예선료 service rendered ref 1020", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-093", "text": "harbor pilot charge service rendered inbound ref 1093", "label": "PILOTAGE"}
+{"id": "TR-BERTH-014", "text": "접안료 port service KRW charge ref 1014", "label": "BERTH"}
+{"id": "TR-TOWAGE-018", "text": "tug boat assistance supplier statement ref 1018", "label": "TOWAGE"}
+{"id": "TR-STEVEDORING-058", "text": "하역 작업비 vessel call invoice ref 1058", "label": "STEVEDORING"}
+{"id": "TR-MOORING-079", "text": "mooring service service rendered supplier statement ref 1079", "label": "MOORING"}
+{"id": "TR-MOORING-007", "text": "계선료 outbound inbound ref 1007", "label": "MOORING"}
+{"id": "TR-PILOTAGE-036", "text": "pilot boarding charge port service ref 1036", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-075", "text": "port agency attendance invoice KRW charge ref 1075", "label": "AGENCY"}
+{"id": "TR-AGENCY-079", "text": "husbandry fee port service ref 1079", "label": "AGENCY"}
+{"id": "TR-AGENCY-057", "text": "port agency attendance operation completed supplier statement ref 1057", "label": "AGENCY"}
+{"id": "TR-BERTH-038", "text": "terminal berth charge busan port supplier statement port service ref 1038", "label": "BERTH"}
+{"id": "TR-MOORING-053", "text": "line handling vessel call inbound busan port ref 1053", "label": "MOORING"}
+{"id": "TR-MOORING-080", "text": "mooring service KRW charge busan port outbound ref 1080", "label": "MOORING"}
+{"id": "TR-PILOTAGE-054", "text": "pilotage service inbound ref 1054", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-066", "text": "harbour tug outbound busan port ref 1066", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-034", "text": "towage service KRW charge ref 1034", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-044", "text": "tug boat assistance inbound port service ref 1044", "label": "TOWAGE"}
+{"id": "TR-STEVEDORING-079", "text": "stevedoring charge invoice ref 1079", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-072", "text": "stevedoring charge outbound ref 1072", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-056", "text": "pilot boarding charge KRW charge ref 1056", "label": "PILOTAGE"}
+{"id": "TR-BERTH-068", "text": "berth dues inbound ref 1068", "label": "BERTH"}
+{"id": "TR-AGENCY-077", "text": "husbandry fee service rendered ref 1077", "label": "AGENCY"}
+{"id": "TR-TOWAGE-008", "text": "harbour tug inbound ref 1008", "label": "TOWAGE"}
+{"id": "TR-MOORING-006", "text": "line handling port service vessel call inbound ref 1006", "label": "MOORING"}
+{"id": "TR-BERTH-042", "text": "berth dues busan port vessel call operation completed ref 1042", "label": "BERTH"}
+{"id": "TR-BERTH-089", "text": "terminal berth charge port service invoice KRW charge ref 1089", "label": "BERTH"}
+{"id": "TR-BERTH-004", "text": "berth dues operation completed busan port ref 1004", "label": "BERTH"}
+{"id": "TR-TOWAGE-083", "text": "harbour tug outbound operation completed ref 1083", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-061", "text": "harbor pilot charge busan port ref 1061", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-001", "text": "agency fee KRW charge invoice vessel call ref 1001", "label": "AGENCY"}
+{"id": "TR-MOORING-020", "text": "mooring service KRW charge operation completed ref 1020", "label": "MOORING"}
+{"id": "TR-MOORING-082", "text": "unmooring charge port service busan port KRW charge ref 1082", "label": "MOORING"}
+{"id": "TR-PILOTAGE-022", "text": "pilot boarding charge invoice supplier statement ref 1022", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-009", "text": "harbor pilot charge supplier statement ref 1009", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-029", "text": "cargo handling service rendered ref 1029", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-007", "text": "terminal handling labor outbound invoice vessel call ref 1007", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-031", "text": "towage service supplier statement port service inbound ref 1031", "label": "TOWAGE"}
+{"id": "TR-BERTH-057", "text": "접안료 outbound vessel call operation completed ref 1057", "label": "BERTH"}
+{"id": "TR-TOWAGE-030", "text": "harbour tug port service busan port ref 1030", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-086", "text": "도선료 vessel call inbound outbound ref 1086", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-095", "text": "agency fee supplier statement outbound port service ref 1095", "label": "AGENCY"}
+{"id": "TR-BERTH-052", "text": "berth dues busan port ref 1052", "label": "BERTH"}
+{"id": "TR-TOWAGE-019", "text": "towage service operation completed supplier statement ref 1019", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-015", "text": "pilotage service outbound ref 1015", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-078", "text": "agency fee vessel call inbound ref 1078", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-024", "text": "harbor pilot charge operation completed service rendered supplier statement ref 1024", "label": "PILOTAGE"}
+{"id": "TR-MOORING-010", "text": "unmooring charge outbound operation completed ref 1010", "label": "MOORING"}
+{"id": "TR-STEVEDORING-036", "text": "terminal handling labor vessel call service rendered ref 1036", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-052", "text": "pilotage service service rendered inbound ref 1052", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-098", "text": "harbour tug operation completed outbound ref 1098", "label": "TOWAGE"}
+{"id": "TR-MOORING-043", "text": "line handling service rendered inbound busan port ref 1043", "label": "MOORING"}
+{"id": "TR-BERTH-021", "text": "terminal berth charge vessel call inbound invoice ref 1021", "label": "BERTH"}
+{"id": "TR-PILOTAGE-053", "text": "도선료 vessel call ref 1053", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-037", "text": "tug boat assistance invoice vessel call inbound ref 1037", "label": "TOWAGE"}
+{"id": "TR-BERTH-077", "text": "wharfage operation completed ref 1077", "label": "BERTH"}
+{"id": "TR-MOORING-030", "text": "계선료 invoice busan port ref 1030", "label": "MOORING"}
+{"id": "TR-PILOTAGE-020", "text": "pilotage service KRW charge busan port vessel call ref 1020", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-085", "text": "stevedoring charge vessel call service rendered ref 1085", "label": "STEVEDORING"}
+{"id": "TR-MOORING-075", "text": "mooring service port service inbound ref 1075", "label": "MOORING"}
+{"id": "TR-BERTH-079", "text": "terminal berth charge vessel call ref 1079", "label": "BERTH"}
+{"id": "TR-BERTH-051", "text": "berth dues invoice inbound ref 1051", "label": "BERTH"}
+{"id": "TR-MOORING-081", "text": "unmooring charge service rendered vessel call ref 1081", "label": "MOORING"}
+{"id": "TR-MOORING-074", "text": "mooring service KRW charge busan port ref 1074", "label": "MOORING"}
+{"id": "TR-AGENCY-056", "text": "agency fee outbound KRW charge ref 1056", "label": "AGENCY"}
+{"id": "TR-MOORING-055", "text": "계선료 supplier statement port service service rendered ref 1055", "label": "MOORING"}
+{"id": "TR-PILOTAGE-023", "text": "pilot boarding charge vessel call ref 1023", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-096", "text": "cargo handling outbound ref 1096", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-063", "text": "harbour tug KRW charge ref 1063", "label": "TOWAGE"}
+{"id": "TR-BERTH-001", "text": "terminal berth charge port service ref 1001", "label": "BERTH"}
+{"id": "TR-MOORING-090", "text": "계선료 vessel call busan port supplier statement ref 1090", "label": "MOORING"}
+{"id": "TR-STEVEDORING-088", "text": "stevedoring charge outbound port service ref 1088", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-042", "text": "pilotage service service rendered ref 1042", "label": "PILOTAGE"}
+{"id": "TR-MOORING-033", "text": "unmooring charge vessel call busan port ref 1033", "label": "MOORING"}
+{"id": "TR-PILOTAGE-088", "text": "pilotage service vessel call ref 1088", "label": "PILOTAGE"}
+{"id": "TR-MOORING-009", "text": "line handling invoice ref 1009", "label": "MOORING"}
+{"id": "TR-AGENCY-072", "text": "port agency attendance outbound ref 1072", "label": "AGENCY"}
+{"id": "TR-MOORING-011", "text": "계선료 KRW charge service rendered ref 1011", "label": "MOORING"}
+{"id": "TR-BERTH-053", "text": "terminal berth charge supplier statement KRW charge ref 1053", "label": "BERTH"}
+{"id": "TR-MOORING-072", "text": "unmooring charge port service outbound vessel call ref 1072", "label": "MOORING"}
+{"id": "TR-BERTH-094", "text": "접안료 inbound supplier statement ref 1094", "label": "BERTH"}
+{"id": "TR-PILOTAGE-081", "text": "도선료 busan port ref 1081", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-008", "text": "하역 작업비 KRW charge ref 1008", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-004", "text": "하역 작업비 service rendered operation completed inbound ref 1004", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-095", "text": "harbor pilot charge KRW charge ref 1095", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-041", "text": "husbandry fee supplier statement busan port ref 1041", "label": "AGENCY"}
+{"id": "TR-TOWAGE-006", "text": "tug boat assistance inbound busan port KRW charge ref 1006", "label": "TOWAGE"}
+{"id": "TR-BERTH-090", "text": "wharfage KRW charge ref 1090", "label": "BERTH"}
+{"id": "TR-TOWAGE-056", "text": "towage service supplier statement ref 1056", "label": "TOWAGE"}
+{"id": "TR-AGENCY-059", "text": "대리점 수수료 busan port ref 1059", "label": "AGENCY"}
+{"id": "TR-AGENCY-014", "text": "agency fee outbound operation completed KRW charge ref 1014", "label": "AGENCY"}
+{"id": "TR-TOWAGE-013", "text": "tug boat assistance invoice ref 1013", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-091", "text": "도선료 operation completed invoice ref 1091", "label": "PILOTAGE"}
+{"id": "TR-MOORING-037", "text": "계선료 KRW charge busan port ref 1037", "label": "MOORING"}
+{"id": "TR-BERTH-067", "text": "접안료 supplier statement busan port inbound ref 1067", "label": "BERTH"}
+{"id": "TR-AGENCY-049", "text": "agency fee inbound service rendered supplier statement ref 1049", "label": "AGENCY"}
+{"id": "TR-AGENCY-042", "text": "port agency attendance operation completed inbound busan port ref 1042", "label": "AGENCY"}
+{"id": "TR-AGENCY-038", "text": "대리점 수수료 supplier statement ref 1038", "label": "AGENCY"}
+{"id": "TR-AGENCY-026", "text": "agency fee inbound KRW charge service rendered ref 1026", "label": "AGENCY"}
+{"id": "TR-AGENCY-028", "text": "port agency attendance inbound KRW charge invoice ref 1028", "label": "AGENCY"}
+{"id": "TR-AGENCY-011", "text": "대리점 수수료 outbound ref 1011", "label": "AGENCY"}
+{"id": "TR-MOORING-061", "text": "unmooring charge port service operation completed ref 1061", "label": "MOORING"}
+{"id": "TR-MOORING-049", "text": "mooring service inbound ref 1049", "label": "MOORING"}
+{"id": "TR-BERTH-027", "text": "wharfage inbound ref 1027", "label": "BERTH"}
+{"id": "TR-STEVEDORING-094", "text": "stevedoring charge operation completed ref 1094", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-027", "text": "terminal handling labor supplier statement busan port ref 1027", "label": "STEVEDORING"}
+{"id": "TR-AGENCY-045", "text": "대리점 수수료 KRW charge invoice outbound ref 1045", "label": "AGENCY"}
+{"id": "TR-TOWAGE-068", "text": "harbour tug operation completed ref 1068", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-027", "text": "pilotage service invoice service rendered ref 1027", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-093", "text": "terminal handling labor inbound ref 1093", "label": "STEVEDORING"}
+{"id": "TR-BERTH-098", "text": "접안료 vessel call ref 1098", "label": "BERTH"}
+{"id": "TR-AGENCY-034", "text": "대리점 수수료 invoice port service vessel call ref 1034", "label": "AGENCY"}
+{"id": "TR-AGENCY-022", "text": "agency fee busan port supplier statement ref 1022", "label": "AGENCY"}
+{"id": "TR-BERTH-064", "text": "terminal berth charge vessel call KRW charge outbound ref 1064", "label": "BERTH"}
+{"id": "TR-BERTH-039", "text": "wharfage operation completed ref 1039", "label": "BERTH"}
+{"id": "TR-MOORING-047", "text": "unmooring charge KRW charge inbound ref 1047", "label": "MOORING"}
+{"id": "TR-TOWAGE-073", "text": "towage service vessel call operation completed ref 1073", "label": "TOWAGE"}
+{"id": "TR-STEVEDORING-074", "text": "terminal handling labor supplier statement inbound ref 1074", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-089", "text": "pilot boarding charge operation completed ref 1089", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-092", "text": "하역 작업비 supplier statement port service ref 1092", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-039", "text": "pilot boarding charge inbound outbound service rendered ref 1039", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-036", "text": "tug boat assistance inbound ref 1036", "label": "TOWAGE"}
+{"id": "TR-AGENCY-067", "text": "husbandry fee port service inbound ref 1067", "label": "AGENCY"}
+{"id": "TR-TOWAGE-095", "text": "tug boat assistance inbound supplier statement operation completed ref 1095", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-013", "text": "도선료 vessel call inbound KRW charge ref 1013", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-007", "text": "harbour tug outbound vessel call KRW charge ref 1007", "label": "TOWAGE"}
+{"id": "TR-MOORING-025", "text": "계선료 KRW charge ref 1025", "label": "MOORING"}
+{"id": "TR-BERTH-047", "text": "wharfage KRW charge vessel call ref 1047", "label": "BERTH"}
+{"id": "TR-MOORING-085", "text": "line handling vessel call invoice busan port ref 1085", "label": "MOORING"}
+{"id": "TR-AGENCY-071", "text": "port agency attendance outbound KRW charge service rendered ref 1071", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-057", "text": "harbor pilot charge operation completed invoice ref 1057", "label": "PILOTAGE"}
+{"id": "TR-BERTH-037", "text": "접안료 KRW charge busan port port service ref 1037", "label": "BERTH"}
+{"id": "TR-PILOTAGE-008", "text": "harbor pilot charge operation completed ref 1008", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-053", "text": "tug boat assistance vessel call port service ref 1053", "label": "TOWAGE"}
+{"id": "TR-MOORING-027", "text": "line handling port service supplier statement ref 1027", "label": "MOORING"}
+{"id": "TR-PILOTAGE-011", "text": "harbor pilot charge busan port invoice ref 1011", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-020", "text": "대리점 수수료 supplier statement port service vessel call ref 1020", "label": "AGENCY"}
+{"id": "TR-STEVEDORING-077", "text": "cargo handling KRW charge operation completed outbound ref 1077", "label": "STEVEDORING"}
+{"id": "TR-BERTH-080", "text": "접안료 service rendered inbound vessel call ref 1080", "label": "BERTH"}
+{"id": "TR-TOWAGE-002", "text": "towage service busan port operation completed ref 1002", "label": "TOWAGE"}
+{"id": "TR-BERTH-050", "text": "wharfage inbound port service outbound ref 1050", "label": "BERTH"}
+{"id": "TR-TOWAGE-060", "text": "예선료 port service outbound ref 1060", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-061", "text": "tug boat assistance invoice ref 1061", "label": "TOWAGE"}
+{"id": "TR-BERTH-091", "text": "접안료 vessel call ref 1091", "label": "BERTH"}
+{"id": "TR-AGENCY-083", "text": "agency fee invoice port service vessel call ref 1083", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-035", "text": "도선료 supplier statement operation completed inbound ref 1035", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-019", "text": "도선료 outbound ref 1019", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-045", "text": "pilotage service supplier statement KRW charge busan port ref 1045", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-094", "text": "pilot boarding charge inbound supplier statement ref 1094", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-017", "text": "cargo handling KRW charge supplier statement busan port ref 1017", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-001", "text": "stevedoring charge busan port KRW charge ref 1001", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-033", "text": "terminal handling labor KRW charge ref 1033", "label": "STEVEDORING"}
+{"id": "TR-MOORING-008", "text": "mooring service busan port operation completed ref 1008", "label": "MOORING"}
+{"id": "TR-STEVEDORING-076", "text": "cargo handling invoice vessel call busan port ref 1076", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-064", "text": "pilot boarding charge service rendered busan port invoice ref 1064", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-028", "text": "stevedoring charge vessel call operation completed outbound ref 1028", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-005", "text": "cargo handling busan port supplier statement inbound ref 1005", "label": "STEVEDORING"}
+{"id": "TR-BERTH-073", "text": "berth dues port service ref 1073", "label": "BERTH"}
+{"id": "TR-BERTH-054", "text": "terminal berth charge outbound busan port ref 1054", "label": "BERTH"}
+{"id": "TR-PILOTAGE-038", "text": "도선료 vessel call invoice ref 1038", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-074", "text": "대리점 수수료 vessel call operation completed service rendered ref 1074", "label": "AGENCY"}
+{"id": "TR-BERTH-035", "text": "terminal berth charge busan port ref 1035", "label": "BERTH"}
+{"id": "TR-PILOTAGE-003", "text": "pilot boarding charge vessel call invoice operation completed ref 1003", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-076", "text": "towage service vessel call ref 1076", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-087", "text": "tug boat assistance vessel call ref 1087", "label": "TOWAGE"}
+{"id": "TR-BERTH-082", "text": "wharfage vessel call ref 1082", "label": "BERTH"}
+{"id": "TR-MOORING-099", "text": "line handling vessel call ref 1099", "label": "MOORING"}
+{"id": "TR-PILOTAGE-050", "text": "도선료 port service outbound ref 1050", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-092", "text": "towage service operation completed vessel call ref 1092", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-023", "text": "towage service busan port supplier statement outbound ref 1023", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-016", "text": "도선료 outbound service rendered ref 1016", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-051", "text": "cargo handling vessel call supplier statement ref 1051", "label": "STEVEDORING"}
+{"id": "TR-MOORING-078", "text": "line handling operation completed vessel call outbound ref 1078", "label": "MOORING"}
+{"id": "TR-TOWAGE-028", "text": "harbour tug KRW charge invoice busan port ref 1028", "label": "TOWAGE"}
+{"id": "TR-AGENCY-068", "text": "husbandry fee inbound ref 1068", "label": "AGENCY"}
+{"id": "TR-STEVEDORING-095", "text": "stevedoring charge service rendered ref 1095", "label": "STEVEDORING"}
+{"id": "TR-MOORING-042", "text": "계선료 vessel call ref 1042", "label": "MOORING"}
+{"id": "TR-MOORING-035", "text": "unmooring charge busan port invoice port service ref 1035", "label": "MOORING"}
+{"id": "TR-STEVEDORING-038", "text": "terminal handling labor vessel call outbound ref 1038", "label": "STEVEDORING"}
+{"id": "TR-AGENCY-016", "text": "agency fee KRW charge supplier statement port service ref 1016", "label": "AGENCY"}
+{"id": "TR-AGENCY-065", "text": "husbandry fee operation completed ref 1065", "label": "AGENCY"}
+{"id": "TR-MOORING-045", "text": "unmooring charge outbound operation completed ref 1045", "label": "MOORING"}
+{"id": "TR-STEVEDORING-013", "text": "cargo handling outbound invoice ref 1013", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-003", "text": "cargo handling inbound port service ref 1003", "label": "STEVEDORING"}
+{"id": "TR-BERTH-012", "text": "wharfage busan port port service ref 1012", "label": "BERTH"}
+{"id": "TR-AGENCY-085", "text": "대리점 수수료 invoice vessel call operation completed ref 1085", "label": "AGENCY"}
+{"id": "TR-TOWAGE-057", "text": "towage service port service invoice outbound ref 1057", "label": "TOWAGE"}
+{"id": "TR-STEVEDORING-031", "text": "cargo handling port service invoice ref 1031", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-032", "text": "towage service inbound ref 1032", "label": "TOWAGE"}
+{"id": "TR-MOORING-087", "text": "mooring service inbound ref 1087", "label": "MOORING"}
+{"id": "TR-MOORING-034", "text": "line handling service rendered inbound ref 1034", "label": "MOORING"}
+{"id": "TR-STEVEDORING-015", "text": "하역 작업비 port service supplier statement service rendered ref 1015", "label": "STEVEDORING"}
+{"id": "TR-MOORING-052", "text": "계선료 outbound ref 1052", "label": "MOORING"}
+{"id": "TR-MOORING-040", "text": "계선료 port service ref 1040", "label": "MOORING"}
+{"id": "TR-TOWAGE-021", "text": "tug boat assistance invoice ref 1021", "label": "TOWAGE"}
+{"id": "TR-BERTH-069", "text": "wharfage operation completed invoice service rendered ref 1069", "label": "BERTH"}
+{"id": "TR-STEVEDORING-078", "text": "stevedoring charge busan port invoice operation completed ref 1078", "label": "STEVEDORING"}
+{"id": "TR-BERTH-061", "text": "wharfage service rendered KRW charge vessel call ref 1061", "label": "BERTH"}
+{"id": "TR-STEVEDORING-000", "text": "cargo handling KRW charge service rendered port service ref 1000", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-076", "text": "pilotage service service rendered ref 1076", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-058", "text": "harbor pilot charge service rendered ref 1058", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-021", "text": "stevedoring charge operation completed busan port outbound ref 1021", "label": "STEVEDORING"}
+{"id": "TR-BERTH-060", "text": "접안료 vessel call KRW charge invoice ref 1060", "label": "BERTH"}
+{"id": "TR-STEVEDORING-047", "text": "stevedoring charge operation completed inbound supplier statement ref 1047", "label": "STEVEDORING"}
+{"id": "TR-BERTH-009", "text": "wharfage operation completed ref 1009", "label": "BERTH"}
+{"id": "TR-TOWAGE-074", "text": "harbour tug service rendered ref 1074", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-035", "text": "towage service service rendered busan port ref 1035", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-048", "text": "도선료 supplier statement port service ref 1048", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-032", "text": "pilot boarding charge service rendered operation completed inbound ref 1032", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-055", "text": "도선료 service rendered inbound outbound ref 1055", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-079", "text": "harbour tug operation completed inbound ref 1079", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-086", "text": "harbour tug service rendered port service ref 1086", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-047", "text": "tug boat assistance busan port service rendered outbound ref 1047", "label": "TOWAGE"}
+{"id": "TR-BERTH-063", "text": "terminal berth charge vessel call busan port ref 1063", "label": "BERTH"}
+{"id": "TR-BERTH-002", "text": "접안료 operation completed port service ref 1002", "label": "BERTH"}
+{"id": "TR-STEVEDORING-059", "text": "terminal handling labor operation completed busan port ref 1059", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-055", "text": "terminal handling labor invoice operation completed ref 1055", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-064", "text": "하역 작업비 service rendered vessel call ref 1064", "label": "STEVEDORING"}
+{"id": "TR-AGENCY-003", "text": "대리점 수수료 supplier statement service rendered ref 1003", "label": "AGENCY"}
+{"id": "TR-MOORING-096", "text": "계선료 invoice ref 1096", "label": "MOORING"}
+{"id": "TR-BERTH-003", "text": "berth dues vessel call ref 1003", "label": "BERTH"}
+{"id": "TR-MOORING-046", "text": "unmooring charge busan port ref 1046", "label": "MOORING"}
+{"id": "TR-STEVEDORING-024", "text": "stevedoring charge busan port invoice ref 1024", "label": "STEVEDORING"}
+{"id": "TR-AGENCY-017", "text": "대리점 수수료 KRW charge outbound ref 1017", "label": "AGENCY"}
+{"id": "TR-STEVEDORING-009", "text": "stevedoring charge busan port KRW charge ref 1009", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-022", "text": "harbour tug supplier statement busan port ref 1022", "label": "TOWAGE"}
+{"id": "TR-AGENCY-000", "text": "agency fee busan port supplier statement service rendered ref 1000", "label": "AGENCY"}
+{"id": "TR-AGENCY-043", "text": "husbandry fee vessel call inbound ref 1043", "label": "AGENCY"}
+{"id": "TR-TOWAGE-024", "text": "예선료 service rendered ref 1024", "label": "TOWAGE"}
+{"id": "TR-STEVEDORING-046", "text": "terminal handling labor busan port port service invoice ref 1046", "label": "STEVEDORING"}
+{"id": "TR-BERTH-032", "text": "berth dues outbound service rendered ref 1032", "label": "BERTH"}
+{"id": "TR-STEVEDORING-040", "text": "cargo handling operation completed port service vessel call ref 1040", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-084", "text": "tug boat assistance invoice outbound ref 1084", "label": "TOWAGE"}
+{"id": "TR-BERTH-045", "text": "접안료 supplier statement service rendered ref 1045", "label": "BERTH"}
+{"id": "TR-TOWAGE-088", "text": "towage service operation completed supplier statement ref 1088", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-006", "text": "pilot boarding charge invoice ref 1006", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-084", "text": "pilotage service outbound vessel call busan port ref 1084", "label": "PILOTAGE"}
+{"id": "TR-MOORING-058", "text": "mooring service inbound KRW charge ref 1058", "label": "MOORING"}
+{"id": "TR-PILOTAGE-034", "text": "harbor pilot charge port service service rendered invoice ref 1034", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-047", "text": "대리점 수수료 vessel call inbound ref 1047", "label": "AGENCY"}
+{"id": "TR-BERTH-016", "text": "terminal berth charge vessel call ref 1016", "label": "BERTH"}
+{"id": "TR-STEVEDORING-016", "text": "stevedoring charge outbound service rendered ref 1016", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-010", "text": "stevedoring charge inbound busan port ref 1010", "label": "STEVEDORING"}
+{"id": "TR-AGENCY-025", "text": "agency fee outbound inbound vessel call ref 1025", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-090", "text": "pilot boarding charge KRW charge ref 1090", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-012", "text": "tug boat assistance invoice port service service rendered ref 1012", "label": "TOWAGE"}
+{"id": "TR-BERTH-056", "text": "berth dues outbound ref 1056", "label": "BERTH"}
+{"id": "TR-MOORING-056", "text": "계선료 outbound KRW charge ref 1056", "label": "MOORING"}
+{"id": "TR-TOWAGE-093", "text": "harbour tug KRW charge port service supplier statement ref 1093", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-075", "text": "pilot boarding charge service rendered ref 1075", "label": "PILOTAGE"}
+{"id": "TR-MOORING-067", "text": "line handling supplier statement ref 1067", "label": "MOORING"}
+{"id": "TR-PILOTAGE-078", "text": "pilotage service port service outbound ref 1078", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-042", "text": "stevedoring charge busan port ref 1042", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-057", "text": "cargo handling service rendered inbound operation completed ref 1057", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-082", "text": "pilot boarding charge operation completed outbound busan port ref 1082", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-081", "text": "harbour tug KRW charge inbound ref 1081", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-065", "text": "pilot boarding charge inbound vessel call ref 1065", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-067", "text": "예선료 service rendered outbound ref 1067", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-003", "text": "towage service KRW charge invoice ref 1003", "label": "TOWAGE"}
+{"id": "TR-AGENCY-062", "text": "대리점 수수료 supplier statement ref 1062", "label": "AGENCY"}
+{"id": "TR-AGENCY-037", "text": "agency fee KRW charge service rendered ref 1037", "label": "AGENCY"}
+{"id": "TR-MOORING-004", "text": "unmooring charge KRW charge outbound port service ref 1004", "label": "MOORING"}
+{"id": "TR-STEVEDORING-022", "text": "terminal handling labor invoice ref 1022", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-097", "text": "하역 작업비 KRW charge ref 1097", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-045", "text": "cargo handling vessel call supplier statement invoice ref 1045", "label": "STEVEDORING"}
+{"id": "TR-BERTH-026", "text": "wharfage vessel call ref 1026", "label": "BERTH"}
+{"id": "TR-STEVEDORING-089", "text": "cargo handling invoice ref 1089", "label": "STEVEDORING"}
+{"id": "TR-BERTH-023", "text": "terminal berth charge busan port ref 1023", "label": "BERTH"}
+{"id": "TR-BERTH-058", "text": "berth dues KRW charge busan port port service ref 1058", "label": "BERTH"}
+{"id": "TR-TOWAGE-011", "text": "harbour tug port service service rendered supplier statement ref 1011", "label": "TOWAGE"}
+{"id": "TR-BERTH-076", "text": "접안료 port service ref 1076", "label": "BERTH"}
+{"id": "TR-MOORING-077", "text": "line handling busan port ref 1077", "label": "MOORING"}
+{"id": "TR-STEVEDORING-037", "text": "stevedoring charge inbound port service ref 1037", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-062", "text": "harbor pilot charge service rendered ref 1062", "label": "PILOTAGE"}
+{"id": "TR-BERTH-048", "text": "접안료 outbound ref 1048", "label": "BERTH"}
+{"id": "TR-AGENCY-091", "text": "husbandry fee port service ref 1091", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-029", "text": "도선료 busan port inbound ref 1029", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-067", "text": "stevedoring charge KRW charge ref 1067", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-039", "text": "예선료 KRW charge ref 1039", "label": "TOWAGE"}
+{"id": "TR-MOORING-028", "text": "계선료 invoice port service ref 1028", "label": "MOORING"}
+{"id": "TR-STEVEDORING-075", "text": "stevedoring charge port service ref 1075", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-097", "text": "harbour tug KRW charge busan port outbound ref 1097", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-015", "text": "tug boat assistance service rendered port service invoice ref 1015", "label": "TOWAGE"}
+{"id": "TR-STEVEDORING-034", "text": "cargo handling vessel call ref 1034", "label": "STEVEDORING"}
+{"id": "TR-BERTH-066", "text": "berth dues KRW charge ref 1066", "label": "BERTH"}
+{"id": "TR-BERTH-043", "text": "berth dues vessel call outbound KRW charge ref 1043", "label": "BERTH"}
+{"id": "TR-STEVEDORING-063", "text": "하역 작업비 KRW charge vessel call ref 1063", "label": "STEVEDORING"}
+{"id": "TR-BERTH-034", "text": "wharfage outbound vessel call ref 1034", "label": "BERTH"}
+{"id": "TR-BERTH-028", "text": "wharfage vessel call inbound port service ref 1028", "label": "BERTH"}
+{"id": "TR-STEVEDORING-060", "text": "cargo handling supplier statement busan port ref 1060", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-005", "text": "pilot boarding charge vessel call ref 1005", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-002", "text": "pilotage service KRW charge ref 1002", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-088", "text": "port agency attendance outbound KRW charge invoice ref 1088", "label": "AGENCY"}
+{"id": "TR-TOWAGE-064", "text": "harbour tug supplier statement service rendered ref 1064", "label": "TOWAGE"}
+{"id": "TR-STEVEDORING-068", "text": "cargo handling busan port KRW charge inbound ref 1068", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-032", "text": "cargo handling KRW charge vessel call ref 1032", "label": "STEVEDORING"}
+{"id": "TR-BERTH-022", "text": "접안료 KRW charge supplier statement operation completed ref 1022", "label": "BERTH"}
+{"id": "TR-STEVEDORING-049", "text": "terminal handling labor service rendered operation completed ref 1049", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-010", "text": "tug boat assistance inbound operation completed invoice ref 1010", "label": "TOWAGE"}
+{"id": "TR-MOORING-016", "text": "mooring service busan port ref 1016", "label": "MOORING"}
+{"id": "TR-BERTH-018", "text": "berth dues outbound ref 1018", "label": "BERTH"}
+{"id": "TR-BERTH-087", "text": "terminal berth charge vessel call busan port ref 1087", "label": "BERTH"}
+{"id": "TR-TOWAGE-029", "text": "harbour tug port service ref 1029", "label": "TOWAGE"}
+{"id": "TR-BERTH-040", "text": "접안료 supplier statement outbound inbound ref 1040", "label": "BERTH"}
+{"id": "TR-MOORING-089", "text": "계선료 busan port operation completed ref 1089", "label": "MOORING"}
+{"id": "TR-TOWAGE-042", "text": "harbour tug KRW charge port service ref 1042", "label": "TOWAGE"}
+{"id": "TR-BERTH-095", "text": "berth dues operation completed service rendered ref 1095", "label": "BERTH"}
+{"id": "TR-TOWAGE-094", "text": "towage service invoice port service vessel call ref 1094", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-085", "text": "pilotage service port service service rendered KRW charge ref 1085", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-083", "text": "pilotage service operation completed supplier statement invoice ref 1083", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-040", "text": "pilotage service busan port outbound ref 1040", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-033", "text": "pilotage service operation completed service rendered supplier statement ref 1033", "label": "PILOTAGE"}
+{"id": "TR-BERTH-085", "text": "접안료 busan port ref 1085", "label": "BERTH"}
+{"id": "TR-MOORING-086", "text": "line handling supplier statement vessel call invoice ref 1086", "label": "MOORING"}
+{"id": "TR-MOORING-097", "text": "mooring service operation completed vessel call ref 1097", "label": "MOORING"}
+{"id": "TR-AGENCY-097", "text": "대리점 수수료 invoice service rendered busan port ref 1097", "label": "AGENCY"}
+{"id": "TR-TOWAGE-033", "text": "towage service port service inbound ref 1033", "label": "TOWAGE"}
+{"id": "TR-STEVEDORING-069", "text": "cargo handling vessel call ref 1069", "label": "STEVEDORING"}
+{"id": "TR-MOORING-015", "text": "line handling service rendered supplier statement ref 1015", "label": "MOORING"}
+{"id": "TR-STEVEDORING-080", "text": "cargo handling vessel call ref 1080", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-012", "text": "하역 작업비 KRW charge vessel call supplier statement ref 1012", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-005", "text": "towage service service rendered invoice ref 1005", "label": "TOWAGE"}
+{"id": "TR-AGENCY-008", "text": "대리점 수수료 supplier statement invoice ref 1008", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-051", "text": "pilotage service busan port outbound supplier statement ref 1051", "label": "PILOTAGE"}
+{"id": "TR-MOORING-073", "text": "계선료 operation completed service rendered ref 1073", "label": "MOORING"}
+{"id": "TR-AGENCY-005", "text": "agency fee KRW charge busan port outbound ref 1005", "label": "AGENCY"}
+{"id": "TR-BERTH-084", "text": "접안료 KRW charge ref 1084", "label": "BERTH"}
+{"id": "TR-STEVEDORING-035", "text": "cargo handling busan port invoice supplier statement ref 1035", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-012", "text": "harbor pilot charge port service outbound KRW charge ref 1012", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-091", "text": "tug boat assistance inbound ref 1091", "label": "TOWAGE"}
+{"id": "TR-MOORING-012", "text": "계선료 operation completed service rendered vessel call ref 1012", "label": "MOORING"}
+{"id": "TR-STEVEDORING-019", "text": "stevedoring charge supplier statement busan port ref 1019", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-087", "text": "cargo handling service rendered supplier statement outbound ref 1087", "label": "STEVEDORING"}
+{"id": "TR-AGENCY-004", "text": "husbandry fee inbound ref 1004", "label": "AGENCY"}
+{"id": "TR-AGENCY-053", "text": "port agency attendance port service vessel call ref 1053", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-017", "text": "도선료 inbound ref 1017", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-048", "text": "하역 작업비 port service outbound ref 1048", "label": "STEVEDORING"}
+{"id": "TR-MOORING-026", "text": "계선료 KRW charge vessel call service rendered ref 1026", "label": "MOORING"}
+{"id": "TR-BERTH-013", "text": "접안료 inbound ref 1013", "label": "BERTH"}
+{"id": "TR-MOORING-071", "text": "line handling outbound ref 1071", "label": "MOORING"}
+{"id": "TR-BERTH-093", "text": "berth dues vessel call operation completed ref 1093", "label": "BERTH"}
+{"id": "TR-STEVEDORING-070", "text": "terminal handling labor supplier statement KRW charge port service ref 1070", "label": "STEVEDORING"}
+{"id": "TR-BERTH-017", "text": "terminal berth charge service rendered port service KRW charge ref 1017", "label": "BERTH"}
+{"id": "TR-AGENCY-086", "text": "agency fee outbound invoice supplier statement ref 1086", "label": "AGENCY"}
+{"id": "TR-TOWAGE-058", "text": "towage service operation completed busan port ref 1058", "label": "TOWAGE"}
+{"id": "TR-AGENCY-048", "text": "대리점 수수료 operation completed ref 1048", "label": "AGENCY"}
+{"id": "TR-AGENCY-081", "text": "agency fee port service service rendered outbound ref 1081", "label": "AGENCY"}
+{"id": "TR-MOORING-083", "text": "line handling operation completed port service inbound ref 1083", "label": "MOORING"}
+{"id": "TR-STEVEDORING-044", "text": "stevedoring charge invoice outbound ref 1044", "label": "STEVEDORING"}
+{"id": "TR-MOORING-062", "text": "line handling operation completed outbound service rendered ref 1062", "label": "MOORING"}
+{"id": "TR-AGENCY-050", "text": "agency fee service rendered busan port ref 1050", "label": "AGENCY"}
+{"id": "TR-AGENCY-031", "text": "대리점 수수료 port service busan port operation completed ref 1031", "label": "AGENCY"}
+{"id": "TR-MOORING-031", "text": "line handling vessel call invoice port service ref 1031", "label": "MOORING"}
+{"id": "TR-PILOTAGE-059", "text": "도선료 service rendered inbound ref 1059", "label": "PILOTAGE"}
+{"id": "TR-BERTH-086", "text": "접안료 KRW charge busan port ref 1086", "label": "BERTH"}
+{"id": "TR-PILOTAGE-028", "text": "harbor pilot charge outbound invoice operation completed ref 1028", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-073", "text": "harbor pilot charge vessel call port service ref 1073", "label": "PILOTAGE"}
+{"id": "TR-MOORING-048", "text": "계선료 service rendered outbound busan port ref 1048", "label": "MOORING"}
+{"id": "TR-AGENCY-070", "text": "husbandry fee port service busan port vessel call ref 1070", "label": "AGENCY"}
+{"id": "TR-MOORING-068", "text": "line handling vessel call KRW charge inbound ref 1068", "label": "MOORING"}
+{"id": "TR-AGENCY-093", "text": "agency fee operation completed ref 1093", "label": "AGENCY"}
+{"id": "TR-BERTH-099", "text": "berth dues operation completed ref 1099", "label": "BERTH"}
+{"id": "TR-TOWAGE-078", "text": "tug boat assistance inbound outbound busan port ref 1078", "label": "TOWAGE"}
+{"id": "TR-MOORING-018", "text": "계선료 service rendered busan port ref 1018", "label": "MOORING"}
+{"id": "TR-MOORING-014", "text": "unmooring charge KRW charge operation completed ref 1014", "label": "MOORING"}
+{"id": "TR-PILOTAGE-021", "text": "pilot boarding charge inbound ref 1021", "label": "PILOTAGE"}
+{"id": "TR-MOORING-005", "text": "line handling vessel call service rendered port service ref 1005", "label": "MOORING"}
+{"id": "TR-BERTH-072", "text": "wharfage service rendered invoice vessel call ref 1072", "label": "BERTH"}
+{"id": "TR-AGENCY-080", "text": "agency fee vessel call ref 1080", "label": "AGENCY"}
+{"id": "TR-AGENCY-087", "text": "대리점 수수료 busan port operation completed ref 1087", "label": "AGENCY"}
+{"id": "TR-MOORING-036", "text": "계선료 supplier statement vessel call ref 1036", "label": "MOORING"}
+{"id": "TR-PILOTAGE-092", "text": "pilotage service port service inbound KRW charge ref 1092", "label": "PILOTAGE"}
+{"id": "TR-MOORING-069", "text": "unmooring charge service rendered ref 1069", "label": "MOORING"}
+{"id": "TR-AGENCY-015", "text": "agency fee KRW charge ref 1015", "label": "AGENCY"}
+{"id": "TR-STEVEDORING-083", "text": "cargo handling supplier statement ref 1083", "label": "STEVEDORING"}
+{"id": "TR-BERTH-083", "text": "wharfage KRW charge invoice ref 1083", "label": "BERTH"}
+{"id": "TR-AGENCY-073", "text": "agency fee supplier statement ref 1073", "label": "AGENCY"}
+{"id": "TR-AGENCY-032", "text": "agency fee supplier statement invoice service rendered ref 1032", "label": "AGENCY"}
+{"id": "TR-AGENCY-006", "text": "husbandry fee KRW charge ref 1006", "label": "AGENCY"}
+{"id": "TR-BERTH-030", "text": "berth dues busan port ref 1030", "label": "BERTH"}
+{"id": "TR-AGENCY-098", "text": "husbandry fee port service supplier statement KRW charge ref 1098", "label": "AGENCY"}
+{"id": "TR-AGENCY-035", "text": "port agency attendance outbound ref 1035", "label": "AGENCY"}
+{"id": "TR-MOORING-065", "text": "unmooring charge invoice supplier statement vessel call ref 1065", "label": "MOORING"}
+{"id": "TR-STEVEDORING-091", "text": "하역 작업비 invoice supplier statement vessel call ref 1091", "label": "STEVEDORING"}
+{"id": "TR-MOORING-088", "text": "mooring service invoice ref 1088", "label": "MOORING"}
+{"id": "TR-MOORING-002", "text": "line handling port service ref 1002", "label": "MOORING"}
+{"id": "TR-STEVEDORING-099", "text": "stevedoring charge supplier statement port service service rendered ref 1099", "label": "STEVEDORING"}
+{"id": "TR-AGENCY-036", "text": "port agency attendance busan port supplier statement service rendered ref 1036", "label": "AGENCY"}
+{"id": "TR-MOORING-064", "text": "line handling KRW charge port service ref 1064", "label": "MOORING"}
+{"id": "TR-BERTH-097", "text": "berth dues busan port operation completed vessel call ref 1097", "label": "BERTH"}
+{"id": "TR-TOWAGE-085", "text": "tug boat assistance inbound ref 1085", "label": "TOWAGE"}
+{"id": "TR-AGENCY-023", "text": "대리점 수수료 service rendered ref 1023", "label": "AGENCY"}
+{"id": "TR-STEVEDORING-014", "text": "stevedoring charge vessel call outbound ref 1014", "label": "STEVEDORING"}
+{"id": "TR-BERTH-078", "text": "wharfage inbound ref 1078", "label": "BERTH"}
+{"id": "TR-TOWAGE-070", "text": "tug boat assistance inbound supplier statement ref 1070", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-099", "text": "pilot boarding charge invoice busan port ref 1099", "label": "PILOTAGE"}
+{"id": "TR-MOORING-017", "text": "mooring service service rendered ref 1017", "label": "MOORING"}
+{"id": "TR-AGENCY-090", "text": "대리점 수수료 vessel call service rendered port service ref 1090", "label": "AGENCY"}
+{"id": "TR-TOWAGE-026", "text": "towage service vessel call inbound supplier statement ref 1026", "label": "TOWAGE"}
+{"id": "TR-MOORING-003", "text": "계선료 invoice ref 1003", "label": "MOORING"}
+{"id": "TR-PILOTAGE-097", "text": "harbor pilot charge vessel call outbound supplier statement ref 1097", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-033", "text": "port agency attendance vessel call inbound KRW charge ref 1033", "label": "AGENCY"}
+{"id": "TR-AGENCY-069", "text": "husbandry fee port service service rendered ref 1069", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-080", "text": "pilot boarding charge vessel call ref 1080", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-020", "text": "stevedoring charge busan port operation completed ref 1020", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-002", "text": "cargo handling operation completed outbound ref 1002", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-026", "text": "harbor pilot charge KRW charge ref 1026", "label": "PILOTAGE"}
+{"id": "TR-MOORING-039", "text": "계선료 service rendered outbound ref 1039", "label": "MOORING"}
+{"id": "TR-MOORING-044", "text": "line handling service rendered ref 1044", "label": "MOORING"}
+{"id": "TR-MOORING-063", "text": "계선료 service rendered ref 1063", "label": "MOORING"}
+{"id": "TR-BERTH-070", "text": "wharfage invoice busan port ref 1070", "label": "BERTH"}
+{"id": "TR-PILOTAGE-087", "text": "도선료 supplier statement outbound ref 1087", "label": "PILOTAGE"}
+{"id": "TR-MOORING-095", "text": "계선료 invoice service rendered port service ref 1095", "label": "MOORING"}
+{"id": "TR-AGENCY-024", "text": "대리점 수수료 service rendered port service invoice ref 1024", "label": "AGENCY"}
+{"id": "TR-MOORING-051", "text": "line handling KRW charge port service ref 1051", "label": "MOORING"}
+{"id": "TR-PILOTAGE-025", "text": "도선료 invoice KRW charge ref 1025", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-054", "text": "tug boat assistance vessel call ref 1054", "label": "TOWAGE"}
+{"id": "TR-AGENCY-030", "text": "대리점 수수료 outbound inbound ref 1030", "label": "AGENCY"}
+{"id": "TR-BERTH-005", "text": "접안료 invoice port service KRW charge ref 1005", "label": "BERTH"}
+{"id": "TR-PILOTAGE-049", "text": "harbor pilot charge outbound ref 1049", "label": "PILOTAGE"}
+{"id": "TR-TOWAGE-099", "text": "예선료 inbound port service invoice ref 1099", "label": "TOWAGE"}
+{"id": "TR-TOWAGE-077", "text": "예선료 KRW charge busan port service rendered ref 1077", "label": "TOWAGE"}
+{"id": "TR-AGENCY-010", "text": "대리점 수수료 busan port ref 1010", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-060", "text": "pilot boarding charge inbound KRW charge busan port ref 1060", "label": "PILOTAGE"}
+{"id": "TR-PILOTAGE-079", "text": "pilotage service port service invoice service rendered ref 1079", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-086", "text": "terminal handling labor KRW charge busan port outbound ref 1086", "label": "STEVEDORING"}
+{"id": "TR-PILOTAGE-031", "text": "pilotage service vessel call ref 1031", "label": "PILOTAGE"}
+{"id": "TR-MOORING-013", "text": "unmooring charge operation completed ref 1013", "label": "MOORING"}
+{"id": "TR-BERTH-019", "text": "berth dues inbound ref 1019", "label": "BERTH"}
+{"id": "TR-BERTH-024", "text": "berth dues busan port operation completed ref 1024", "label": "BERTH"}
+{"id": "TR-STEVEDORING-054", "text": "cargo handling supplier statement inbound operation completed ref 1054", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-023", "text": "cargo handling supplier statement ref 1023", "label": "STEVEDORING"}
+{"id": "TR-STEVEDORING-061", "text": "하역 작업비 operation completed service rendered ref 1061", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-040", "text": "towage service operation completed service rendered supplier statement ref 1040", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-077", "text": "harbor pilot charge outbound ref 1077", "label": "PILOTAGE"}
+{"id": "TR-STEVEDORING-066", "text": "terminal handling labor invoice ref 1066", "label": "STEVEDORING"}
+{"id": "TR-BERTH-081", "text": "접안료 outbound ref 1081", "label": "BERTH"}
+{"id": "TR-AGENCY-019", "text": "agency fee operation completed service rendered ref 1019", "label": "AGENCY"}
+{"id": "TR-PILOTAGE-068", "text": "도선료 busan port ref 1068", "label": "PILOTAGE"}
+{"id": "TR-MOORING-076", "text": "mooring service invoice operation completed supplier statement ref 1076", "label": "MOORING"}
+{"id": "TR-PILOTAGE-046", "text": "pilotage service inbound outbound operation completed ref 1046", "label": "PILOTAGE"}
+{"id": "TR-BERTH-007", "text": "terminal berth charge inbound busan port service rendered ref 1007", "label": "BERTH"}
+{"id": "TR-BERTH-092", "text": "wharfage outbound busan port ref 1092", "label": "BERTH"}
+{"id": "TR-STEVEDORING-011", "text": "cargo handling operation completed ref 1011", "label": "STEVEDORING"}
+{"id": "TR-TOWAGE-055", "text": "harbour tug invoice ref 1055", "label": "TOWAGE"}
+{"id": "TR-STEVEDORING-053", "text": "stevedoring charge inbound operation completed ref 1053", "label": "STEVEDORING"}
+{"id": "TR-MOORING-022", "text": "mooring service port service vessel call ref 1022", "label": "MOORING"}
+{"id": "TR-AGENCY-064", "text": "port agency attendance supplier statement port service vessel call ref 1064", "label": "AGENCY"}
+{"id": "TR-TOWAGE-004", "text": "harbour tug invoice service rendered vessel call ref 1004", "label": "TOWAGE"}
+{"id": "TR-PILOTAGE-096", "text": "pilot boarding charge busan port vessel call ref 1096", "label": "PILOTAGE"}
+{"id": "TR-AGENCY-061", "text": "대리점 수수료 outbound KRW charge ref 1061", "label": "AGENCY"}
+{"id": "TR-MOORING-021", "text": "mooring service service rendered outbound supplier statement ref 1021", "label": "MOORING"}
+{"id": "TR-AGENCY-082", "text": "port agency attendance KRW charge outbound busan port ref 1082", "label": "AGENCY"}

@@ -1,0 +1,40 @@
+{
+  "benchmark": "PACE Synthetic Benchmark v1",
+  "seed": 2609,
+  "scope": {
+    "synthetic_scenario_groups": 30,
+    "synthetic_train_phrases": 600,
+    "synthetic_cost_records": 180,
+    "real_documents": 0,
+    "controlled_anomalies": 45,
+    "classes": 6
+  },
+  "model": "domain-ontology augmented character 2-5 gram TF-IDF centroid model + deterministic evidence/control agent",
+  "split_audit": {
+    "strategy": "expression-family holdout with fixed seed",
+    "train_expression_families": 24,
+    "test_expression_families": 36,
+    "train_test_expression_family_overlap": 0,
+    "exact_record_overlap": 0,
+    "ontology_anchors_shared": true,
+    "interpretation": "Base expression families are disjoint, while the domain ontology is intentionally shared as part of the rule-augmented model."
+  },
+  "metrics": {
+    "cost_mapping_accuracy": 0.9166666666666666,
+    "cost_mapping_macro_f1": 0.9188602926146383,
+    "evidence_link_accuracy": 0.8545454545454545,
+    "exception_precision": 0.9,
+    "exception_recall": 1.0,
+    "exception_f1": 0.9473684210526316,
+    "false_auto_clear_count": 0,
+    "end_to_end_record_accuracy": 0.8611111111111112
+  },
+  "limitations": [
+    "No real port-call schedule or company document was used; all records and labels are code-generated synthetic data.",
+    "The 30 groups are synthetic grouping keys, not 30 real port-call documents.",
+    "The model evaluates cost-item semantics only, not OCR or scanned-PDF layout recovery.",
+    "Controlled templates and ontology anchors may make this benchmark easier than field documents.",
+    "Exception checks are deterministic controls and are reported separately from AI mapping.",
+    "Operational effectiveness and time reduction require a participating company PoC."
+  ]
+}

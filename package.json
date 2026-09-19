@@ -8,11 +8,15 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "eval": "npx tsx src/eval-run.ts"
+    "eval": "npx tsx src/eval-run.ts",
+    "ops-experiments": "python ai/ops_experiments.py",
+    "train-extractor": "python ai/train.py",
+    "eval-extractor": "python ai/evaluate.py"
   },
   "dependencies": {
     "framer-motion": "^13.2.0",
     "lucide-react": "^1.45.0",
+    "pdfjs-dist": "^6.3.289",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.3",

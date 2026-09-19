@@ -1,0 +1,17 @@
+# SEA Extractor experiment protocol v2
+# Synthetic maritime IE only. Not operational liner mail.
+
+protocol: v2-val-select-ood
+seed: 7
+data_seed: 42
+epochs: 6
+
+n_train: 1600
+n_val: 200
+n_test_id_easy: 150
+n_test_id_hard: 250
+n_test_ood_easy: 80
+n_test_ood_hard: 200
+
+# train mix inside n_train
+train_easy_frac: 0.4

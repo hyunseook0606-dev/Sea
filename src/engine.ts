@@ -18,7 +18,7 @@ import { LABELS, extractFromSource } from './extract'
 import { buildReviewPlan, hoursBetween, normalizePolicy } from './clocks'
 
 export { extractFromSource }
-export { buildReviewPlan, DEFAULT_POLICY, formatHours, hoursBetween, normalizePolicy, parseStamp, clockOf, CITE, CLOCK_STATE_LABEL } from './clocks'
+export { buildReviewPlan, DEFAULT_POLICY, formatHours, hoursBetween, normalizePolicy, parseStamp, shiftHours, clockOf, CITE, CLOCK_STATE_LABEL } from './clocks'
 
 export const RULE_MASTER = [
   {
@@ -33,7 +33,7 @@ export const RULE_MASTER = [
     kind: 'company_policy' as const,
     title: 'ETA 변경 시간',
     action: '검토 창 비교',
-    note: '기본 6h는 Kim 등(2021) 부산 터미널 재계획 주기. 선석 최적화는 하지 않는다. 회사 값으로 바꾼다.',
+    note: '기본 6h는 회사 기준. DCSA 2026 Blueprint feeder 6h deviation 절차를 참고한다. 산업 표준 강제값이 아니며 선석 최적화를 하지 않는다.',
   },
   {
     id: 'R3',
@@ -61,14 +61,14 @@ export const RULE_MASTER = [
     kind: 'forbid' as const,
     title: 'ETA → Cut-off 자동 확정',
     action: '적용하지 않음',
-    note: '화물 Cut-off는 원문에 있을 때만 비교합니다.',
+    note: '화물 Cut-off는 원문에 있을 때만 비교한다. ETA만으로 추론하지 않는다.',
   },
   {
     id: 'R7',
     kind: 'company_policy' as const,
     title: '연결 항차 여유',
     action: '하한 비교',
-    note: '하한 24h는 부산 T/S 체류 문헌 하한 1일. 평균 6.1일은 쓰지 않는다.',
+    note: '하한은 회사 업무 기준이다. 프로토타입 Demo Rule 24h. 산업 문헌값이 아니다.',
   },
 ] as const
 
@@ -165,7 +165,7 @@ export function fireRules(args: {
     },
     {
       id: 'R2',
-      rule: `ETA 변경 ≥ ${policy.etaReviewHours}시간 (부산 터미널 재계획 주기 문헌)`,
+      rule: `ETA 변경 ≥ ${policy.etaReviewHours}시간 (회사 기준)`,
       action: '검토 창 비교',
       fired: hours >= policy.etaReviewHours,
       basis: 'company_policy',
@@ -194,13 +194,13 @@ export function fireRules(args: {
     {
       id: 'R6',
       rule: 'ETA 변경 → CY Cut-off 자동 확정',
-      action: '적용하지 않음 (화물 프로세스는 별도)',
+      action: '적용하지 않음 (ETA만으로 Cut-off를 추론하지 않음)',
       fired: false,
       basis: 'forbid',
     },
     {
       id: 'R7',
-      rule: `연결 여유 < ${policy.minConnectionHours}시간 (T/S 체류 문헌 하한)`,
+      rule: `연결 여유 < ${policy.minConnectionHours}시간 (Demo Rule)`,
       action: '연결 확인',
       fired: slack != null && slack < policy.minConnectionHours,
       basis: 'company_policy',
@@ -239,51 +239,66 @@ export function buildImpact(
   connecting?: ScheduleFields,
   incoming?: ScheduleFields,
   previous?: ScheduleFields,
+  policy?: Partial<PolicyParams> | null,
 ): ImpactItem[] {
-  const eta = changes.some((c) => c.key === 'eta' || c.key === 'etb')
-  const berth = changes.some((c) => c.key === 'berth' || c.key === 'terminal')
-  const stay = incoming ? hoursBetween(incoming.eta, incoming.etd) : null
-  const prevStay = previous ? hoursBetween(previous.eta, previous.etd) : null
-  const slack = connecting && incoming ? hoursBetween(incoming.etd || incoming.eta, connecting.etd || connecting.eta) : null
+  const p = normalizePolicy(policy)
+  const etaCh = changes.find((c) => c.key === 'eta')
+  const berthCh = changes.find((c) => c.key === 'berth' || c.key === 'terminal')
+  const slip = etaCh ? Math.abs(hoursBetween(etaCh.previous, etaCh.next) ?? 0) : 0
+  const etaChanged = Boolean(etaCh)
+  const berthChanged = Boolean(berthCh)
+  const etbUpdated = Boolean(incoming?.etb) && incoming?.etb !== previous?.etb
   const etbGap = previous && incoming ? hoursBetween(previous.etb, incoming.eta) : null
+  const etbStale = p.checkEtbStale && Boolean(previous?.etb) && Boolean(incoming?.eta) && (etbGap ?? 0) > 0 && !etbUpdated
+  const etaReview = etaChanged && slip >= p.etaReviewHours
+  const berthReview = p.countBerth && berthChanged
+  const slack = connecting && incoming ? hoursBetween(incoming.etd || incoming.eta, connecting.etd || connecting.eta) : null
+  const connReview = p.countConnecting && Boolean(connecting) && slack != null && slack < p.minConnectionHours
+  const cutoffChanged = changes.some((c) => c.key === 'cutoff')
+
+  const berthParts: string[] = []
+  if (etaChanged) berthParts.push(`ETA ${slip > 0 ? '+' : ''}${slip}h`)
+  if (etbStale && previous?.etb) berthParts.push(`직전 확정본 ETB ${previous.etb} 미갱신`)
+
   return [
     {
-      area: '접안 협의',
-      status: eta || berth ? 'review_required' : 'unchanged',
-      reason:
-        eta || berth
-          ? `체류 ${prevStay != null && stay != null ? `${prevStay}h→${stay}h` : '계산 불가'}${etbGap != null && etbGap > 0 ? ` · 신규 ETA가 확정 ETB보다 ${etbGap}h 뒤` : ''}`
-          : '변경 없음',
-      dataConsidered: 'ETA, ETB, ETD, Berth, Terminal',
+      area: '접안',
+      status: etaReview || etbStale ? 'review_required' : 'unchanged',
+      trigger: berthParts.join(' · ') || 'ETA 변경 없음',
+      reason: etaReview || etbStale ? '기존 접안계획 재확인' : '변경 없음',
+      dataConsidered: '신규 ETA, 직전 확정본 ETB',
       nextAction: '터미널 협의 시각 확인',
     },
     {
-      area: '연결 항차',
-      status: connecting && eta ? 'review_required' : connecting ? 'unchanged' : 'unavailable',
-      reason:
+      area: '연결',
+      status: !connecting ? 'unavailable' : connReview ? 'review_required' : 'unchanged',
+      trigger:
         slack == null
           ? connecting
-            ? '연결 항차는 있으나 시각을 계산할 수 없습니다.'
-            : '연결된 피더 항차 데이터가 없습니다.'
-          : `연결 ETD − 본선 ETD = ${slack}h`,
+            ? '연결 시각 없음'
+            : '연결 항차 없음'
+          : connReview
+            ? `${slack}h < Demo Rule ${p.minConnectionHours}h`
+            : `${slack}h ≥ Demo Rule ${p.minConnectionHours}h`,
+      reason: connReview ? '연결항차 시간 재확인' : connecting ? '연결 여유 하한 미달 아님' : '연결 항차 없음',
       dataConsidered: '본선 ETD, 연결 항차 ETD',
       nextAction: connecting ? '피더/연결 출항 창 확인' : '데이터 확보 후 재평가',
     },
     {
-      area: '화물 Cut-off',
-      status: cutoffUnchanged ? 'no_update' : changes.some((c) => c.key === 'cutoff') ? 'review_required' : 'no_update',
-      reason: cutoffUnchanged
-        ? `원문에 Cut-off 변경 없음. 리드 ${incoming ? hoursBetween(incoming.cutoff, incoming.etd) ?? '—' : '—'}h. ETA로 파생하지 않음.`
-        : '원문에 Cut-off 값이 새로 들어왔습니다.',
-      dataConsidered: '원문 Cut-off 필드 (Commercial / Booking 계열)',
-      nextAction: cutoffUnchanged ? '화물 마감은 별도 통지가 올 때만 갱신' : '기존 화물 조건과 비교',
+      area: '내륙',
+      status: berthReview ? 'review_required' : 'unchanged',
+      trigger: berthCh ? `${berthCh.previous}→${berthCh.next}` : '부두 변경 없음',
+      reason: berthReview ? '게이트/반출 조건 재확인' : '부두 변경 없음',
+      dataConsidered: 'Berth, Terminal',
+      nextAction: berthReview ? '내륙 배차 게이트 재지정 여부 확인' : '해당 없음',
     },
     {
-      area: '내륙 운송',
-      status: berth ? 'review_required' : 'unchanged',
-      reason: berth ? '부두/터미널 변경은 게이트·대기 동선 확인이 필요합니다.' : '부두 변경 없음',
-      dataConsidered: 'Berth, Terminal',
-      nextAction: berth ? '내륙 배차 게이트 재지정 여부 확인' : '해당 없음',
+      area: 'Cut-off',
+      status: cutoffUnchanged || !cutoffChanged ? 'no_update' : 'review_required',
+      trigger: cutoffChanged ? '원문에 Cut-off 변경' : incoming?.cutoff ? '원문에 기존값 존재' : '원문에 Cut-off 없음',
+      reason: cutoffChanged ? '원문 Cut-off를 확정본과 비교' : 'ETA만으로 재산정하지 않음',
+      dataConsidered: '원문 Cut-off 필드',
+      nextAction: cutoffChanged ? '기존 화물 조건과 비교' : '원문에 새 Cut-off가 올 때만 갱신',
     },
   ]
 }
@@ -323,7 +338,7 @@ export function buildDrafts(exceptionId: string, prev: ScheduleFields, next: Sch
   const inlandBits = [
     `${next.voyage} ${next.vessel}, ${next.terminal}`,
     berth ? `부두 ${berth.previous}→${berth.next}` : '부두 변경 없음',
-    eta ? `접안 예정 ${eta.next} 전후.` : '',
+    eta ? `입항 예정 ${eta.next} 전후.` : '',
     berth ? '게이트·대기 동선 재지정 바랍니다.' : '',
   ].filter(Boolean)
   const shipper = `안녕하세요.\n${shipperBits.join(' ')}\n반입·배차 일정을 확인해 주시기 바랍니다.`
@@ -452,7 +467,7 @@ export function processInboxItem(args: {
   const connectingSchedule = connectingVoyage ? confirmed[connectingVoyage.id] : undefined
   const connectionSlack = connectingSchedule ? hoursBetween(incoming.etd || incoming.eta, connectingSchedule.etd || connectingSchedule.eta) : null
   const rules = fireRules({ changes, issues, isDuplicate: false, policy, connectionSlack })
-  const impact = buildImpact(changes, cutoffUnchanged, connectingSchedule, incoming, prev)
+  const impact = buildImpact(changes, cutoffUnchanged, connectingSchedule, incoming, prev, policy)
   const plan = buildReviewPlan({ previous: prev, incoming, changes, connecting: connectingSchedule, policy })
   const id = nextExceptionId(seq)
   const blocked = issues.length > 0

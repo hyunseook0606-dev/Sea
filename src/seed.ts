@@ -26,7 +26,7 @@ export const TERMINALS: TerminalMaster[] = [
   { code: 'HJNC', name: 'Hanjin Busan New Port', port: 'BUSAN', turnaroundDays: 1.1, cite: 'Econdb Busan terminal · 참고 통계, 임계 아님' },
 ]
 
-export const OPERATOR: Operator = { id: 'OPS-021', name: '운항 담당', role: 'ops' }
+export const OPERATOR: Operator = { id: 'DA-021', name: 'DA 담당', role: 'ops' }
 
 export const OPERATORS: Operator[] = [
   OPERATOR,
@@ -203,7 +203,7 @@ export const CONFIRMED: Record<string, ScheduleFields> = {
   },
 }
 
-export const MAIL_A = `From: pnc.ops.agent@example.com
+export const MAIL_A = `From: schedule.notice@example.com
 To: ops@demo-line.kr
 Subject: 2508W HANARO — ETA revision
 
@@ -215,7 +215,7 @@ CY cutoff remains 11 Sep 1800.
 Please update your port call file accordingly.
 `
 
-export const MAIL_B = `From: terminal.desk@example.com
+export const MAIL_B = `From: schedule.notice@example.com
 To: ops@demo-line.kr
 Subject: 2508W time check
 
@@ -225,7 +225,7 @@ ETB 10:00
 ETD 18:00
 `
 
-export const MAIL_C = `From: pnc.ops.agent@example.com
+export const MAIL_C = `From: schedule.notice@example.com
 To: ops@demo-line.kr
 Cc: nightwatch@demo-line.kr
 Subject: Fw: 2508W HANARO — ETA revision
@@ -241,7 +241,7 @@ export const INBOX: InboxItem[] = [
     id: 'IN-A',
     demoKey: 'A',
     receivedAt: '2026-09-12 08:41:02',
-    sender: 'pnc.ops.agent@example.com',
+    sender: 'schedule.notice@example.com',
     subject: '2508W HANARO — ETA revision',
     sourceType: 'email',
     fileName: '2508W-HANARO-ETA-revision.eml',
@@ -254,7 +254,7 @@ export const INBOX: InboxItem[] = [
     id: 'IN-B',
     demoKey: 'B',
     receivedAt: '2026-09-12 08:55:19',
-    sender: 'terminal.desk@example.com',
+    sender: 'schedule.notice@example.com',
     subject: '2508W time check',
     sourceType: 'email',
     fileName: '2508W-contradiction.eml',
@@ -267,7 +267,7 @@ export const INBOX: InboxItem[] = [
     id: 'IN-C',
     demoKey: 'C',
     receivedAt: '2026-09-12 09:12:44',
-    sender: 'pnc.ops.agent@example.com',
+    sender: 'schedule.notice@example.com',
     subject: 'Fw: 2508W HANARO — ETA revision',
     sourceType: 'email',
     fileName: '2508W-HANARO-forward.eml',
@@ -398,11 +398,11 @@ ETD 16 Sep 1800LT`,
 ]
 
 export const DATA_SOURCES: DataSource[] = [
-  { id: 'ds-email', name: '스케줄 메일함', kind: '이메일', status: 'connected', note: '원문 텍스트 수신', prototype: true },
-  { id: 'ds-pdf', name: '기항 PDF', kind: 'PDF', status: 'connected', note: '원문 붙여넣기 시뮬', prototype: true },
-  { id: 'ds-xls', name: '파트너 엑셀', kind: '엑셀', status: 'connected', note: 'CSV/텍스트 시뮬', prototype: true },
-  { id: 'ds-api', name: '항차 API', kind: 'API', status: 'available', note: '미연결', prototype: true },
-  { id: 'ds-dcsa', name: 'DCSA OVS', kind: '표준', status: 'extension', note: '예정', prototype: true },
+  { id: 'ds-email', name: '변경 원문 입구', kind: '이메일', status: 'connected', note: '공모본: 원문 텍스트. 메일함 연동은 현장 PoC 설계', prototype: true },
+  { id: 'ds-pdf', name: '기항 PDF', kind: 'PDF', status: 'connected', note: '원문 붙여넣기 시뮬. 파일 파서 없음', prototype: true },
+  { id: 'ds-xls', name: '파트너 엑셀', kind: '엑셀', status: 'connected', note: 'CSV/텍스트 시뮬. 엑셀 바이너리 파서 없음', prototype: true },
+  { id: 'ds-api', name: '항차 API', kind: 'API', status: 'available', note: '공모 범위 아님', prototype: true },
+  { id: 'ds-dcsa', name: 'DCSA OVS', kind: '표준', status: 'extension', note: '공모 범위 아님. 표준 공유와 별개 보완 계층', prototype: true },
 ]
 
 const MEM_PREV: ScheduleFields = {
@@ -435,7 +435,7 @@ const MEM_RULES = fireRules({ changes: MEM_CHANGES, issues: [], isDuplicate: fal
 export const MEMORY_INBOX: InboxItem = {
   id: 'IN-MEM',
   receivedAt: '2026-08-28 09:12:00',
-  sender: 'pnc.ops.agent@example.com',
+  sender: 'schedule.notice@example.com',
   subject: '2506W HANARO — ETA / berth revision',
   sourceType: 'email',
   fileName: '2506W-HANARO-revision.eml',
@@ -489,9 +489,9 @@ const MEM_SHIPPER = `안녕하세요.
 항차 2506W MV HANARO의 BUSAN(PNC) 입항 예정이 2026-08-29 06:00 LT에서 2026-08-29 13:00 LT로 변경되었습니다. 접안 부두는 T2에서 T3로 변경됩니다. CY 반입 마감은 원문 기준 2026-08-28 18:00이며, ETA 변경만으로 마감을 바꾸지 않았습니다.
 T3 반입 시 게이트 혼잡을 피하려면 내륙 쪽에 동선을 먼저 안내해 주시기 바랍니다.`
 
-const MEM_INLAND = `2506W MV HANARO, PNC 부두 T2→T3. 접안 예정 2026-08-29 13:00 LT 전후. T3 게이트·대기 동선 재지정 바랍니다. Cut-off는 원문 유지.`
+const MEM_INLAND = `2506W MV HANARO, PNC 부두 T2→T3. 입항 예정 2026-08-29 13:00 LT 전후. T3 게이트·대기 동선 재지정 바랍니다. Cut-off는 원문 유지.`
 
-const MEM_INTERNAL = `변경 부두 T2 → T3, ETA 06:00 → 13:00 (+7h). Cut-off는 원문에 있을 때만 유지. ETA로 파생하지 않음.
+const MEM_INTERNAL = `변경 부두 T2 → T3, ETA 06:00 → 13:00 (+7h). Cut-off는 원문에 있을 때만 유지. ETA만으로 추론하지 않음.
 대외 문장에 내부 추정 금액을 넣지 말 것. T3 접안 창은 터미널과 확인 완료.`
 
 export const MEMORY_DRAFTS: NotificationDraft[] = [
