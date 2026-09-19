@@ -13,8 +13,6 @@ dist-ssr
 *.local
 .vercel
 tmp-screens
-ai/data/
-ai/checkpoints/
 __pycache__/
 *.pyc
 

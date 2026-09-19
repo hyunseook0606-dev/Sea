@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom'
-import { FIELD_FLOW, SEA_FLOW } from '../ax'
+import { FIELD_FLOW, PACE_FLOW } from '../ax'
 import { cn } from './ui'
 
-export function ExceptionFlow({
+export function PaceFlow({
   variant = 'erp',
   className,
 }: {
@@ -17,7 +17,7 @@ export function ExceptionFlow({
         {FIELD_FLOW.map((s, i) => (
           <li key={s.id} className="flex items-center gap-2">
             {i > 0 ? <span className="text-white/40">→</span> : null}
-            <span className={s.sea ? 'font-semibold text-white' : 'text-white/80'}>{s.label}</span>
+            <span className={s.highlight ? 'font-semibold text-white' : 'text-white/80'}>{s.label}</span>
           </li>
         ))}
       </ol>
@@ -27,7 +27,7 @@ export function ExceptionFlow({
   if (variant === 'landing') {
     return (
       <ol className={cn('grid gap-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-x-8 lg:gap-y-0', className)}>
-        {SEA_FLOW.map((s, i) => (
+        {PACE_FLOW.map((s, i) => (
           <li key={s.id}>
             <div className="text-[13px] font-semibold text-[#1130c6]">{String(i + 1).padStart(2, '0')}</div>
             <div className="mt-3 text-[18px] font-semibold">{s.label}</div>
@@ -40,7 +40,7 @@ export function ExceptionFlow({
 
   return (
     <div className={cn('flex flex-wrap gap-1', className)}>
-      {SEA_FLOW.map((s, i) => (
+      {PACE_FLOW.map((s, i) => (
         <button
           key={s.id}
           type="button"

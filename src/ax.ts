@@ -1,4 +1,4 @@
-export const SEA_FLOW = [
+export const PACE_FLOW = [
   { id: 'change', label: 'Port Call Change', hint: '일정·작업·서비스 변화', to: '/app/documents' },
   { id: 'impact', label: 'Cost Impact', hint: '영향 비용항목 선별', to: '/app/twin' },
   { id: 'check', label: 'Rule Check', hint: '실제 조건·요율 검산', to: '/app/twin' },
@@ -8,10 +8,10 @@ export const SEA_FLOW = [
 ] as const
 
 export const FIELD_FLOW = [
-  { id: 'change', label: 'Port Call Change', hint: '일정·작업·서비스', sea: false },
-  { id: 'impact', label: 'Cost Impact', hint: '영향항목·규칙', sea: true },
-  { id: 'revised', label: 'Revised PDA', hint: '수정 예상액·행동', sea: false },
-  { id: 'assurance', label: 'Evidence Assurance', hint: '실제비용·근거', sea: false },
+  { id: 'change', label: 'Port Call Change', hint: '일정·작업·서비스', highlight: false },
+  { id: 'impact', label: 'Cost Impact', hint: '영향항목·규칙', highlight: true },
+  { id: 'revised', label: 'Revised PDA', hint: '수정 예상액·행동', highlight: false },
+  { id: 'assurance', label: 'Evidence Assurance', hint: '실제비용·근거', highlight: false },
 ] as const
 
 export const AX_CAPABILITIES = [

@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { AX_CAPABILITIES, AX_CASES } from './ax'
-import { ExceptionFlow } from './components/ExceptionFlow'
+import { PaceFlow } from './components/PaceFlow'
 import { Reveal } from './components/Reveal'
-import { SeaBrandLogo } from './components/SeaLogo'
+import { PaceBrandLogo } from './components/PaceLogo'
 
 const NAV = [
   { id: 'product', label: '제품', menu: true },
@@ -19,28 +19,28 @@ const FIELD_PLACE = [
     role: '입력',
     title: '기항 변화와 비용 문서',
     desc: '일정·작업·서비스 변경과 PDA·인보이스·SOF·FDA를 같은 기항 ID로 연결합니다.',
-    sea: false,
+    highlight: false,
   },
   {
     n: '02',
     role: '영향분석',
     title: '비용 영향과 규칙',
     desc: '변화의 영향을 받을 비용항목을 찾고 실제 작업·서비스와 적용 요율조건을 확인합니다.',
-    sea: false,
+    highlight: false,
   },
   {
     n: '03',
     role: 'PACE',
     title: 'AI Cost Review Agent',
     desc: 'Observe · Reason · Check · Recommend · Verify 순서로 Revised PDA 후보와 다음 행동을 제안합니다.',
-    sea: true,
+    highlight: true,
   },
   {
     n: '04',
     role: '검산',
     title: '실제비용과 근거',
     desc: 'FDA 실제비용을 예상액·기항 사건·문서 근거와 비교하고 담당자가 예외와 책임을 판단합니다.',
-    sea: false,
+    highlight: false,
   },
 ]
 
@@ -122,7 +122,7 @@ function HeroStage({ onFlow, onWorkspace }: { onFlow: () => void; onWorkspace: (
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.48, ease: EASE }}
           >
-            <ExceptionFlow variant="hero" />
+            <PaceFlow variant="hero" />
           </motion.div>
           <motion.div
             className="mt-10 flex flex-wrap gap-3"
@@ -185,7 +185,7 @@ export function BrandLanding() {
       <header className={stuck ? 'landing-header landing-header-stuck' : 'landing-header'}>
         <div className="mx-auto flex h-[99px] max-w-[1400px] items-center px-6">
           <a href="#home" className="flex shrink-0 items-center" aria-label="PACE 홈">
-            <SeaBrandLogo className="h-[33px]" />
+            <PaceBrandLogo className="h-[33px]" />
           </a>
           <nav className="ml-14 hidden items-center gap-10 text-[16px] text-[#222] lg:flex">
             {NAV.map((n) =>
@@ -273,7 +273,7 @@ export function BrandLanding() {
           <div className="landing-steps mt-16">
             {FIELD_PLACE.map((s, i) => (
               <Reveal key={s.n} delay={i * 0.08} y={24}>
-                <article className={s.sea ? 'landing-step landing-step-sea' : 'landing-step'}>
+                <article className={s.highlight ? 'landing-step landing-step-sea' : 'landing-step'}>
                   <span className="landing-step-n">{s.n}</span>
                   <span className="landing-step-role">{s.role}</span>
                   <h3>{s.title}</h3>
@@ -343,7 +343,7 @@ export function BrandLanding() {
             </p>
           </Reveal>
           <Reveal className="mt-12" delay={0.08} y={24}>
-            <ExceptionFlow variant="landing" />
+            <PaceFlow variant="landing" />
           </Reveal>
           <Reveal className="mt-16" delay={0.12} y={40}>
             <FlowVideo onWorkspace={goApp} />
@@ -416,7 +416,7 @@ export function BrandLanding() {
       <footer className="border-t border-[#eee] bg-white">
         <div className="mx-auto grid max-w-[1400px] gap-10 px-6 py-16 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <SeaBrandLogo className="h-8" />
+            <PaceBrandLogo className="h-8" />
             <p className="mt-4 text-[14px] leading-relaxed text-[#666]">
               기항 변화 이후의 비용 영향, 다음 행동, 실제비용과 근거 검토를 연결합니다.
             </p>

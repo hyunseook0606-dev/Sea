@@ -1,11 +1,11 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AgentAnalysis, Dashboard, Documents, Evidence, Review, Verification } from './PortCheckApp'
+import { AgentAnalysis, Dashboard, Documents, Evidence, Review, Verification } from './screens'
 import { COST_ITEMS, EVENTS, PORT_CALL } from './seed'
 import { WorkflowFrame, CostSimulation } from './WorkflowFrame'
 import type { CostItem, PortEvent } from './types'
 
-type View = 'dashboard' | 'documents' | 'agent' | 'review' | 'twin' | 'evidence' | 'verify'
+export type PaceView = 'dashboard' | 'documents' | 'agent' | 'review' | 'twin' | 'evidence' | 'verify'
 
 type WorkspaceState = {
   events: PortEvent[]
@@ -20,7 +20,7 @@ type WorkspaceState = {
 
 const WorkspaceContext = createContext<WorkspaceState | null>(null)
 
-export function PortCheckProvider({ children }: { children: ReactNode }) {
+export function PaceProvider({ children }: { children: ReactNode }) {
   const [events, setEvents] = useState(EVENTS)
   const [selectedId, setSelectedId] = useState(COST_ITEMS[2].id)
   const selected = COST_ITEMS.find((cost) => cost.id === selectedId) || COST_ITEMS[0]
@@ -48,10 +48,10 @@ export function PortCheckProvider({ children }: { children: ReactNode }) {
   )
 }
 
-export function PortCheckPage({ view }: { view: View }) {
+export function PacePage({ view }: { view: PaceView }) {
   const workspace = useContext(WorkspaceContext)
   const navigate = useNavigate()
-  if (!workspace) throw new Error('PortCheckPage must be rendered inside PortCheckProvider')
+  if (!workspace) throw new Error('PacePage must be rendered inside PaceProvider')
 
   let content: ReactNode
   if (view === 'dashboard') content = <Dashboard forecast={workspace.forecast} variance={workspace.variance} reviewCount={workspace.reviewCount} amount={workspace.amount} onGo={navigate} />
@@ -63,4 +63,3 @@ export function PortCheckPage({ view }: { view: View }) {
   else content = <Verification events={workspace.events} forecast={workspace.forecast} />
   return <WorkflowFrame view={view}>{content}</WorkflowFrame>
 }
-

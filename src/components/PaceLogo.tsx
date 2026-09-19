@@ -1,4 +1,4 @@
-export function SeaBrandLogo({
+export function PaceBrandLogo({
   className = 'h-8',
 }: {
   className?: string
@@ -11,24 +11,11 @@ export function SeaBrandLogo({
   )
 }
 
-export function SeaWaveMark({
-  className = 'h-8 w-8',
-}: {
-  className?: string
-  tone?: 'brand' | 'light'
-}) {
-  return <SeaBrandLogo className={className} />
-}
-
-export function SeaWordmark({ compact = false }: { tone?: 'light' | 'brand'; compact?: boolean }) {
+export function PaceWordmark({ compact = false }: { compact?: boolean }) {
   return (
     <span className="inline-flex items-center gap-2.5">
-      <SeaBrandLogo className={compact ? 'h-9' : 'h-11'} />
+      <PaceBrandLogo className={compact ? 'h-9' : 'h-11'} />
       {compact ? null : <span className="sr-only">Port-cost Assurance and Control Engine</span>}
     </span>
   )
-}
-
-export function SeaMark({ className = 'h-8' }: { className?: string }) {
-  return <SeaBrandLogo className={className} />
 }

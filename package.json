@@ -1,17 +1,14 @@
 {
-  "name": "sea-platform",
+  "name": "pace",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "eval": "npx tsx src/eval-run.ts",
-    "ops-experiments": "python ai/ops_experiments.py",
-    "train-extractor": "python ai/train.py",
-    "eval-extractor": "python ai/evaluate.py"
+    "eval:agent": "python pace_ai/evaluate_agent.py"
   },
   "dependencies": {
     "framer-motion": "^13.2.0",

@@ -2,11 +2,11 @@ import { useEffect, useMemo, useState } from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { ChevronDown, ChevronRight, Star } from 'lucide-react'
 import { CircleScrollbar } from './components/CircleScrollbar'
-import { SeaBrandLogo } from './components/SeaLogo'
+import { PaceBrandLogo } from './components/PaceLogo'
 import { cn } from './components/ui'
-import { useSeaStore } from './store'
+import { useWorkspaceStore } from './workspaceStore'
 
-type Leaf = { to: string; label: string; end?: boolean; exact?: boolean; badge?: 'queued' | 'open' | 'pending' }
+type Leaf = { to: string; label: string; end?: boolean; exact?: boolean }
 
 type Group = { id: string; label: string; items: Leaf[] }
 
@@ -131,14 +131,9 @@ function pageFilters(pathname: string): { title: string; key: string; items: { i
 export function Shell() {
   const nav = useNavigate()
   const { pathname } = useLocation()
-  const operator = useSeaStore((s) => s.operator)
-  const processing = useSeaStore((s) => s.processingInboxId)
-  const inbox = useSeaStore((s) => s.inbox)
-  const exceptions = useSeaStore((s) => s.exceptions)
-  const drafts = useSeaStore((s) => s.drafts)
-  const voyages = useSeaStore((s) => s.voyages)
-  const favorites = useSeaStore((s) => s.favorites)
-  const toggleFavorite = useSeaStore((s) => s.toggleFavorite)
+  const operator = useWorkspaceStore((s) => s.operator)
+  const favorites = useWorkspaceStore((s) => s.favorites)
+  const toggleFavorite = useWorkspaceStore((s) => s.toggleFavorite)
   const [now, setNow] = useState(() => new Date())
   const [menuQ, setMenuQ] = useState('')
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({
@@ -155,11 +150,6 @@ export function Shell() {
     const t = setInterval(() => setNow(new Date()), 30000)
     return () => clearInterval(t)
   }, [])
-
-  const queued = inbox.filter((i) => i.status === 'queued').length
-  const open = exceptions.filter((e) => !['sent', 'resolved', 'duplicate'].includes(e.status)).length
-  const pending = drafts.filter((d) => d.status === 'draft' || d.status === 'edited').length
-  const badges = { queued, open, pending }
 
   const modules = useMemo<Module[]>(() => {
     const favTabs =
@@ -180,10 +170,7 @@ export function Shell() {
   }, [pathname, modules])
 
   const chrome = pageFilters(pathname)
-  const detailId = pathname.startsWith('/app/exceptions/') && pathname !== '/app/exceptions' ? pathname.split('/')[3] : null
-  const detailEx = detailId ? exceptions.find((e) => e.id === detailId) : undefined
-  const detailVoyage = detailEx ? voyages.find((v) => v.id === detailEx.voyageId) : undefined
-  const screenTitle = detailVoyage ? `${detailVoyage.vessel} ${detailVoyage.voyage}` : chrome.title
+  const screenTitle = chrome.title
   const favPath = pathname.replace(/\/$/, '') || '/app'
   const starred = favorites.some((f) => f.path === favPath)
   const canStar = !pathname.startsWith('/app/favorites')
@@ -205,7 +192,7 @@ export function Shell() {
       <header className="z-20 shrink-0 bg-white">
         <div className="flex h-11 items-center px-2">
           <button onClick={() => nav('/')} className="flex h-11 w-[168px] shrink-0 items-center px-2" aria-label="PACE 홈">
-            <SeaBrandLogo className="h-9" />
+            <PaceBrandLogo className="h-9" />
           </button>
           <nav className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto">
             {modules.map((m) => (
@@ -263,7 +250,7 @@ export function Shell() {
             <button type="button" className="h-7 text-[12px] font-medium text-[#2f62c0]" onClick={() => nav('/app/twin')}>
               비용 영향 보기
             </button>
-            <span className={processing ? 'text-warn' : 'text-ok'}>{processing ? '처리 중' : '정상'}</span>
+            <span className="text-ok">정상</span>
             <span className="hidden font-mono tabular-nums xl:inline">{formatStamp(now)}</span>
             <span className="font-mono text-ink">{operator.id}</span>
           </div>
@@ -273,9 +260,7 @@ export function Shell() {
             const on =
               t.to === '/app'
                 ? pathname === '/app' || pathname === '/app/'
-                : t.to === '/app/exceptions'
-                  ? pathname === '/app/exceptions' || pathname === '/app/exceptions/'
-                  : pathname === t.to || pathname.startsWith(`${t.to}/`)
+                : pathname === t.to || pathname.startsWith(`${t.to}/`)
             return (
               <NavLink
                 key={`${t.label}-${t.to}`}
@@ -286,7 +271,6 @@ export function Shell() {
               </NavLink>
             )
           })}
-          {detailId ? <span className="shrink-0 border-b-2 border-[#2f62c0] pb-[5px] font-semibold text-[#2f62c0]">전표</span> : null}
         </div>
       </header>
 
@@ -357,7 +341,6 @@ export function Shell() {
                     {expanded
                       ? g.items.map((it) => {
                           const on = isLeafActive(pathname, it)
-                          const count = it.badge ? badges[it.badge] : 0
                           return (
                             <NavLink
                               key={it.to}
@@ -370,7 +353,6 @@ export function Shell() {
                             >
                               {on ? <span className="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-[#2f62c0]" /> : <span className="mr-1 inline-block w-1.5" />}
                               <span className="flex-1">{it.label}</span>
-                              {count > 0 ? <span className="font-mono text-[11px] text-[#2f62c0]">{count}</span> : null}
                             </NavLink>
                           )
                         })
@@ -398,22 +380,10 @@ export function Shell() {
               <Star size={14} className={starred ? 'fill-amber-400 text-amber-400' : 'text-[#c5cad3]'} />
             </button>
             <span className="text-[14px] font-semibold">{screenTitle}</span>
-            {detailId ? <span className="font-mono text-[12px] text-mute">{detailId}</span> : null}
-            {detailId ? (
-              <button type="button" className="text-[12px] text-[#2f62c0]" onClick={() => nav('/app/exceptions')}>
-                목록
-              </button>
-            ) : null}
           </div>
-          {processing ? (
-            <div className="border-b border-amber-200 bg-amber-50 px-3 py-1.5 text-[12px] text-amber-800">
-              수신 문서를 처리하고 있습니다. 비용항목을 읽고, 기항·요율·증빙과 연결해 검토 대상을 만듭니다.
-            </div>
-          ) : (
-            <div className="border-b border-line bg-[#f7fafc] px-3 py-1.5 text-[12px] text-mute">
-              PC-2609 업무 환경 · 비용과 근거의 최종 판단은 담당자 승인으로 완료됩니다. <span className="ml-2 text-[10px] text-[#8a94a3]">SYNTHETIC DEMO</span>
-            </div>
-          )}
+          <div className="border-b border-line bg-[#f7fafc] px-3 py-1.5 text-[12px] text-mute">
+            PC-2609 업무 환경 · 비용과 근거의 최종 판단은 담당자 승인으로 완료됩니다. <span className="ml-2 text-[10px] text-[#8a94a3]">SYNTHETIC DEMO</span>
+          </div>
           <main className="min-w-0 flex-1 overflow-auto p-3">
             <Outlet />
           </main>

@@ -1,5 +1,5 @@
-import { useMemo, useState, type ChangeEvent } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useState, type ChangeEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 import {
   ArrowRight,
@@ -9,16 +9,13 @@ import {
   CheckCircle2,
   ChevronRight,
   CircleDollarSign,
-  FileCheck2,
   FileStack,
   FileText,
   GitBranch,
   Info,
   LoaderCircle,
   PlayCircle,
-  SearchCheck,
   Sparkles,
-  ShieldCheck,
   TriangleAlert,
   Upload,
 } from 'lucide-react'
@@ -49,164 +46,6 @@ const statusTone: Record<CostStatus, string> = {
 
 function CostPill({ value }: { value: CostStatus }) {
   return <span className={cn('rounded px-1.5 py-0.5 text-[12px] font-medium', statusTone[value])}>{statusLabel[value]}</span>
-}
-
-export function PortCheckLanding() {
-  const nav = useNavigate()
-  return (
-    <div className="pc-landing min-h-screen bg-white text-ink">
-      <header className="sticky top-0 z-30 border-b border-sky-100 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <button className="flex items-center gap-3" onClick={() => nav('/')}>
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#0b3a5b] text-white"><CircleDollarSign size={21} /></span>
-            <span><b className="block text-[15px] tracking-tight">PACE</b><span className="block text-[11px] text-mute">Port-cost Assurance &amp; Control Engine</span></span>
-          </button>
-          <div className="flex items-center gap-4 text-[13px]">
-            <span className="hidden text-mute md:inline">SYNTHETIC DEMO · 담당자 승인 필수</span>
-            <button className="btn-primary !rounded-lg !px-4 !py-2" onClick={() => nav('/app')}>업무 화면 열기 <ArrowRight size={14} /></button>
-          </div>
-        </div>
-      </header>
-
-      <main>
-        <section className="pc-hero relative overflow-hidden">
-          <div className="mx-auto grid min-h-[640px] max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-[1.05fr_.95fr]">
-            <div className="relative z-10">
-              <p className="mb-4 text-[12px] font-semibold tracking-[.18em] text-sky-700">PORT COST ASSURANCE &amp; CONTROL</p>
-              <h1 className="max-w-3xl text-5xl font-semibold leading-[1.08] tracking-[-.045em] text-[#092f4a] md:text-6xl">
-                기항비를 숫자가 아닌<br /><span className="text-sky-600">근거의 연결</span>로 검토합니다.
-              </h1>
-              <p className="mt-7 max-w-2xl text-[17px] leading-8 text-[#4d6272]">
-                PDA, 기항 일정, 작업기록, 요율과 증빙을 한 기항에 연결합니다. 일정 변화가 비용조건에 미치는 영향을 먼저 찾고,
-                실제 작업과 규칙이 확인된 항목만 예상비용에 반영합니다.
-              </p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <button className="btn-primary !rounded-lg !px-5 !py-3" onClick={() => nav('/app/twin')}>비용 변화 확인 <ArrowRight size={16} /></button>
-                <button className="btn-ghost !rounded-lg !px-5 !py-3" onClick={() => nav('/app/evidence')}>Evidence Graph 보기</button>
-              </div>
-              <div className="mt-7 flex flex-wrap gap-5 text-[12px] text-mute">
-                <span className="flex items-center gap-1.5"><ShieldCheck size={14} className="text-emerald-600" /> 계산은 규칙 엔진</span>
-                <span className="flex items-center gap-1.5"><FileCheck2 size={14} className="text-sky-600" /> AI 추출은 원문 근거 표시</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-indigo-600" /> 최종 판단은 담당자</span>
-              </div>
-            </div>
-
-            <div className="relative z-10">
-              <div className="pc-window overflow-hidden rounded-2xl border border-sky-100 bg-white shadow-2xl shadow-sky-950/10">
-                <div className="flex items-center justify-between border-b border-line bg-[#f7fafc] px-5 py-3">
-                  <div><b>PC-2609 · MV HAEJIN</b><p className="text-[11px] text-mute">SYNTHETIC DEMO · 부산항</p></div>
-                  <span className="rounded bg-amber-50 px-2 py-1 text-[11px] text-amber-700">2건 확인 필요</span>
-                </div>
-                <div className="grid grid-cols-3 border-b border-line">
-                  <div className="p-4"><p className="text-[11px] text-mute">최초 PDA</p><b className="mt-1 block font-mono text-lg">{money(PORT_CALL.pdaTotal)}</b></div>
-                  <div className="border-x border-line p-4"><p className="text-[11px] text-mute">수정 예상액</p><b className="mt-1 block font-mono text-lg text-sky-700">{money(PORT_CALL.pdaTotal + 5_400_000)}</b></div>
-                  <div className="p-4"><p className="text-[11px] text-mute">예상 차액</p><b className="mt-1 block font-mono text-lg text-amber-700">+{money(5_400_000)}</b></div>
-                </div>
-                <div className="p-5">
-                  <p className="mb-3 text-[12px] font-semibold text-mute">차액의 근거</p>
-                  <div className="space-y-2">
-                    {EVENTS.slice(0, 2).map((e) => (
-                      <div key={e.id} className="flex items-center gap-3 rounded-lg border border-line px-3 py-3">
-                        <span className="grid h-8 w-8 place-items-center rounded-full bg-sky-50 text-sky-700"><GitBranch size={15} /></span>
-                        <div className="min-w-0 flex-1"><b className="block text-[13px]">{e.title}</b><span className="block truncate text-[11px] text-mute">{e.calculationBasis}</span></div>
-                        <b className="font-mono text-[12px] text-sky-700">+{money(e.costImpact)}</b>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 rounded-lg bg-amber-50 p-3 text-[12px] leading-relaxed text-amber-900">
-                    <b>일정만으로 금액을 바꾸지 않습니다.</b> 실제 작업시각·서비스 발생·적용 규칙이 확인된 항목만 반영합니다.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="border-y border-line bg-[#f7fafc] py-16">
-          <div className="mx-auto max-w-7xl px-6">
-            <p className="sea-kicker">ONE PORT CALL, ONE EVIDENCE CHAIN</p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight">문서를 읽는 것에서 비용을 설명하는 것으로</h2>
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
-              {[
-                [FileText, 'Document Intelligence', 'PDA·인보이스·영수증에서 비용필드를 읽고 서로 다른 명칭을 같은 항목 후보로 연결합니다.'],
-                [GitBranch, 'Evidence Graph', '기항 사건과 실제 서비스, 비용, 문서, 요율, 확인 근거의 관계를 보존합니다.'],
-                [Calculator, 'Schedule-to-Cost Twin', '일정 변화를 비용조건 후보로 바꾸고, 확인된 사건만 규칙으로 재계산합니다.'],
-              ].map(([Icon, title, body]) => {
-                const C = Icon as typeof FileText
-                return <div key={String(title)} className="rounded-xl border border-line bg-white p-6"><C className="text-sky-700" /><h3 className="mt-5 text-lg font-semibold">{String(title)}</h3><p className="mt-2 text-[14px] leading-7 text-mute">{String(body)}</p></div>
-              })}
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
-  )
-}
-
-const NAV = [
-  { id: 'dashboard', path: '/app', label: '변화·비용 현황', icon: CircleDollarSign },
-  { id: 'documents', path: '/app/documents', label: '문서 수신', icon: FileText },
-  { id: 'review', path: '/app/review', label: '비용 검토', icon: SearchCheck },
-  { id: 'twin', path: '/app/twin', label: '비용 영향분석', icon: Calculator },
-  { id: 'evidence', path: '/app/evidence', label: 'Evidence Graph', icon: GitBranch },
-  { id: 'verify', path: '/app/verify', label: '규칙 및 품질관리', icon: ShieldCheck },
-]
-
-export function PortCheckWorkspace() {
-  const nav = useNavigate()
-  const { pathname } = useLocation()
-  const [events, setEvents] = useState(EVENTS)
-  const [selectedCost, setSelectedCost] = useState(COST_ITEMS[2].id)
-  const active = NAV.find((n) => pathname === n.path)?.id || 'dashboard'
-  const selected = COST_ITEMS.find((c) => c.id === selectedCost) || COST_ITEMS[0]
-
-  const eventMap = useMemo(() => Object.fromEntries(events.map((e) => [e.id, e])), [events])
-  const actualAmount = (c: CostItem) => c.baseActualAmount + (c.eventId && eventMap[c.eventId]?.enabled ? eventMap[c.eventId].costImpact : 0)
-  const forecastTotal = COST_ITEMS.reduce((s, c) => s + actualAmount(c), 0)
-  const variance = forecastTotal - PORT_CALL.pdaTotal
-  const reviewCount = COST_ITEMS.filter((c) => c.status === 'review' || c.status === 'missing_evidence' || c.status === 'suspected').length
-
-  function toggleEvent(id: string) {
-    setEvents((all) => all.map((e) => (e.id === id ? { ...e, enabled: !e.enabled } : e)))
-  }
-
-  return (
-    <div className="flex h-screen overflow-hidden bg-paper text-ink">
-      <aside className="flex w-[224px] shrink-0 flex-col border-r border-line bg-white">
-        <button className="flex h-16 items-center gap-3 border-b border-line px-4 text-left" onClick={() => nav('/')}>
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#0b3a5b] text-white"><CircleDollarSign size={20} /></span>
-          <span><b className="block text-[13px]">PACE</b><span className="text-[10px] text-mute">Evidence-based FDA review</span></span>
-        </button>
-        <nav className="flex-1 px-3 py-4">
-          <p className="mb-2 px-2 text-[10px] font-semibold tracking-[.14em] text-[#8b95a1]">WORKSPACE</p>
-          {NAV.map((it) => {
-            const Icon = it.icon
-            const on = active === it.id
-            return <button key={it.id} className={cn('mb-1 flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-[13px]', on ? 'bg-[#eaf5fb] font-semibold text-[#0b668f]' : 'text-[#52606d] hover:bg-[#f4f7fa]')} onClick={() => nav(it.path)}><Icon size={16} />{it.label}{on ? <ChevronRight className="ml-auto" size={13} /> : null}</button>
-          })}
-        </nav>
-        <div className="border-t border-line p-4 text-[11px] leading-relaxed text-mute">
-          <b className="block text-ink">PACE Synthetic Demo Workspace</b>
-          가상 기항 환경 · 자동 지급 비활성
-        </div>
-      </aside>
-
-      <main className="min-w-0 flex-1 overflow-auto">
-        <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-line bg-white px-6">
-          <div><h1 className="text-[18px] font-semibold">{NAV.find((n) => n.id === active)?.label}</h1><p className="text-[11px] text-mute">PC-2609 · {PORT_CALL.vesselName} · {PORT_CALL.port} · Synthetic Demo</p></div>
-          <div className="flex items-center gap-3 text-[12px]"><span className="rounded bg-emerald-50 px-2 py-1 text-emerald-700">규칙 엔진 정상</span><span className="font-mono">DA-021</span></div>
-        </header>
-        <div className="p-5 xl:p-7">
-          {active === 'dashboard' && <Dashboard forecast={forecastTotal} variance={variance} reviewCount={reviewCount} amount={actualAmount} onGo={nav} />}
-          {active === 'documents' && <Documents />}
-          {active === 'review' && <Review selected={selected} onSelect={setSelectedCost} amount={actualAmount} />}
-          {active === 'twin' && <Twin events={events} onToggle={toggleEvent} forecast={forecastTotal} variance={variance} />}
-          {active === 'evidence' && <Evidence selected={selected} onSelect={setSelectedCost} />}
-          {active === 'verify' && <Verification events={events} forecast={forecastTotal} />}
-        </div>
-      </main>
-    </div>
-  )
 }
 
 export function Dashboard({ forecast, variance, reviewCount, amount, onGo }: { forecast: number; variance: number; reviewCount: number; amount: (cost: CostItem) => number; onGo: (to: string) => void }) {
@@ -354,24 +193,6 @@ export function Review({ selected, onSelect, amount }: { selected: CostItem; onS
   const docs = DOCUMENTS.filter((d) => selected.evidenceIds.includes(d.id))
   const issues = ISSUES.filter((i) => i.costItemId === selected.id)
   return <div className="grid gap-4 xl:grid-cols-[1.25fr_.75fr]"><Panel title="PDA–예상 FDA 비교" padded={false}><table className="erp-table"><thead><tr><th>항목</th><th>PDA</th><th>현재 예상</th><th>차이</th><th>상태</th></tr></thead><tbody>{COST_ITEMS.map((c) => { const a = amount(c); return <tr key={c.id} className={selected.id === c.id ? 'is-on cursor-pointer' : 'cursor-pointer'} onClick={() => onSelect(c.id)}><td><b>{c.label}</b><div className="text-[11px] text-mute">{c.vendor}</div></td><td className="font-mono">{money(c.pdaAmount)}</td><td className="font-mono">{money(a)}</td><td className={a !== c.pdaAmount ? 'font-mono text-amber-700' : 'font-mono text-mute'}>{a === c.pdaAmount ? '—' : `+${money(a - c.pdaAmount)}`}</td><td><CostPill value={costState(c, amount(c))} /></td></tr>})}</tbody></table></Panel><div className="space-y-4"><Panel title={`${selected.label} · 검토 근거`}><p className="text-[13px] font-semibold">{selected.varianceReason}</p><div className="mt-4 space-y-2">{docs.length ? docs.map((d) => <div key={d.id} className="flex items-center gap-2 rounded border border-line px-3 py-2"><FileText size={14} className="text-sky-700" /><span className="flex-1 truncate font-mono text-[11px]">{d.fileName}</span><span className="text-[10px] text-mute">근거</span></div>) : <p className="rounded bg-orange-50 p-3 text-[12px] text-orange-800">연결된 증빙이 없습니다.</p>}</div>{rule ? <div className="mt-4 rounded bg-[#f7fafc] p-3"><p className="text-[11px] text-mute">적용 규칙</p><b className="mt-1 block text-[12px]">{rule.name}</b><p className="mt-1 text-[11px] text-mute">{rule.formula}</p><p className="mt-2 text-[10px] text-amber-700">{rule.source}</p></div> : null}</Panel>{issues.map((i) => <Panel key={i.id} title="검토 항목"><p className="text-[12px]">{i.message}</p><button className="btn-primary mt-3" onClick={() => nav('/app/evidence')}>근거 연결 현황 확인</button></Panel>)}</div></div>
-}
-
-export function Twin({ events, onToggle, forecast, variance }: { events: PortEvent[]; onToggle: (id: string) => void; forecast: number; variance: number }) {
-  const candidates = [
-    ['도선료', '토요일·야간 조건 후보', '실제 도선시각 확인 필요', '미반영'],
-    ['하역 작업비', '토요일 작업 조건 후보', 'SOF에서 실제 작업 확인', '반영 가능'],
-    ['접안 관련 비용', '예정 체류시간 증가', '실제 접안·이안기록 확인 필요', '미반영'],
-  ]
-  return <div className="space-y-4">
-    <div className="rounded border border-sky-200 bg-sky-50 px-4 py-3 text-[12px] leading-6 text-sky-950"><b>Schedule-to-Cost Impact:</b> 일정 변경은 재검토 신호입니다. 실제 작업·서비스와 적용 규칙이 확인되기 전에는 금액을 자동 변경하지 않습니다.</div>
-    <div className="grid gap-3 md:grid-cols-3"><Kpi label="기준 PDA" value={money(PORT_CALL.pdaTotal)} hint="최초 예상비용" /><Kpi label="확인 후 수정 예상액" value={money(forecast)} hint="활성 사건 기준" tone="info" /><Kpi label="예상 증감" value={`${variance >= 0 ? '+' : ''}${money(variance)}`} hint="가상 규칙 시나리오" tone="warn" /></div>
-    <Panel title="01 기항 일정 변경 감지" right={<span className="text-[11px] text-mute">SYNTHETIC SCHEDULE</span>}>
-      <div className="grid gap-3 lg:grid-cols-[1fr_auto_1fr] lg:items-center"><div className="rounded-lg border border-line bg-white p-4"><span className="text-[10px] font-semibold text-mute">ORIGINAL PLAN</span><div className="mt-3 grid grid-cols-2 gap-3"><div><span className="text-[10px] text-mute">ETA</span><b className="block font-mono text-[12px]">09.18 08:00</b></div><div><span className="text-[10px] text-mute">ETD</span><b className="block font-mono text-[12px]">09.18 23:00</b></div></div></div><ArrowRight className="mx-auto text-sky-500" size={20} /><div className="rounded-lg border border-sky-300 bg-sky-50 p-4"><span className="text-[10px] font-semibold text-sky-700">CHANGED PLAN</span><div className="mt-3 grid grid-cols-2 gap-3"><div><span className="text-[10px] text-mute">ETA</span><b className="block font-mono text-[12px]">09.18 08:00</b></div><div><span className="text-[10px] text-mute">ETD</span><b className="block font-mono text-[12px] text-sky-800">09.19 06:00</b></div></div></div></div>
-    </Panel>
-    <Panel title="02 비용조건 영향 후보" padded={false} right={<span className="text-[11px] text-amber-700">일정만으로 확정하지 않음</span>}><table className="erp-table"><thead><tr><th>비용항목</th><th>감지된 조건</th><th>확인할 근거</th><th>처리</th></tr></thead><tbody>{candidates.map((row) => <tr key={row[0]}><td><b>{row[0]}</b></td><td>{row[1]}</td><td className="text-mute">{row[2]}</td><td><span className={cn('rounded px-2 py-1 text-[10px] font-semibold', row[3] === '반영 가능' ? 'bg-sky-50 text-sky-700' : 'bg-amber-50 text-amber-700')}>{row[3]}</span></td></tr>)}</tbody></table></Panel>
-    <Panel title="03 확인된 사건과 규칙 반영" right={<span className="text-[11px] text-amber-700">DEMO RULESET · 운영 전 계약요율 확인</span>}><div className="grid gap-3 lg:grid-cols-3">{events.map((e) => <button key={e.id} className={cn('rounded-xl border p-4 text-left transition', e.enabled ? 'border-sky-300 bg-sky-50 shadow-sm' : 'border-line bg-white hover:bg-[#f7fafc]')} onClick={() => onToggle(e.id)}><div className="flex items-start justify-between"><span className={cn('grid h-8 w-8 place-items-center rounded-full', e.enabled ? 'bg-sky-700 text-white' : 'bg-[#eef2f6] text-mute')}><GitBranch size={15} /></span><span className={cn('rounded-full px-2 py-0.5 text-[10px]', e.enabled ? 'bg-sky-700 text-white' : 'bg-[#eef2f6] text-mute')}>{e.enabled ? '예상액 반영' : '확인 대기'}</span></div><b className="mt-4 block text-[14px]">{e.title}</b><p className="mt-1 min-h-10 text-[11px] leading-5 text-mute">{e.detail}</p><p className="mt-4 font-mono text-lg font-semibold text-sky-700">{e.enabled ? '+' : '후보 '}{money(e.costImpact)}</p><p className="mt-2 text-[10px] leading-relaxed text-mute">{e.calculationBasis}</p></button>)}</div></Panel>
-    <Panel title="Pre-to-Post Cost Control"><div className="grid gap-2 md:grid-cols-6">{['일정 변화', '영향 후보', '실제 조건 확인', '수정 예상액', 'FDA·Invoice', '실제비용 검산'].map((x, i) => <div key={x} className="relative rounded border border-line bg-white p-4 text-center"><span className="mx-auto grid h-6 w-6 place-items-center rounded-full bg-[#0b3a5b] text-[10px] text-white">{i + 1}</span><b className="mt-2 block text-[11px]">{x}</b>{i < 5 ? <ArrowRight className="absolute -right-3 top-1/2 hidden -translate-y-1/2 text-sky-400 md:block" size={15} /> : null}</div>)}</div></Panel>
-  </div>
 }
 
 export function Evidence({ selected, onSelect }: { selected: CostItem; onSelect: (id: string) => void }) {
